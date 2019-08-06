@@ -3,7 +3,7 @@ JavaScript for Shiny Users
 
 ### rstudio::conf 2020
 
-by INSTRUCTOR_NAME
+by Garrick Aden-Buie
 
 -----
 
