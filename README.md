@@ -25,7 +25,9 @@ can remove these instructions from the README.
 
 ## Overview
 
-ABSTRACT
+Shiny gives users a powerful toolkit to create interactive web applications. As a result, Shiny users are also web developers! Inevitably, an intermediate Shiny user will want to create a visualization or user interface that isn't available in the `shiny` package. Fortunately, we can use the building blocks of the web -- JavaScript, HTML, and CSS -- to extend Shiny's capabilities and create engaging Shiny apps. 
+
+This two-day, hands-on workshop will introduce Shiny users to JavaScript, the ubiquitous scripting language that powers the modern web. We will explore JavaScript's syntax and will discover its functional programming style to be refreshingly familiar to tidyverse R users. We will learn how to use JavaScript to manipulate HTML and how Shiny uses JavaScript to communicate between the browser and Shiny server. Together, we will build an `htmlwidget` and as we learn how to incorporate our own or packaged JavaScript code into Shiny apps and RMarkdown documents, and how to simultaneously manage JavaScript and R dependencies.
 
 ## Learning objectives
 
