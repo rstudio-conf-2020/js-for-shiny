@@ -31,7 +31,7 @@ This two-day, hands-on workshop will introduce Shiny users to JavaScript, the ub
 
 ## Learning objectives
 
-LEARNING_OBJECTIVES
+Attendees will learn basic JavaScript and how to use JavaScript to manipulate HTML and CSS in interactive webpages. We will explore how to use JavaScript effectively in Shiny apps using htmlwidgets and htmltools. We delve into how Shiny uses JavaScript to build engaging Shiny apps.
 
 ## Is this course for me?
 
