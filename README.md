@@ -1,4 +1,4 @@
-WORKSHOP_TITLE
+JavaScript for Shiny Users
 ================
 
 ### rstudio::conf 2020
