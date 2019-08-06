@@ -35,7 +35,7 @@ Attendees will learn basic JavaScript and how to use JavaScript to manipulate HT
 
 ## Is this course for me?
 
-THREE_QUESTIONS
+This workshop is for the Shiny user who boldly waded into the *Customizing Shiny* section of shiny.rstudio.com/articles and quickly wished they had more experience with JavaScript. This user recognizes the benefits of learning JavaScript, but she is overwhelmed by the sheer number of packages, tutorials, and StackOverflow questions that exist in the world. The goal of this workshop is to meet the Shiny user where they are now to learn the best parts of JavaScript that will provide the most value and facilitate learning and exploration after the workshop.
 
 ## Prework
 
