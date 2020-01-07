@@ -1,4 +1,14 @@
-# Getting Setup
+# Getting Setup <!-- omit in toc -->
+
+- [Required](#required)
+  - [RStudio](#rstudio)
+  - [R Setup](#r-setup)
+  - [Browser](#browser)
+  - [Node and npm](#node-and-npm)
+    - [Node Version Manager](#node-version-manager)
+- [Optional Extras](#optional-extras)
+  - [JavaScript Standard Style](#javascript-standard-style)
+  - [Visual Studio Code](#visual-studio-code)
 
 ## Required
 
