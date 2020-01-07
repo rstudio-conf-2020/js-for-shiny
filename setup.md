@@ -75,7 +75,7 @@ It's comparable to [Firefox] but has a few more features and it even has the wor
 that lets developers run JavaScript on servers
 rather than in the user's browser.
 
-We won't use `node` in this workshop,
+We won't directly use `node` in this workshop,
 but we will use [npm] (a package manager for node and JavaScript libraries).
 [npm] is included with an installation of `node`.
 
@@ -168,6 +168,7 @@ to automatically format your JavaScript.
 [vscode-ext-css-navigation]: https://marketplace.visualstudio.com/items?itemName=pucelle.vscode-css-navigation
 [vscode-ext-auto-close-tag]: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
 [vscode-ext-auto-rename-tag]: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
+[rpkg-languageserver]: https://github.com/REditorSupport/languageserver
 
 
 :computer: We will use RStudio throughout the workshop,
