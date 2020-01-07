@@ -39,10 +39,17 @@ This workshop is for the Shiny user who boldly waded into the *Customizing Shiny
 
 ## Prework
 
-\[ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
-COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
-RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
-RSTUDIO.CLOUD ACCOUNT, ETC.\]
+:woman_technologist: Please follow the instructions in [setup.md](setup.md) to get started.
+
+We will spend most of our time in this workshop in RStudio and a web browser. [RStudio Desktop][rstudio-desktop] is preferred because we will occasionally need to run commands like `npm` in your computer's terminal or console.
+
+I recommend the [Firefox], [Firefox Developer Edition][firefox-dev], or [Chrome] browsers and will use Firefox during the workshop.
+
+[rstudio-desktop]: https://rstudio.com/products/rstudio/
+[firefox]: https://www.mozilla.org/en-US/firefox/new/
+[firefox-dev]: https://www.mozilla.org/en-US/firefox/developer/
+[chrome]: https://www.google.com/chrome/
+
 
 ## Schedule
 
