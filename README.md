@@ -53,15 +53,34 @@ I recommend the [Firefox], [Firefox Developer Edition][firefox-dev], or [Chrome]
 
 ## Schedule
 
-| Time          | Activity       |
-| :------------ | :------------- |
-| 09:00 - 10:30 | Session 1      |
-| 10:30 - 11:00 | *Coffee break* |
-| 11:00 - 12:30 | Session 2      |
-| 12:30 - 13:30 | *Lunch break*  |
-| 13:30 - 15:00 | Session 3      |
-| 15:00 - 15:30 | *Coffee break* |
-| 15:30 - 17:00 | Session 4      |
+We have a lot planned for our time together,
+so the _topics listed below provide a general overview_ and may change.
+The **times are certain** and fixed
+(unless the rstudio::conf schedule changes).
+
+### Monday, January 27
+
+| Time          |                        | Activity                |
+| :------------ | ---------------------- | :---------------------- |
+| 09:00 - 10:30 | :clapper:              | Web Dev 101             |
+| 10:30 - 11:00 | :coffee:               | *Coffee break*          |
+| 11:00 - 12:30 | :nail_care:            | Interactivity and Style |
+| 12:30 - 13:30 | :bento:                | *Lunch break*           |
+| 13:30 - 15:00 | :zap:                  | JavaScript              |
+| 15:00 - 15:30 | :coffee:               | *Coffee break*          |
+| 15:30 - 17:00 | :globe_with_meridians: | R for Web Dev           |
+
+### Tuesday, January 28
+
+| Time          |                  | Activity                    |
+| :------------ | ---------------- | :-------------------------- |
+| 09:00 - 10:30 | :package:        | htmlwidgets                 |
+| 10:30 - 11:00 | :coffee:         | *Coffee break*              |
+| 11:00 - 12:30 | :phone:          | Communicating with Shiny    |
+| 12:30 - 13:30 | :bento:          | *Lunch break*               |
+| 13:30 - 15:00 | :dancing_women:  | Extending Shiny             |
+| 15:00 - 15:30 | :coffee:         | *Coffee break*              |
+| 15:30 - 17:00 | :woman_juggling: | Building Awesome Shiny Apps |
 
 ## Instructor
 
