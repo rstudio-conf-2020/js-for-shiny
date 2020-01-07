@@ -7,15 +7,6 @@ by Garrick Aden-Buie
 
 -----
 
-INSTRUCTIONS FOR INSTRUCTORS: Please insert information about your
-workshop below. Then, add workshop content in the materials folder and
-link to each session’s materials from the schedule below. You are
-welcomed to add more rows to the schedule. We just ask that you take
-breaks at the specified times. Once you are done adding information, you
-can remove these instructions from the README.
-
------
-
 :spiral_calendar: January 27 and 28, 2020  
 :alarm_clock:     09:00 - 17:00  
 :hotel:           \[ADD ROOM\]  
@@ -25,7 +16,7 @@ can remove these instructions from the README.
 
 ## Overview
 
-Shiny gives users a powerful toolkit to create interactive web applications. As a result, Shiny users are also web developers! Inevitably, an intermediate Shiny user will want to create a visualization or user interface that isn't available in the `shiny` package. Fortunately, we can use the building blocks of the web -- JavaScript, HTML, and CSS -- to extend Shiny's capabilities and create engaging Shiny apps. 
+Shiny gives users a powerful toolkit to create interactive web applications. As a result, Shiny users are also web developers! Inevitably, an intermediate Shiny user will want to create a visualization or user interface that isn't available in the `shiny` package. Fortunately, we can use the building blocks of the web -- JavaScript, HTML, and CSS -- to extend Shiny's capabilities and create engaging Shiny apps.
 
 This two-day, hands-on workshop will introduce Shiny users to JavaScript, the ubiquitous scripting language that powers the modern web. We will explore JavaScript's syntax and will discover its functional programming style to be refreshingly familiar to tidyverse R users. We will learn how to use JavaScript to manipulate HTML and how Shiny uses JavaScript to communicate between the browser and Shiny server. Together, we will build an `htmlwidget` and as we learn how to incorporate our own or packaged JavaScript code into Shiny apps and RMarkdown documents, and how to simultaneously manage JavaScript and R dependencies.
 
@@ -39,26 +30,62 @@ This workshop is for the Shiny user who boldly waded into the *Customizing Shiny
 
 ## Prework
 
-\[ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
-COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
-RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
-RSTUDIO.CLOUD ACCOUNT, ETC.\]
+:woman_technologist: Please follow the instructions in [setup.md](setup.md) to get started.
+
+We will spend most of our time in this workshop in RStudio and a web browser. [RStudio Desktop][rstudio-desktop] is preferred because we will occasionally need to run commands like `npm` in your computer's terminal or console.
+
+I recommend the [Firefox], [Firefox Developer Edition][firefox-dev], or [Chrome] browsers and will use Firefox during the workshop.
+
+[rstudio-desktop]: https://rstudio.com/products/rstudio/
+[firefox]: https://www.mozilla.org/en-US/firefox/new/
+[firefox-dev]: https://www.mozilla.org/en-US/firefox/developer/
+[chrome]: https://www.google.com/chrome/
+
 
 ## Schedule
 
-| Time          | Activity         |
-| :------------ | :--------------- |
-| 09:00 - 10:30 | Session 1        |
-| 10:30 - 11:00 | *Coffee break*   |
-| 11:00 - 12:30 | Session 2        |
-| 12:30 - 13:30 | *Lunch break*    |
-| 13:30 - 15:00 | Session 3        |
-| 15:00 - 15:30 | *Coffee break*   |
-| 15:30 - 17:00 | Session 4        |
+We have a lot planned for our time together,
+so the _topics listed below provide a general overview_ and may change.
+The **times are certain** and fixed
+(unless the rstudio::conf schedule changes).
+
+### Monday, January 27
+
+| Time          |                        | Activity                |
+| :------------ | ---------------------- | :---------------------- |
+| 09:00 - 10:30 | :clapper:              | Web Dev 101             |
+| 10:30 - 11:00 | :coffee:               | *Coffee break*          |
+| 11:00 - 12:30 | :nail_care:            | Interactivity and Style |
+| 12:30 - 13:30 | :bento:                | *Lunch break*           |
+| 13:30 - 15:00 | :zap:                  | JavaScript              |
+| 15:00 - 15:30 | :coffee:               | *Coffee break*          |
+| 15:30 - 17:00 | :globe_with_meridians: | R for Web Dev           |
+
+### Tuesday, January 28
+
+| Time          |                  | Activity                    |
+| :------------ | ---------------- | :-------------------------- |
+| 09:00 - 10:30 | :package:        | htmlwidgets                 |
+| 10:30 - 11:00 | :coffee:         | *Coffee break*              |
+| 11:00 - 12:30 | :phone:          | Communicating with Shiny    |
+| 12:30 - 13:30 | :bento:          | *Lunch break*               |
+| 13:30 - 15:00 | :dancing_women:  | Extending Shiny             |
+| 15:00 - 15:30 | :coffee:         | *Coffee break*              |
+| 15:30 - 17:00 | :woman_juggling: | Building Awesome Shiny Apps |
 
 ## Instructor
 
-\[ADD INSTRUCTOR BIO\]
+[Garrick Aden-Buie][garrick] is an
+[RStudio certified trainer][rstudio-trainer] and a data scientist at
+the [Moffitt Cancer Center][moffitt] in the
+[Collaborative Data Services Core][moffitt-cdsc] where he uses and trains
+others to use R, Shiny, and the tools of data science to accelerate research
+towards the prevention and cure of cancer.
+
+[garrick]: https://www.garrickadenbuie.com
+[moffitt]: https://moffitt.org
+[moffitt-cdsc]: https://moffitt.org/research-science/shared-resources/collaborative-data-services/
+[rstudio-trainer]: https://education.rstudio.com/trainers
 
 -----
 
