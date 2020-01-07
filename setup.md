@@ -5,7 +5,6 @@
   - [R Setup](#r-setup)
   - [Browser](#browser)
   - [Node and npm](#node-and-npm)
-    - [Node Version Manager](#node-version-manager)
 - [Optional Extras](#optional-extras)
   - [JavaScript Standard Style](#javascript-standard-style)
   - [Visual Studio Code](#visual-studio-code)
@@ -117,7 +116,7 @@ it's probably a good idea to take this opportunity to upgrade.
 :sos: If you run into any issues installing `node` or `npm`,
 you can post your troubles and get help [in this issue](https://github.com/rstudio-conf-2020/js-for-shiny/issues/2).
 
-#### Node Version Manager
+#### Node Version Manager <!-- omit in toc -->
 
 If you plan to do a lot of development with `node` and `npm`,
 you may want to use a [Node Version Manager][nvm].
