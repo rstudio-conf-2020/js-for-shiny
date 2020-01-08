@@ -98,13 +98,13 @@ _in a new terminal window or session_.
 <pre class="bash"><code>node -v</code></pre>
 
 ```
-## v13.2.0
+## v13.6.0
 ```
 
 <pre class="bash"><code>npm -v </code></pre>
 
 ```
-## 6.13.1
+## 6.13.4
 ```
 
 These are the versions currently installed on my system
