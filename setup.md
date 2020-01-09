@@ -3,6 +3,8 @@
 - [Required](#required)
   - [RStudio](#rstudio)
   - [R Setup](#r-setup)
+    - [js4shiny](#js4shiny)
+    - [Other R Requirements](#other-r-requirements)
   - [Browser](#browser)
   - [Node and npm](#node-and-npm)
 - [Optional Extras](#optional-extras)
@@ -23,10 +25,16 @@ We're going to use [RStudio Desktop][rstudio-desktop] in this workshop. Yes, you
 
 [js4shiny]: https://github.com/gadenbuie/js4shiny
 [devtools]: https://devtools.r-lib.org
+[r-pkgs]: https://r-pkgs.org
+[r-pkgs-setup]: https://r-pkgs.org/setup.html
+[tidyverse]: https://tidyverse.org
+[r-pkgs-setup-tools]: https://r-pkgs.org/setup.html#setup-tools
+
+#### js4shiny
 
 I've created a companion R package for this workshop called [js4shiny]. Installing the package with its dependencies will ensure that you have the R packages needed for the workshop. The package also provides access to the examples and exercises used in the workshop and includes some helpful tools that you can use after the workshop while learning and working with JavaScript.
 
-:computer: To install the package, use [devtools]:
+:computer: To install the package, use [devtools].
 
 ```r
 # install.package("devtools")
@@ -35,11 +43,31 @@ devtools::install_github("gadenbuie/js4shiny", dependencies = TRUE)
 
 Be sure to include the `dependencies = TRUE`!
 
+If you're installing `devtools` for the first time, you may find the [System Setup][r-pkgs-setup] of the [_R Packages_ book][r-pkgs] to be helpful.
+
 :information_source: There is a minor issue with `rmarkdown` limited specifically to version 2.0. If you have `rmarkdown` 2.0 installed, I recommend updating to a newer version. The current version of `rmarkdown` on CRAN is ![](https://www.r-pkg.org/badges/version/rmarkdown). If the CRAN version is 2.0.5 or higher, install from CRAN; otherwise use
 
 ```r
 devtools::install_github("rstudio/rmarkdown")
 ```
+
+#### Other R Requirements
+
+I've included all of the packages that we'll need
+in the dependencies of `js4shiny`
+except for the [tidyverse].
+Please make sure you have at least the core tidyverse packages installed.
+
+The final R detail is that we will be building a package
+during the workshop when we create an htmlwidget.
+We won't focus on the mechanics of package building in the workshop.
+If you're not familiar with package development,
+I recommend taking a look a [R Packages][r-pkgs]
+by Hadley Wickham and Jenny Bryan.
+At a minimum,
+please review the [System Setup][r-pkgs-setup] chapter,
+in particular the section on the [R build toolchain][r-pkgs-setup-tools]
+to ensure that your laptop will be ready to build a package.
 
 ### Browser
 
