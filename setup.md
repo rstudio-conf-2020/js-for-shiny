@@ -2,6 +2,7 @@
 
 - [Required](#required)
   - [RStudio](#rstudio)
+    - [Snippets](#snippets)
   - [R Setup](#r-setup)
     - [js4shiny](#js4shiny)
     - [Other R Requirements](#other-r-requirements)
@@ -16,10 +17,24 @@
 ### RStudio
 
 [rstudio-desktop]: https://rstudio.com/products/rstudio/
+[rstudio-snippets]: https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets
+[js4shiny-snippets]: https://github.com/rstudio-conf-2020/js-for-shiny/tree/master/materials/snippets
 
 We're going to use [RStudio Desktop][rstudio-desktop] in this workshop. Yes, you can even do web development work in RStudio!
 
 :computer: Please make sure you have a recent version of RStudio installed. Version 1.2 or later will work.
+
+#### Snippets
+
+I've created a set of code snippets for RStudio
+that are useful for the types of tasks we'll cover in the workshop.
+You can find them in [materials/snippets][js4shiny-snippets].
+
+To install,
+you'll need to copy and paste them into the snippets editor in RStudio,
+which is available under Global Options > Code > Edit Snippets button.
+You can find more information and detailed instructions about using snippets
+at [Code Snippets][rstudio-snippets] on the RStudio Support page.
 
 ### R Setup
 

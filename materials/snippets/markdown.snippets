@@ -1,0 +1,57 @@
+
+snippet html:basic
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	    <title>${1:title}</title>
+	  </head>
+	  <body>
+	    $0
+	  </body>
+	</html>
+
+snippet div.
+	<div class="$1">$0</div>
+
+snippet div
+	<div>$0</div>
+
+snippet div#
+	<div id="$1"></div>
+
+snippet span.
+	<span class="$1">$0</span>
+
+snippet span
+	<span>$0</span>
+
+snippet span#
+	<span id="$1"></span>
+
+snippet kbd
+	<kbd>${1:key}</kbd>
+
+snippet details
+	<details><summary>${1:summary}</summary>
+
+	${2:stuff}
+	</details>
+
+snippet css
+	```{css echo=FALSE}
+	${1:css}
+	```
+
+snippet js
+	```{js}
+	${1:js}
+	```
+
+snippet html:chunk
+	```{html ${1:label}, eval=${2:FALSE}}
+	${0}
+	```
