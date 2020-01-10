@@ -40,12 +40,14 @@ snippet htmldep
 snippet shinypanels
 	headerPanel("${1:header}")
 
-	sidebarPanel(
-		${2:sidebarUI}
-	)
+	sidebarLayout(
+		sidebarPanel(
+		  ${2:sidebarUI}
+		)
 
-	mainPanel(
-		$0
+		mainPanel(
+		  $0
+		)
 	)
 
 snippet thead
