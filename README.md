@@ -14,6 +14,16 @@ by Garrick Aden-Buie
 
 -----
 
+### Workshop Links
+
+- :house: [Workshop Website - js4shiny.com](https://www.js4shiny.com)
+- :box: [pkg.js4shiny.com](https://pkg.js4shiny.com)
+- :speech_balloon: [chat.js4shiny.com](https://chat.js4shiny.com)
+- :raising_hand_woman: [help.js4shiny.com](https://help.js4shiny.com)
+- :card_file_box: [repo.js4shiny.com](https://repo.js4shiny.com)
+
+-----
+
 ## Overview
 
 Shiny gives users a powerful toolkit to create interactive web applications. As a result, Shiny users are also web developers! Inevitably, an intermediate Shiny user will want to create a visualization or user interface that isn't available in the `shiny` package. Fortunately, we can use the building blocks of the web -- JavaScript, HTML, and CSS -- to extend Shiny's capabilities and create engaging Shiny apps.
@@ -30,7 +40,7 @@ This workshop is for the Shiny user who boldly waded into the *Customizing Shiny
 
 ## Prework
 
-:woman_technologist: Please follow the instructions in [setup.md](setup.md) to get started.
+:woman_technologist: Please follow the instructions at https://js4shiny.com/resources/setup/ to get started.
 
 We will spend most of our time in this workshop in RStudio and a web browser. [RStudio Desktop][rstudio-desktop] is preferred because we will occasionally need to run commands like `npm` in your computer's terminal or console.
 
