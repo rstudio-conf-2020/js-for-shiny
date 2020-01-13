@@ -2,9 +2,9 @@
 
 - [Required](#required)
   - [RStudio](#rstudio)
-    - [Snippets](#snippets)
   - [R Setup](#r-setup)
     - [js4shiny](#js4shiny)
+    - [Snippets](#snippets)
     - [Other R Requirements](#other-r-requirements)
   - [Browser](#browser)
   - [Node and npm](#node-and-npm)
@@ -18,23 +18,11 @@
 
 [rstudio-desktop]: https://rstudio.com/products/rstudio/
 [rstudio-snippets]: https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets
-[js4shiny-snippets]: https://github.com/rstudio-conf-2020/js-for-shiny/tree/master/materials/snippets
+[js4shiny-snippets]: https://github.com/gadenbuie/js4shiny/tree/master/inst/snippets
 
 We're going to use [RStudio Desktop][rstudio-desktop] in this workshop. Yes, you can even do web development work in RStudio!
 
 :computer: Please make sure you have a recent version of RStudio installed. Version 1.2 or later will work.
-
-#### Snippets
-
-I've created a set of code snippets for RStudio
-that are useful for the types of tasks we'll cover in the workshop.
-You can find them in [materials/snippets][js4shiny-snippets].
-
-To install,
-you'll need to copy and paste them into the snippets editor in RStudio,
-which is available under Global Options > Code > Edit Snippets button.
-You can find more information and detailed instructions about using snippets
-at [Code Snippets][rstudio-snippets] on the RStudio Support page.
 
 ### R Setup
 
@@ -65,6 +53,24 @@ If you're installing `devtools` for the first time, you may find the [System Set
 ```r
 devtools::install_github("rstudio/rmarkdown")
 ```
+
+#### Snippets
+
+I've created a set of code snippets for RStudio
+that are useful for the types of tasks we'll cover in the workshop.
+You can find them in the js4shiny repo in [inst/snippets][js4shiny-snippets].
+
+To install, you can use the [js4shiny] package.
+
+```r
+js4shiny::snippets_install()
+```
+
+You cou an manually install the snippets by [copying them from here][js4shiny-snippets] 
+and pasting them into the snippets editor in RStudio,
+which is available under Global Options > Code > Edit Snippets button.
+You can find more information and detailed instructions about using snippets
+at [Code Snippets][rstudio-snippets] on the RStudio Support page.
 
 #### Other R Requirements
 
