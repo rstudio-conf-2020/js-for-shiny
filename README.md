@@ -17,7 +17,7 @@ by Garrick Aden-Buie
 ### Workshop Links
 
 - :house: [Workshop Website - js4shiny.com](https://www.js4shiny.com)
-- :box: [pkg.js4shiny.com](https://pkg.js4shiny.com)
+- :package: [pkg.js4shiny.com](https://pkg.js4shiny.com)
 - :speech_balloon: [chat.js4shiny.com](https://chat.js4shiny.com)
 - :raising_hand_woman: [help.js4shiny.com](https://help.js4shiny.com)
 - :card_file_box: [repo.js4shiny.com](https://repo.js4shiny.com)
