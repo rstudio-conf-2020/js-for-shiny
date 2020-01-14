@@ -9,7 +9,7 @@ by Garrick Aden-Buie
 
 :spiral_calendar: January 27 and 28, 2020  
 :alarm_clock:     09:00 - 17:00  
-:hotel:           \[ADD ROOM\]  
+:hotel:           Continental Ballroom Room 6 (Ballroom Level)  
 :writing_hand:    [rstd.io/conf](http://rstd.io/conf)
 
 -----
@@ -21,6 +21,7 @@ by Garrick Aden-Buie
 - :speech_balloon: [chat.js4shiny.com](https://chat.js4shiny.com)
 - :raising_hand_woman: [help.js4shiny.com](https://help.js4shiny.com)
 - :card_file_box: [repo.js4shiny.com](https://repo.js4shiny.com)
+- :postbox: [RStudio Community thread](https://community.rstudio.com/t/javascript-for-shiny-users-workshop-rstudio-conf-2020/49095)
 
 -----
 
