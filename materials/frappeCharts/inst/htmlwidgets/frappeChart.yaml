@@ -1,0 +1,6 @@
+# (uncomment to add a dependency)
+dependencies:
+- name: frappe-charts
+  version: 1.2.4
+  src: htmlwidgets/lib/frappe-charts
+  script: frappe-charts.min.iife.js

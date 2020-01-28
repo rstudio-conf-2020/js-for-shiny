@@ -1,0 +1,55 @@
+---
+title: HTML Widgets Rock
+output: js4shiny::html_document_plain
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, eval=FALSE}
+library(htmltools)
+
+tagList(
+  div(id = "chart"),
+  htmltools::htmlDependency(
+    name = "frappe-charts",
+    version = "1.2.4",
+    package = "frappeCharts",
+    src = "htmlwidgets/lib/frappe-charts",
+    script = "frappe-charts.min.iife.js",
+    all_files = FALSE
+  )
+)
+```
+
+```{r}
+data <- tibble::tibble(
+  labels = c("12am-3am", "3am-6pm", "6am-9am", "9am-12am", "12pm-3pm", "3pm-6pm", "6pm-9pm", "9am-12am"),
+  rstudio = seq(10, 80, 10),
+  other = runif(8) * 40
+)
+# x <- list(
+#   opts = list(
+#     colors = c("#bad4ed", "#466683"),
+#     isNavigable = TRUE
+#   ),
+#   data = data
+# )
+
+frappeCharts::frappeChart(data)
+```
+
+```{js echo = TRUE, eval=FALSE}
+// let data = document.getElementById('data')
+// data = JSON.parse(data.textContent)
+
+const chart = new frappe.Chart("#chart", {
+    title: "My Awesome Chart",
+    data: data.data,
+    type: 'axis-mixed',
+    height: 250,
+    isNavigable: data.opts.isNavigable,
+    colors: data.opts.colors
+})
+```

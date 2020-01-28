@@ -1,0 +1,13 @@
+---
+output: js4shiny::html_document_plain
+---
+
+```{r, echo=FALSE}
+data <- tibble::tibble(
+  labels = c("12am-3am", "3am-6pm", "6am-9am", "9am-12am", "12pm-3pm", "3pm-6pm", "6pm-9pm", "9am-12am"),
+  rstudio = seq(10, 80, 10),
+  other = runif(8) * 40
+)
+
+frappeCharts::frappeChart(data, type = "bar")
+```
