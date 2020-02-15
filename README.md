@@ -27,8 +27,10 @@ by Garrick Aden-Buie
 
 ### Workshop Files and Resources
 
-- [slides](docs/)
-- [materials](materials/)
+- Slides
+  - [View](https://rstudio-conf-2020.github.io/js-for-shiny/)
+  - [Source](docs/)
+- [Materials](materials/)
 
 -----
 
