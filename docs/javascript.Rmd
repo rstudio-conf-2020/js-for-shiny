@@ -1,0 +1,1497 @@
+---
+title: "JavaScript"
+subtitle: "Day 1 - Afternoon - Session 3"
+author: "Garrick Aden-Buie"
+date: '2020-01-27'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: NULL
+    nature:
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+class: title
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+use_placeholders(TRUE, FALSE)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+
+knitr::knit_engines$set(repl_iframe = function(options) {
+  out <- repl_iframe(
+    code = paste(options$code, collapse = "\n"),
+    scale = options$repl_scale,
+    class = options$repl_class
+  )
+  
+  options$results <- "asis"
+  options$echo <- getOption("iframe_placeholder", FALSE)
+  knitr::engine_output(options, options$code, out)
+})
+```
+
+```{r js4shiny, echo=FALSE}
+js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+```
+
+`r title_slide("Ghost in the Machine", "JavaScript", session = "pm")`
+
+---
+
+# Questions and Follow up
+
+.can-edit.key-QandA[
+- Questions and answers to anything that came up in the first half
+]
+
+---
+class: break inverse center
+
+.w-100.h-75.mh-a.pt4.f-nunito[
+`r xaringanExtra::text_poster(
+"Any application that can be 
+written in JavaScript, 
+will eventually be 
+written in JavaScript.
+"
+)`
+]
+
+<div class="tr absolute right-1 bottom-1">Attwood's Law<br>https://blog.codinghorror.com/the-principle-of-least-power/</div>
+
+---
+layout: true
+
+.footnote[Why Javascript | http://bit.ly/jsm_19]
+
+---
+
+`r slides_from_images("assets/img/javascript/write-for-loops-js", class = "")`
+
+---
+layout: false
+
+`r live_coding(message = "repl_js()")`
+
+---
+class: fullscreen
+background-image: url('assets/img/bg/unsplash_w5zpEiVtNIk.jpg')
+background-size: cover
+
+???
+
+what is scrabble?
+
+tiles with letters, letters have points, squares have point multipliers
+
+---
+
+```{repl_iframe}
+let myScore = 12
+let yourScore = 33
+
+if (true) {
+  console.log('Yay!')
+}
+```
+
+???
+
+- if ... else
+- if ... else if ... else
+- comparisons `<` `>`
+- if (myScore)
+
+---
+class: header_background 
+
+# Your Turn: Is it Truthy or Falsy?
+
+.code.f6[repl_example("truthy-falsy")]
+
+Try a few of the options below to see which values are _truthy_ and which are _falsy_.
+
+- `true`, `false`
+
+- A number, e.g. `42` or `0`
+
+- A number in a string, e.g. `"42"` or `"0"`
+
+- Strings, e.g `'yes'` or `'false'`
+
+- A negative number
+
+- An object and a empty object
+
+- An array and an empty array
+
+`r countdown::countdown(1, 30)`
+
+---
+
+# What's .green[true] in JavaScript?
+
+.w-33.fl.ml4[
+## False
+
+- .code.red[false]
+
+- .code.red[0]
+
+- .code.red[""]
+
+- .code.red[null]
+
+- .code.red[undefined]
+
+- .code.red[NaN]
+]
+
+--
+
+.w-30.fl[
+## True
+
+Everything else.
+]
+
+---
+layout: true
+
+# What is .green[equal] in JavaScript?
+
+---
+
+.f4.ml4[
+```{js js-loose-equality}
+42 == '42'
+```
+]
+
+---
+
+.f4.ml4[
+```{js js-loose-equality-2}
+42 == '42'
+```
+]
+
+.f4.ml4[
+```{js js-strict-equality}
+42 === '42'
+```
+]
+
+```{css echo=FALSE}
+#out-js-loose-equality,
+#out-js-strict-equality {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#out-js-loose-equality:hover,
+#out-js-strict-equality:hover {
+  opacity: 1
+}
+```
+
+---
+
+.f4.flex[
+.w-50.ml4[
+```{js}
+42 == '42'
+```
+]
+
+.w-50[
+.red[`r htmlent$x`] loose equality
+]
+]
+
+.f4.flex[
+.w-50.ml4[
+```{js}
+42 === '42'
+```
+]
+.w-50[
+.green[`r htmlent$done`] strict equality
+]
+]
+
+---
+
+
+.f4.ml4[
+```{js js-loose-inequality}
+42 != '42'
+```
+]
+
+.f4.ml4[
+```{js js-strict-inequality}
+42 !== '42'
+```
+]
+
+```{css echo=FALSE}
+#out-js-loose-inequality,
+#out-js-strict-inequality {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#out-js-loose-inequality:hover,
+#out-js-strict-inequality:hover {
+  opacity: 1
+}
+```
+
+---
+layout: false
+
+
+```{repl_iframe, repl_scale=2}
+let myScore = 12
+let yourScore = 33
+
+if (myScore > yourScore) {
+  console.log('Yay!')
+} else {
+  console.log('bummer')
+}
+```
+
+???
+
+- set up ternary operator
+- go to next slide to discuss
+- come back to wrap up into a result
+- Use string addition `'You ' + result + '!'`
+- What is the answer to `1 + '1'`?
+- String templates are awesome!
+- you try
+
+```
+const result = 
+  myScore > yourScore ? 'win' : 'lose'
+
+console.log(`You ${result}!`)
+```
+
+---
+layout: true
+
+# Brevity is the soul of &#x1F615;
+
+---
+
+.tc.f4.code.mt5[
+.silver[condition] ? .green[true] : .red[false]
+]
+
+---
+
+.tc.f4.code.mt5[
+.silver[condition] ? .green[&#x1F601;] : .red[&#x1F641;]
+]
+
+--
+
+.tc.f4.code[
+Is .silver[condition]? then .green[&#x1F601;] else .red[&#x1F641;]
+]
+
+---
+layout: false
+class: header_background
+
+# Your Turn: Game Over!
+
+.code.f6[repl_example("if-else-game-over")]
+
+Use `if ... else` or the ternary `if` statement to determine the outcome of the game.
+
+Tell the player how they did.<br>
+Report the final scores and the final outcome.
+
+Use string addition
+
+```
+points + ' points'`
+```
+
+or template strings
+
+```
+`${points} points`
+```
+
+---
+
+```{repl_iframe}
+let scores = {player: 12, opponent: 33}
+
+// What's the outcome of the game for player?
+if (scores.player > scores.opponent) {
+  result = 'won'
+} else if (scores.player < scores.opponent) {
+  result = 'lost'
+} else {
+  result = 'tied'
+}
+
+// Tell the player how they did
+let outcome = 'You scored: ' + scores.player
+outcome = outcome + '\nOpponent: ' + scores.opponent
+outcome = outcome + '\n\nYou ' + result
+
+console.log(outcome)
+```
+
+???
+
+- did you come with a solution sort of like this?
+- rewrite to declare `result`: `let result = 'tied'`
+- rewrite to use `+=` for `outcome`
+- demonstrate issue with newlines in string addition
+- rewrite using template strings
+
+---
+layout: true
+
+# Destructuring
+
+---
+
+We've used variables to **structure** an object
+
+
+```{js globals, js_redirect = FALSE}
+let player = 12
+let opponent = 33
+let scores = {player: 12, opponent: 33}
+```
+
+```{js}
+scores
+```
+
+---
+
+...is sort of the opposite.
+
+We can **destructure** objects by matching variable names to key names
+
+--
+
+```{js}
+scores
+```
+
+--
+
+```{js}
+let {player, opponent} = scores
+
+console.log("player: ", player)
+console.log("opponent: ", opponent)
+```
+
+---
+
+```{repl_iframe}
+const scores = {player: 12, opponent: 33}
+
+// rewrite using destructuring
+if (scores.player > scores.opponent) {
+  result = 'won'
+} else if (scores.player < scores.opponent) {
+  result = 'lost'
+} else {
+  result = 'tied'
+}
+
+// Tell the player how they did
+let outcome = 'You scored: ' + scores.player
+outcome = outcome + '\nOpponent: ' + scores.opponent
+outcome = outcome + '\n\nYou ' + result
+
+console.log(outcome)
+```
+
+---
+layout: true
+
+# Destructuring Arrays
+
+```{js global-wordPoints, js_redirect=FALSE}
+const wordPoints = [10, 3, 7, 4]
+```
+
+---
+
+```{js}
+let [first, second] = wordPoints
+console.log({ first, second })
+```
+
+---
+
+```{js}
+let [first, second, ...others] = wordPoints
+console.log({ first, second, others })
+```
+
+---
+layout: true
+
+# Rest and Spread: The Other Three Dots
+
+---
+
+.f6[
+.code[.red[...].blue[rest]] gets the rest of the things that weren't pulled out
+]
+
+```{js}
+let [first, second, ...others] = wordPoints
+console.log({ first, second, others })
+```
+
+---
+
+.f6[
+.code[.red[...].blue[rest]] also works for objects
+]
+
+
+```{js}
+scores.result = 'You lost'
+console.log(scores)
+
+let {result, ...score} = scores
+
+console.log('result: ', result)
+console.log(score.player)
+```
+
+
+---
+layout: true
+
+# Rest and Spread: The Other Three Dots
+
+.f6[
+.code[.red[...].blue[spread]] flatens out arrays and objects
+]
+
+```{js global-our-points, js_redirect=FALSE}
+let myPoints = [3, 2, 5, 4]
+let yourPoints = [7, 4, 2, 8]
+```
+
+---
+
+What will we get if we put them together like this?
+
+.hide-output[
+```{js}
+let ourPoints = [myPoints, yourPoints]
+ourPoints
+```
+]
+
+---
+
+If we want a flat array, we can use .code.red[...spread]
+
+```{js}
+let ourPoints = [...myPoints, ...yourPoints]
+ourPoints
+```
+
+---
+
+.flex[
+.w-60[
+
+Which is also useful when building up an array
+
+```js
+let newPoints = 9
+myPoints = //________
+mypoints
+```
+]
+
+.w-40[
+.big.blue[&#x1F914; Where do I put the dots?]
+
+1. .code[...myPoints]
+
+1. .code[...myPoints, ...newPoints]
+
+1. .code[...newPoints]
+]
+]
+
+
+
+---
+
+.flex[
+.w-60[
+
+Which is also useful when building up an array
+
+```{js}
+let newPoints = 9
+myPoints = [...myPoints, newPoints]
+myPoints
+```
+]
+
+.w-40[
+.big.blue[&#x1F914; Where do I put the dots?]
+
+1. .b[.code[...myPoints]]
+
+1. .silver[.code[...myPoints, ...newPoints]]
+
+1. .silver[.code[...newPoints]]
+]
+]
+
+---
+
+```{repl_iframe}
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// whats our word score?
+```
+
+???
+
+- split into an array of letters
+- create `score = 0`
+- add to the score
+- mention `+=`
+- `for ... of`
+- standard `for` loop
+
+---
+
+```{repl_iframe}
+let bonusSquare = 3
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// whats our word score if we inclue bonuses?
+let letters = word.split('')
+
+let score = 0
+for (let letter of letters) {
+  let pts = lettersPoints[letter]
+  score += pts
+}
+
+console.log(`${word} is worth ${score} points!`)
+```
+
+???
+
+we need to use standard for loop for this
+
+---
+layout: true
+
+# For loops are for everyone
+
+.flex[
+.w-25[
+<h2>For...of<br>.gray[Arrays]</h2>
+]
+
+.w-75.big.code.lh-copy.mt1[
+.red[for] (.silver[let] .blue[x] .red[of] stuff) {<br>
+.silver[&nbsp;&nbsp;// something with .blue[x]<br>]
+}
+]
+]
+
+---
+
+.flex[
+.w-25[
+<h2>Classic</h2>
+]
+
+.w-75.big.code.lh-copy[
+.red[for] (.blue[start]; .green[while?]; .purple[after];) {<br>
+.silver[&nbsp;&nbsp;//something with .blue[start vars]<br>]
+}
+]
+]
+
+---
+
+.flex[
+.w-25[
+<h2>Classic</h2>
+]
+
+.w-75.big.code.lh-copy[
+.red[for] (.blue[let i=0]; .green[i < stuff.length]; .purple[i++];) {<br>
+.silver[&nbsp;&nbsp;// something with .blue[i]<br>]
+.silver[&nbsp;&nbsp;// generally stuff[.blue[i]]<br>]
+}
+]
+]
+
+---
+layout: true
+
+# Assignment Operators
+
+---
+
+```js
+let score = 0
+for (let letter of letters) {
+  let pts = lettersPoints[letter]
+* score += pts
+}
+```
+
+--
+
+.hide-output[
+```{js}
+let score = 0
+score += 67
+score *= 2
+score -= 8
+score /= 3
+score
+```
+]
+
+---
+
+```{js}
+let message = 'This'
+message = message + ' is'
+
+if (message.length < 5) {
+  message = message + ' helpful but'
+} else {
+  message = message + ' tiring and'
+}
+message = message + ' gets annoying'
+
+message
+```
+
+
+---
+
+```{js}
+let message = 'This'
+message += ' is'
+
+if (message.length < 5) {
+  message += ' helpful but'
+} else {
+  message += ' tiring and'
+}
+message += ' gets annoying'
+
+message
+```
+
+---
+layout: true
+
+# Incrementing in Place
+
+.tc.mt5.f3.code[
+&nbsp;&nbsp;.dark-pink[x].blue[++]
+]
+
+.tc.mt4.f3.code[
+.dark-pink[++].blue[x]&nbsp;&nbsp;
+]
+
+---
+
+???
+
+While we're at it, let's make things even faster to type!
+
+---
+
+`r slides_from_images("assets/img/javascript/incrementing", class="animated fadeIn fast")`
+
+---
+layout: false
+class: header_background
+
+# Count the number of letters
+
+.f5.code[repl_example("count-letters")]
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  
+}
+```
+
+`r countdown::countdown(2, 30)`
+
+---
+
+```{repl_iframe}
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  
+}
+
+
+// repl_example("count-letters")
+```
+
+???
+
+write out answer, possibly with help from the audience
+
+or **skip to next slide**
+
+---
+
+```{repl_iframe}
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+// calculate the score by letter count
+letters
+```
+
+???
+
+- Show `Object.keys(letters)`
+- use for...of to loop over keys
+- lookup letter count and multiply by points
+- get total!
+
+---
+
+```{repl_iframe}
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+// calculate the score by letter count
+let score = 0
+for (let letter of Object.keys(lettersPoints)) {
+  score += letters[letter] * lettersPoints[letter]
+}
+```
+
+<div class="f6 blue tc absolute top-0 left-0 right-0 mt0 pt1">Functions</div>
+
+???
+
+rewrite both steps as functions:
+
+1. `countLetters(word)`
+
+1. `tallyScore(word)`
+
+discuss **scope**
+
+---
+exclude: true
+
+NOTE TO SELF
+
+here's the plan:
+
+1. figure out what exercises or things we should do with `.forEach()`, `.map()`, `.filter()` and `.reduce()`
+
+1. Then use the anonymous functions as exercises, e.g.
+
+  - Write a function that returns the number of points for a letter
+    even though that's just the same as `letterPoints[letter]`.
+ 
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+let word = 'syzygy'
+
+let letters = {}
+
+// here's the for loop we wrote before...
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+letters
+```
+
+???
+
+replace with `.forEach`
+
+.smaller[
+```js
+let word = 'syzygy'
+
+let letters = {}
+
+const addLetter = (l) => {
+  if (letters[l]) {
+    letters[l] += 1
+  } else {
+    letters[l] = 1
+  }
+}
+
+// here's the for loop we wrote before...
+// for (let letter of word) {
+//   add_letter(letter)
+// }
+word.split('').forEach(l => addLetter(l))
+
+letters
+```
+]
+
+---
+class: header_background
+
+# Your Turn: Replace the for loop
+
+.f6.code[repl_example("for-loop-to-for-each")]
+
+
+```{js}
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10} 
+let score = 0
+
+// replace this for loop with .forEach()
+for (let letter of word) {
+  score += lettersPoints[letter]
+}
+score
+```
+
+
+Replace the `for...of` loop with `.forEach()`<br>
+using an arrow function.
+
+`r countdown::countdown(3)`
+
+???
+
+```{js, eval=FALSE}
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// replace this for loop with .forEach()
+word.split('').forEach((l) => score += lettersPoints[l])
+
+score
+```
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// what are the points by letter of word?
+// I want an array of points e.g. [1, 2, 3]
+word.split('').forEach((l) => score += lettersPoints[l])
+
+score
+```
+
+
+???
+
+Convert to `.map()` to get array of points
+
+```js
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// what are the letters in the word
+console.log(word.split(''))
+
+// what are the points by letter of word?
+const getPoints = (l) => lettersPoints[l]
+
+getPoints(word.split('')[2])
+
+word.split('')
+  .map((l) => lettersPoints[l])
+```
+
+---
+
+`r slides_from_images("assets/img/javascript/map", class = "animated fadeIn fast")`
+
+---
+
+`r slides_from_images("assets/img/javascript/forEach", class = "animated fadeIn fast")`
+
+---
+class: header_background
+
+# Your Turn: Mapping Word Scores
+
+.f6.code[repl_example("mapping-words-1")]
+
+Write one function that takes a word and returns
+the point values of each letter as an array.
+
+Then use `.map()` to apply this function to the array of `words`.
+
+```js
+const lettersPoints = { 
+  "a": 1, "b": 3, "c": 3, // ....
+}
+
+let words = ['freezer', 'jukebox']
+```
+
+`r countdown::countdown(3)`
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let words = ['freezer', 'jukebox']
+
+// Write one function that takes a word and returns
+// the point values of each letter as an array
+function word2points(word) {
+  return word
+}
+
+// Then use map to apply this function to the
+// array of words above.
+words.map(word2points)
+```
+
+---
+class: header_background
+
+# Your Turn: Keep on Mapping
+
+.f6.code[repl_example("mapping-words-2")]
+
+Write another function that takes one array of numbers, e.g. `[1, 2, , 3]`,
+and calculates the sum of the array.
+
+Then use `.map()` again to get an array of word scores.
+
+`r countdown::countdown(2)`
+
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let words = ['freezer', 'jukebox']
+
+// Write one function that takes a word and returns
+// the point values of each letter as an array
+function word2points(word) {
+  return word
+    .split('')
+    .map((l) => lettersPoints[l])
+}
+
+// Then use map to apply this function to the
+// array of words above.
+words.map(word2points)
+
+// Write another function that takes an array
+// of numbers and returns the total of these values
+// e.g. [1, 2, 3] => 6
+function score(points) {
+  return points
+}
+
+words
+  .map(word2points)
+  .map(score)
+```
+
+---
+
+`r slides_from_images("assets/img/javascript/filter", class = "animated fade fast")`
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+let word = 'queue'
+
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 },
+  {"letter": "e", "points": 1 },
+  {"letter": "q", "points": 10 },
+  {"letter": "u", "points": 1 }
+] 
+
+// what are the tiles for our word?
+```
+
+???
+
+Introduce `.filter()`
+
+
+---
+class: header_background
+
+# Your Turn: High-Roller Letters
+
+.f6.code[repl_example("filter-high-points")]
+
+This time, we have an array of `tiles` and each tile has a `.letter` and `.points`.
+
+How many possible points values are there in Scrabble?
+Use `.map()` to get an array of all the point values
+and then use `for ... of` loop to collect unique values into an array.
+
+Finally, use filter to get the tiles with the 3 largest point values.
+
+```js
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 }
+  // ...
+]
+```
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 },
+  {"letter": "d", "points": 2 },
+  {"letter": "e", "points": 1 },
+  {"letter": "f", "points": 4 },
+  {"letter": "g", "points": 2 },
+  {"letter": "h", "points": 4 },
+  {"letter": "i", "points": 1 },
+  {"letter": "j", "points": 8 },
+  {"letter": "k", "points": 5 },
+  {"letter": "l", "points": 1 },
+  {"letter": "m", "points": 3 },
+  {"letter": "n", "points": 1 },
+  {"letter": "o", "points": 1 },
+  {"letter": "p", "points": 3 },
+  {"letter": "q", "points": 10 },
+  {"letter": "r", "points": 1 },
+  {"letter": "s", "points": 1 },
+  {"letter": "t", "points": 1 },
+  {"letter": "u", "points": 1 },
+  {"letter": "v", "points": 4 },
+  {"letter": "w", "points": 4 },
+  {"letter": "x", "points": 8 },
+  {"letter": "y", "points": 4 },
+  {"letter": "z", "points": 10 },
+  {"letter": " ", "points": 0 }
+]
+
+
+// Which letters have the highest points?
+// Note that tiles is now an array of objects
+let allPoints = tiles.map(tile => tile.points)
+
+let possiblePoints = []
+for (let pt of allPoints) {
+  if (!possiblePoints.includes(pt)) {
+    possiblePoints.push(pt)
+  }
+}
+
+possiblePoints
+
+// Then filter tiles to have an array of just
+// the top 3 largest point values
+tiles.filter(tile => tile.points >= 5)
+```
+
+
+---
+exclude: true
+
+```{repl_iframe}
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let word = 'jukebox'
+let letters = word.split('')
+
+letters
+
+// Get just the letters in the word
+```
+
+---
+
+```{r echo=FALSE, results="asis"}
+cat(
+  slides_from_images(
+    "assets/img/javascript/reduce/", 
+    class = "animated fadeIn fast"
+  )
+)
+```
+
+---
+
+
+```{repl_iframe}
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let word = 'quixotic'
+
+word.split('')
+  .map(letter => lettersPoints[letter])
+```
+
+???
+
+```js
+.reduce((total, pts) => total + pts)
+```
+
+---
+class: header_background
+
+# Your Turn: Reduced to a number
+
+.f6.code[repl_example("mapping-words-3")]
+
+ Rewrite the internals of `score()` to use `.reduce()`.
+
+Use `words.map()` and the functions to calculate an array of word points.
+Then use `score()` one last time to calculate the player's total score.
+
+```js
+// replace the .forEach() method below with .reduce()
+function score(points) {
+  let total = 0
+  points.forEach(pt => total += pt)
+  return total
+}
+```
+
+`r countdown::countdown(3)`
+
+---
+
+```{repl_iframe, repl_scale=1.5}
+const tiles = [
+  {"letter":"a","points":1},{"letter":"b","points":3},{"letter":"c","points":3},{"letter":"d","points":2},{"letter":"e","points":1},{"letter":"f","points":4},{"letter":"g","points":2},{"letter":"h","points":4},{"letter":"i","points":1},{"letter":"j","points":8},{"letter":"k","points":5},{"letter":"l","points":1},{"letter":"m","points":3},{"letter":"n","points":1},{"letter":"o","points":1},{"letter":"p","points":3},{"letter":"q","points":10},{"letter":"r","points":1},{"letter":"s","points":1},{"letter":"t","points":1},{"letter":"u","points":1},{"letter":"v","points":4},{"letter":"w","points":4},{"letter":"x","points":8},{"letter":"y","points":4},{"letter":"z","points":10},{"letter":" ","points":0}
+]
+
+// Earlier we found all unique point values
+// We can do this in one .reduce() instead
+let allPoints = tiles.map(tile => tile.points)
+
+let possiblePoints = []
+for (let pt of allPoints) {
+  if (!possiblePoints.includes(pt)) {
+    possiblePoints.push(pt)
+  }
+}
+```
+
+<div class="f6 blue tc absolute top-0 left-0 right-0 mt0 pt1">.code[.reduce()] — More fun than .code[sum()]</div>
+
+???
+
+```js
+// Earlier we found all unique point values
+// We can do this in one .reduce() instead
+tiles.reduce(function(possible, tile) {
+  if (!possible.includes(tile.points)) {
+    possible.push(tile.points)
+    console.log(possible, tile.points)
+  }
+  return possible
+}, [])
+```
+
+---
+background-image: url('assets/img/bg/unsplash_y8OPPvo_5mU.jpg')
+background-size: cover
+background-position: center center
+background-repeat: no-repeat
+
+<div class="rotate-train f2 white b" style="margin-left: -140px; margin-top: 79px;">How are you?</div>
+
+???
+
+Okay, from here we can do a group activity...
+
+- [Go to Next Session](#next)
+
+- [Go to break](break.html)
+
+- [Browser Events](#browser-events)
+
+- [Pair Programming R Look Alikes](#r-in-js)
+
+---
+name: browser-events
+layout: true
+
+# Browser Events
+
+---
+
+.flex.flex-wrap[
+.w-50[
+## Discrete Events
+
+- click
+- dblclick
+- contextmenu
+- keyup
+- keydown
+- change
+- input
+]
+
+.w-50[
+## Continuous
+
+- mousedown
+- mouseup
+- mouseenter
+- mouseleave
+- mousemove
+- wheel
+]
+]
+
+Review [event listener lifecycle](interactivity.html#browser-events)
+
+---
+layout: true
+
+## Event Listener Template
+
+---
+
+.big.code[
+element.addEventListener('type', function(event) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)<br>
+})
+]
+
+---
+
+.big.code.silver[
+.red[element].addEventListener('type', function(event) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)<br>
+})
+]
+
+.big[
+Choose the .code.red[element] to spy on, e.g.
+
+```js
+const btn = document.querySelector('#easy-btn')
+btn.addEventListener()
+
+// or listen to all events in the document
+document.addEventListener()
+```
+]
+
+---
+
+.big.code[
+.blue[element].red[.addEventListener]('type', function(event) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)<br>
+})
+]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.red['type'], function(event) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)<br>
+})
+]
+
+.big[Choose the event type to listen for]
+
+.footnote[[bit.ly/mdn-browser-events](http://bit.ly/mdn-browser-events)]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.blue['click'], .red[function(event) {]<br>
+.red.o-40[&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...]<br>
+.red.o-40[&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)]<br>
+.red[}])
+]
+
+.flex[
+.w-40.big[
+The .code.red[event] object contains information about _what happened_
+]
+
+.w-60[
+| .code[event] | Description |
+|---|---|
+| .code[.target] | where the event happened |
+| .code[.currentTarget] | which element is listening |
+| .code[.x], .code[.y] | x, y coordinates |
+| others | depending on event type |
+]
+]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.blue['click'], .blue[function(event) {]<br>
+.silver[&nbsp;&nbsp;&nbsp;&nbsp;// do something here ...]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(event)<br>
+.blue[}])
+]
+
+---
+layout: false
+class: center middle
+
+```{r, echo=FALSE}
+live_coding(
+  "&#x1F939;",
+  message = '<br>repl_example("browser-event-types")<br><br>repl_example("event-bubbling")<br>repl_example("animation-by-transition")'
+)
+```
+
+---
+name: next
+class: center middle
+
+# Next: [Bringing It All Back Home<br>(R for Web Dev)](r-for-web.html)
+
+---
+name: r-in-js
+class: header_background
+
+# Pair Programming: R Look-A-Likes
+
+We take for granted the built in functions we get in R.
+
+I've created a few exercises recreating iconic R functions.
+
+.f6.code.mv3.block[repl_example("r-in-js")]
+
+Find a partner for **pair programming**.
+
+One person chooses an exercise and is the **driver** and types code in their &#x1F4BB;.
+
+The other person is the **navigator** (or back-seat driver) &#x1F697;.
+
+Change roles after each exercise.
+
+`r countdown::countdown(5)`

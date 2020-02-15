@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Design - Rewrite Markdown HTML</title>
+    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    </style>
+    <style type="text/css">
+
+
+html {
+line-height: 1.15; 
+-webkit-text-size-adjust: 100%; 
+}
+
+
+body {
+margin: 0;
+}
+
+main {
+display: block;
+}
+
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+
+
+hr {
+box-sizing: content-box; 
+height: 0; 
+overflow: visible; 
+}
+
+pre {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+
+a {
+background-color: transparent;
+}
+
+abbr[title] {
+border-bottom: none; 
+text-decoration: underline; 
+text-decoration: underline dotted; 
+}
+
+b,
+strong {
+font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+small {
+font-size: 80%;
+}
+
+sub,
+sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sub {
+bottom: -0.25em;
+}
+sup {
+top: -0.5em;
+}
+
+
+img {
+border-style: none;
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+font-family: inherit; 
+font-size: 100%; 
+line-height: 1.15; 
+margin: 0; 
+}
+
+button,
+input { 
+overflow: visible;
+}
+
+button,
+select { 
+text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+-webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+border-style: none;
+padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+outline: 1px dotted ButtonText;
+}
+
+fieldset {
+padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+box-sizing: border-box; 
+color: inherit; 
+display: table; 
+max-width: 100%; 
+padding: 0; 
+white-space: normal; 
+}
+
+progress {
+vertical-align: baseline;
+}
+
+textarea {
+overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+box-sizing: border-box; 
+padding: 0; 
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+height: auto;
+}
+
+[type="search"] {
+-webkit-appearance: textfield; 
+outline-offset: -2px; 
+}
+
+[type="search"]::-webkit-search-decoration {
+-webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+-webkit-appearance: button; 
+font: inherit; 
+}
+
+
+details {
+display: block;
+}
+
+summary {
+display: list-item;
+}
+
+
+template {
+display: none;
+}
+
+[hidden] {
+display: none;
+}
+</style>
+    <style type="text/css">body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+h2.pkg-stats {
+font-size: 3em;
+font-family: 'Fira Mono', Monaco, Menlo, monospace;
+text-align: center;
+border-bottom: 2px solid #ddd;
+padding-bottom: 24px;
+margin-bottom: 24px;
+}
+.pkg-stat__container {
+
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+@media screen and (max-width: 500px) {
+
+.pkg-stat__container {
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-row-gap: 1em;
+}
+
+.pkg-stat__container :first-child {
+grid-column: 1 / -1;
+}
+}
+.pkg-stat {
+text-align: center;
+width: 100%;
+}
+.pkg-stat__number {
+font-size: 2em;
+font-weight: 200;
+}
+.pkg-stat__name {
+font-size: 1em;
+font-weight: 600;
+color: #999;
+text-transform: uppercase;
+}
+.pkg-stat:hover {
+color: #ff6300;
+}
+.pkg-stat:hover .pkg-stat__name {
+color: #ff630099;
+}
+</style>
+  </head>
+  <body>
+
+<h2 class="pkg-stats" id="ggplot2">ggplot2</h2>
+<dl>
+<dt>downloads</dt>
+<dd>846k/month
+</dd>
+<dt>stars</dt>
+<dd>4.2k
+</dd>
+<dt>forks</dt>
+<dd>1.5k
+</dd>
+</dl>
+<!-- Renders in HTML (in this flavor of markdown) as...
+
+<h2 class="pkg-stat" id="ggplot2">ggplot2</h2>
+<dl>
+  <dt>downloads</dt>
+  <dd>846k/month</dd>
+  <dt>stars</dt>
+  <dd>4.2k</dd>
+  <dt>forks</dt>
+  <dd>1.5k</dd>
+</dl>
+
+-->
+
+    <script>const dl = document.querySelector('.pkg-stats + dl')
+const dlStats = dl.children
+
+const stats = {}
+
+for (let i = 0; i < dlStats.length/2; i++) {
+  let idx = 2 * i
+  stats[dlStats[idx].textContent] = dlStats[idx + 1].textContent.trim()
+}
+
+const statsDiv = document.createElement('div')
+statsDiv.className = 'pkg-stat__container'
+
+for (let stat in stats) {
+  statsDiv.innerHTML += `<div class="pkg-stat">
+  <div class="pkg-stat__number">${stats[stat]}</div>
+  <div class="pkg-stat__name">${stat}</div>
+  </div>`
+}
+
+// replace definition list
+dl.parentNode.insertBefore(statsDiv, dl)
+dl.parentNode.removeChild(dl)
+</script>
+  </body>
+</html>

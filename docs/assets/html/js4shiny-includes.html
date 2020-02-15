@@ -1,0 +1,92 @@
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>

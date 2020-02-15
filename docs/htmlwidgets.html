@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>htmlwidgets</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-28" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x44c46ba0b4c483aa80537993efb2093","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;The Blueprint&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="The Blueprint | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;The Blueprint&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="The Blueprint | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;The Blueprint&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>The Blueprint</h1>
+<h2>htmlwidgets</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+class: break fullscreen center top huge
+background-image: url('assets/img/bg/unsplash_wn-KYaHwcis.jpg')
+background-size: cover
+
+# Review
+
+---
+class: header_background
+
+# Review Day 1
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;What did we learn?&lt;/p&gt;
+&lt;ul class="can-edit key-review-learn"&gt;
+&lt;li&gt;Item 1&lt;/li&gt;
+&lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What was confusing?&lt;/p&gt;
+&lt;ul class="can-edit key-review-confusing"&gt;
+&lt;li&gt;Item 1&lt;/li&gt;
+&lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p class="can-edit key-review-announce"&gt;&amp;nbsp;&lt;/p&gt;
+
+  
+
+---
+class: center middle break fullscreen
+background-image: url(assets/img/htmlwidgets/htmlwidgets-gallery.jpg)
+background-size: 105%
+background-position: center center
+
+---
+class: animated fadeIn
+
+&lt;div class="htmlwidgets-gallery w-100 h-100 absolute top-0 left-0"&gt;
+&lt;/div&gt;
+
+&lt;div class="bg-white-05 w-100 h-100 flex items-center justify-center absolute top-0 left-0"&gt;
+&lt;h1 class="ttu red text-shadow-2"&gt;&lt;span class="f1"&gt;htmlwidgets&lt;/span&gt;&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;style type="text/css"&gt;
+.htmlwidgets-gallery {
+  background: url(assets/img/htmlwidgets/htmlwidgets-gallery.jpg);
+  background-size: 105%;
+  background-position: center center;
+  filter: blur(5px);
+}
+&lt;/style&gt;
+
+---
+layout: true
+
+# htmlwidgets: An Overview
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-02.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-03.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-10.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-11.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-12.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-13.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-14.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-15.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-16.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-17.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-18.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-19.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-20.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/htmlwidgets/htmlwidgets-overview/htmlwidgets-overview-21.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+
+# htmlwidgets Process Overview
+
+1. Gather dependencies
+
+1. Configure .pkg[htmlwidgets] to manage the dependencies
+
+1. Write R functions to hand data and options to .pkg[htmlwidgets]
+
+1. Write the .black.bg-yellow.pl1.pt1.b[JS] glue code to connect a .black.bg-yellow.pl1.pt1.b.f-nun[JS] library with a set of data and options.
+
+1. Collect .ph1[&amp;#x2B50;] on GitHub
+
+---
+
+# Let's Do This Together!
+
+We're going to do all the steps of this project together.
+
+Be kind to your neighbors and help them if they get stuck.
+
+.center.mt4[
+# Read with me...
+
+&lt;a class="f4" href="https://github.com/gadenbuie/js4shiny-frappeCharts/" target="_blank"&gt;github.com/gadenbuie/js4shiny-frappeCharts&lt;/a&gt;
+
+Click on **dev journal** in the README
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

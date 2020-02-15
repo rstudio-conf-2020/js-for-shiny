@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R for Web Dev</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Bringing it All Back Home&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Bringing it All Back Home | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Bringing it All Back Home&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Bringing it All Back Home | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Bringing it All Back Home&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Bringing it All Back Home</h1>
+<h2>R for Web Dev</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+class: break white center middle
+background-image: url('assets/img/bg/unsplash_VEOk8qUl9DU.jpg')
+background-size: cover
+
+## Other Conferences
+
+---
+class: break white middle right
+background-image: url(assets/img/r-for-web/animal.gif)
+background-size: cover
+
+### rstudio::conf
+
+---
+
+## Serious Inspiration
+
+.flex.w-100[
+.w-33[
+&lt;a href="https://maya-gans.shinyapps.io/human_body_app/"&gt;&lt;img src="https://github.com/volcanioo/Human-Body-Rendering-HTML/raw/master/README_image.png" width="100%" /&gt;&lt;/a&gt;
+]
+
+.w-60.ml4[
+Inspired by the [Human Body App](https://maya-gans.shinyapps.io/human_body_app/) by Maya Gans.
+
+Also inspired by 
+[this question by Eric Nantz](https://community.rstudio.com/t/passing-module-namespace-to-embedded-javascript-function/26988)&lt;br&gt;
+on RStudio Community.
+
+.w-80[
+![](assets/img/r-for-web/rstudio-community-question.png)
+]
+]
+]
+
+---
+layout: true
+
+## Our App
+
+.fl.w-33.mr3[
+![](assets/img/r-for-web/drumkit-preview.png)
+
+[gadenbuie.shinyapps.io/&amp;#8203;js4shiny-drumkit/](https://gadenbuie.shinyapps.io/js4shiny-drumkit/)
+]
+
+---
+
+---
+
+.f5[
+_Makes real sounds!_
+]
+
+--
+
+.f5[
+_Entertaining for at least 5 minutes!_
+]
+
+--
+
+.f5[
+_It's actually educational!_
+]
+
+
+--
+
+.f5[
+_It's a real .f-galada.fs-normal[Shiny] app!_
+]
+
+
+---
+layout: false
+
+## To Get Started
+
+.f6[.b[Follow Along:] .code[bit.ly/js4shiny-drumkit]]
+
+.f6[.b[Starter Zip:] .code[bit.ly/js4shiny-drumkit-project]]
+
+
+```r
+library(usethis)
+
+zip &lt;- "http://bit.ly/js4shiny-drumkit-project"
+
+use_course(zip, destdir = "js4shiny")
+```
+
+Use your workshop folder for `destdir`
+
+.absolute.w-20.h-50.bottom-0.right-2[
+![](assets/img/r-for-web/drumkit-preview.png)
+]
+
+???
+
+[Dev Script](http://bit.ly/js4shiny-drumkit)
+
+---
+
+# Let's Do This Together!
+
+We're going to do all the steps of this project together.
+
+Be kind to your neighbors and help them if they get stuck.
+
+.mt3[
+# Read with me...
+
+&lt;a class="f4" href="https://bit.ly/js4shiny-drumkit" target="_blank"&gt;bit.ly/js4shiny-drumkits&lt;/a&gt;
+
+The **dev journal** is to help if you get lost
+
+Click on .blue[changelog links] to see changes at each step
+
+.code[js4shiny::repl_example("drumkit-N")]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,142 @@
+---
+title: "htmlwidgets"
+subtitle: "Day 2 - Morning - Session 1"
+author: "Garrick Aden-Buie"
+date: '2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: NULL
+    nature:
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+class: title
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+use_placeholders(FALSE)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "editable"))
+```
+
+```{r js4shiny, echo=FALSE}
+js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+```
+
+`r title_slide("The Blueprint", "htmlwidgets", day = 2, session = "am")`
+
+---
+class: break fullscreen center top huge
+background-image: url('assets/img/bg/unsplash_wn-KYaHwcis.jpg')
+background-size: cover
+
+# Review
+
+---
+class: header_background
+
+# Review Day 1
+
+<ol>
+<li><p>What did we learn?</p>
+<ul class="can-edit key-review-learn">
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</li>
+<li><p>What was confusing?</p>
+<ul class="can-edit key-review-confusing">
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</li>
+</ol>
+
+<p class="can-edit key-review-announce">&nbsp;</p>
+
+  
+
+---
+class: center middle break fullscreen
+background-image: url(assets/img/htmlwidgets/htmlwidgets-gallery.jpg)
+background-size: 105%
+background-position: center center
+
+---
+class: animated fadeIn
+
+<div class="htmlwidgets-gallery w-100 h-100 absolute top-0 left-0">
+</div>
+
+<div class="bg-white-05 w-100 h-100 flex items-center justify-center absolute top-0 left-0">
+<h1 class="ttu red text-shadow-2"><span class="f1">htmlwidgets</span></h1>
+</div>
+
+```{css echo=FALSE}
+.htmlwidgets-gallery {
+  background: url(assets/img/htmlwidgets/htmlwidgets-gallery.jpg);
+  background-size: 105%;
+  background-position: center center;
+  filter: blur(5px);
+}
+```
+
+---
+layout: true
+
+# htmlwidgets: An Overview
+
+---
+
+`r slides_from_images("assets/img/htmlwidgets/htmlwidgets-overview", class = "animated fadeIn fast")`
+
+---
+layout: false
+
+# htmlwidgets Process Overview
+
+1. Gather dependencies
+
+1. Configure .pkg[htmlwidgets] to manage the dependencies
+
+1. Write R functions to hand data and options to .pkg[htmlwidgets]
+
+1. Write the .black.bg-yellow.pl1.pt1.b[JS] glue code to connect a .black.bg-yellow.pl1.pt1.b.f-nun[JS] library with a set of data and options.
+
+1. Collect .ph1[&#x2B50;] on GitHub
+
+---
+
+# Let's Do This Together!
+
+We're going to do all the steps of this project together.
+
+Be kind to your neighbors and help them if they get stuck.
+
+.center.mt4[
+# Read with me...
+
+<a class="f4" href="https://github.com/gadenbuie/js4shiny-frappeCharts/" target="_blank">github.com/gadenbuie/js4shiny-frappeCharts</a>
+
+Click on **dev journal** in the README
+]

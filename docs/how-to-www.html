@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>How to build a website</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"a147e183fd0b40e680e49e4797db11d6","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Maiden Voyage&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Maiden Voyage | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Maiden Voyage&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Maiden Voyage | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Maiden Voyage&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Maiden Voyage</h1>
+<h2>How to Build a Website</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+
+# Anatomy of an HTML Document
+
+.flex[
+
+&lt;div class="w-40 tc white center"&gt;&lt;div class="ba bw1 b--black-20 pa1 w-90"&gt;&lt;div class="bg-blue w-100 h-a-150 flex flex-column items-center justify-center tc f3"&gt;HEAD&lt;/div&gt;
+&lt;div class="bg-green w-100 h-a-300 flex flex-column items-center justify-center tc f3"&gt;BODY&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+]
+
+---
+layout: true
+background-size: cover
+background-position: top-left
+
+# Anatomy of an HTML Document
+
+.flex[
+
+&lt;div class="w-40 tc white center"&gt;&lt;div class="ba bw1 b--black-20 pa1 w-90"&gt;&lt;div class="bg-blue w-100 h-a-150 flex flex-column items-center justify-center tc f3"&gt;HEAD&lt;/div&gt;
+&lt;div class="bg-green w-100 h-a-300 flex flex-column items-center justify-center tc f3"&gt;BODY&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+.w-60.pre-hide-filetype.pre-hide-border[
+
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;!-- meta --&gt;
+
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+```
+
+]
+]
+
+---
+
+---
+background-image: url('assets/img/intro/html-doc-anatomy/html-doc-anatomy-1.jpg')
+
+---
+background-image: url('assets/img/intro/html-doc-anatomy/html-doc-anatomy-2.jpg')
+
+---
+background-image: url('assets/img/intro/html-doc-anatomy/html-doc-anatomy-3.jpg')
+
+---
+layout: false
+class: header_background
+
+# Create an HTML Document
+
+.flex.pt2[
+.w-40[
+1. Open RStudio
+
+1. New File &amp;#9656; Text Document
+
+1. .code.purple[first-page/index.html]
+
+1. Add .bigger[&amp;#x1F449;]
+
+1. .silver[Use .code[html5] or .code[html:basic] snippet]
+
+1. Use _Live Preview_ addin
+]
+
+.w-60[
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;!-- meta --&gt;
+
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+```
+]
+]
+
+.footnote.code[repl_example("first-page-00")]
+
+???
+
+- https://www.taniarascia.com/basic-html5-file/
+- https://html5boilerplate.com/
+
+---
+class: header_background
+
+# Add a header to our page
+
+Note that there's no title on the _page_ (it's just the browser window title)
+
+```
+&lt;title&gt;My First Webpage&lt;/title&gt;
+```
+--
+
+.mt1.block[&amp;nbsp;]
+
+Change the page title and add an `&lt;h1&gt;` element to the page.
+
+
+```html
+&lt;title&gt;Californian Cities&lt;/title&gt;
+
+&lt;!-- ... --&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Median Resident Age&lt;/h1&gt;
+&lt;/body&gt;
+```
+
+---
+class: header_background
+
+# Add some content to your page
+
+.bigger[
+
+```html
+&lt;body&gt;
+  &lt;h1&gt;Median Resident Age&lt;/h1&gt;
+  &lt;div&gt;&lt;!-- chart will go here --&gt;&lt;/div&gt;
+  &lt;h2&gt;San Francisco&lt;/h2&gt;
+  &lt;p&gt;
+    The median age of the residents of
+    &lt;strong&gt;San Francisco&lt;/strong&gt;
+    is &lt;strong&gt;38.8&lt;/strong&gt; years old.
+  &lt;/p&gt;
+&lt;/body&gt;
+```
+
+]
+
+---
+
+## Our First Page
+
+You should have something that looks like 1993
+
+.relative.w-100.h-75.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/first-page/index.html" class="fullscreen-iframe-scale-150"&gt;
+   &lt;a href="assets/html/first-page/index.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+&lt;!--
+.html-preview.html-plain.serif[
+&lt;h1&gt;Californian Cities&lt;/h1&gt;
+&lt;h2&gt;San Francisco&lt;/h2&gt;
+&lt;p&gt;
+  The median age of the residents of &lt;strong&gt;San Francisco&lt;/strong&gt;
+  is &lt;strong&gt;38.8&lt;/strong&gt; years old.
+&lt;/p&gt;
+]
+--&gt;
+
+---
+layout: false
+# HTML is a tree
+
+&lt;div id="json-html_tree"&gt;&lt;/div&gt;
+
+&lt;style type="text/css"&gt;
+#json-html_tree .jv__json-size {
+  display: none;
+}
+&lt;/style&gt;
+
+---
+layout: true
+# Browsers: The RStudio IDE of Web Dev
+
+---
+
+.flex[
+.w-10[
+&amp;nbsp;
+]
+
+.w-40[
+.w-40.center[
+![](assets/img/firefox_256.png)
+]
+.f5.center[Firefox]
+
+.center[
+.b[Win] &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+
+.b[Mac] &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+]
+]
+
+.w-40.cr[
+.w-40.center[
+![](assets/img/chrome_256.png)
+]
+.f5.center[Chrome]
+
+.center[
+.b[Win] &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+
+.b[Mac] &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+]
+]
+]
+
+???
+
+ - **Firefox**:
+  - Windows/Linux: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt; or &lt;kbd&gt;F12&lt;/kbd&gt;
+  - Mac: &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+  - &lt;https://developer.mozilla.org/en-US/docs/Tools&gt;
+- **Chrome**:
+  - Windows/Linux: &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+  - Mac: &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+  - &lt;https://developers.google.com/web/tools/chrome-devtools/&gt;
+- **Safari**:
+  - Enable: _Safari_ &gt; _Preferences_ &gt; _Advanced_ &gt; _Show Develop menu in menu bar_
+  - Right-click + _Inspect Element_
+  - &lt;https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac&gt;
+- **RStudio**:
+  - Right-click + _Inspect Element_
+
+---
+
+.flex[
+.w-third[
+.w-40.center[
+![](assets/img/firefox_256.png)
+]
+.f5.center[Firefox]
+
+.center[
+.b[Win] &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+
+.b[Mac] &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt;
+]
+]
+
+.w-third[
+.w-40.center[
+![](assets/img/chrome_256.png)
+]
+.f5.center[Chrome]
+
+.center[
+.b[Win] &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+
+.b[Mac] &lt;kbd&gt;Cmd&lt;/kbd&gt; + &lt;kbd&gt;Opt&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;
+]
+]
+
+.w-third[
+.w-40.center.mt2[
+![](assets/img/rstudio-icon.png)
+]
+.tc[
+.f5[RStudio]
+
+![](assets/img/mouse-pointer.svg) .code.bg-black-10.ph2.black-60[Inspect Element]
+]
+]
+]
+
+---
+layout: false
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-1.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-2.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-3.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-4.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-5.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/html-tree/html-tree-6.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+# HTML Tag Rules
+
+.center.f6.black-50[
+&lt;p&gt;rstudio::conf &lt;em&gt;rocks&lt;/em&gt; &amp;#x1F918;&lt;/p&gt;
+]
+
+.center.code.f6[
+.red[&amp;lt;p&amp;gt;]rstudio::conf&amp;nbsp;.green[&amp;lt;em&amp;gt;]rocks.green[&amp;lt;/em&amp;gt;]&amp;nbsp;.silver[&amp;amp;\#x].blue[1F918];.red[&amp;lt;/p&amp;gt;]
+]
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-01.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-03.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: true
+
+class: center bottom
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-04.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+&lt;!-- first image pointing to open/close --&gt;
+---
+
+.mb5.bigger[
+.red[&amp;lt;tag&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.red[&amp;lt;/tag&amp;gt;]
+]
+
+---
+
+.mb5.bigger[
+.red[&amp;lt;parent&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.green[&amp;lt;child&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.green[&amp;lt;/child&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.red[&amp;lt;/parent&amp;gt;]
+]
+
+--
+
+.absolute.bottom-2.huge.pb2[
+&amp;#x2705;
+]
+
+---
+
+.mb5.bigger[
+.red[&amp;lt;parent&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.green[&amp;lt;child&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.red[&amp;lt;/parent&amp;gt;]
+.light-silver[&amp;nbsp;&amp;hellip;&amp;nbsp;]
+.green[&amp;lt;/child&amp;gt;]
+]
+
+--
+
+.absolute.bottom-2.huge.pb2[
+&amp;#x1F6AB;
+]
+
+---
+layout: false
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/html-tag-rules/html-tag-rules-10.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+class: center middle
+
+# Escaped HTML Characters
+
+.bigger[
+&amp;rarr; [toptal.com/designers/htmlarrows](https://www.toptal.com/designers/htmlarrows/)
+
+&amp;#x1F913; [gadenbuie/ermoji](https://github.com/gadenbuie/ermoji)
+]
+
+---
+layout: true
+
+.flex.pt4[
+&lt;div class="w-40 center h2"&gt;Block&lt;/div&gt;
+
+&lt;div class="w-20 center h2 silver"&gt;vs&lt;/div&gt;
+
+&lt;div class="w-40 center h2"&gt;Inline&lt;/div&gt;
+]
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-1.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-2.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-3.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-4.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-5.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-6.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+
+class: animated fadeIn
+background-image: url('assets/img/intro/block-vs-inline/block-vs-inline-6.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+.flex.pt4[
+&lt;div class="w-40 center h2"&gt;&lt;span class="code blue"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class="w-20 center h2 silver"&gt;vs&lt;/div&gt;
+
+&lt;div class="w-40 center h2"&gt;&lt;span class="code purple"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;/div&gt;
+]
+
+---
+layout:true
+class: header_background
+
+# Tag Detective: Block or Inline?
+
+.center.code.f3.red[&amp;#x1F575; [bit.ly/yihui-js-tricks](https://bit.ly/yihui-js-tricks)]
+
+---
+
+
+
+.flex.hide-answer[
+.w-50[
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;section&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;blockquote&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;nav&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;img&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;header&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;li&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;ul&amp;gt;]
+]
+
+.w-50[
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;code&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;a&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;em&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;article&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;pre&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;strong&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;h2&amp;gt;]
+]
+]
+
+<div class="countdown" id="timer_5e485700" style="right:0;bottom:0;" data-audio="assets/libs/countdown/smb_stage_clear.mp3" data-warnwhen="30">
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+???
+
+Task is to go find these elements in Yihui's blog post
+and determine if they are block or inline elements.
+
+Also: what type of content is inside each tag?
+
+---
+
+.flex[
+.w-50[
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;section&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;blockquote&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;nav&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;img&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;header&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;li&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;ul&amp;gt;]
+]
+
+.w-50[
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;code&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;a&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;em&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;article&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;pre&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;strong&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;h2&amp;gt;]
+]
+]
+
+???
+
+Any trouble finding any of these tags?
+
+* Demonstrate searching in browser dev tools
+
+* Show **Layout** tab
+
+---
+layout: false
+
+# Common Tags
+
+.pull-left[
+### Structure (Block)
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;section&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;nav&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;header&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;article&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;h2&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;blockquote&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;pre&amp;gt;]
+
+- .answer[&amp;#x2195;&amp;#xFE0F;] .code[&amp;lt;ul&amp;gt;]
+]
+
+.pull-right[
+### Markup (Inline)
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;strong&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;em&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;code&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;a&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;img&amp;gt;]
+
+- .answer[&amp;#x2194;&amp;#xFE0F;] .code[&amp;lt;li&amp;gt;].red[&amp;ast;&amp;ast;]
+
+.pt2[
+Many, many more elements:&lt;br&gt; .code[[bit.ly/mdn-html-elements](http://bit.ly/mdn-html-elements)]
+]
+]
+
+???
+
+Note that `&lt;li&gt;` is a little different (it's `inline-block`)
+
+All of these are more expressive than `&lt;div&gt;` and `&lt;span&gt;`
+
+
+---
+class: center middle
+
+## Searching MDN
+
+.flex[
+&lt;div class="w-50 tc bigger"&gt;&lt;span class="icon icon-25 icon-rstudio"&gt;&lt;/span&gt;&lt;span class="ml1 dark-blue"&gt;RStudio&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class="w-50 tc bigger"&gt;&amp;#x1F4E6; &lt;span class="ml1 code red"&gt;js4shiny&lt;/span&gt;&lt;/div&gt;
+]
+
+![](assets/img/intro/mdn-addin.png)
+
+---
+layout: false
+exclude: true
+
+# Common Inline Tags for Formatting
+
+| Tag           |     Markdown      | Description                        |
+| ------------- | :---------------: | ---------------------------------- |
+| .code[strong] | .code[&amp;ast;&amp;ast;] | &lt;strong&gt;Bold&lt;/strong&gt; text         |
+| .code[em]     |       &amp;#95;       | &lt;em&gt;Italic&lt;/em&gt; text               |
+| .code[code]   |  .code[&amp;grave;]   | Inline .code[code] snippet         |
+| .code[q]      |                   | Short &lt;q&gt;inline quotation&lt;/q&gt;      |
+| .code[mark]   |                   | &lt;mark&gt;Highlighted&lt;/mark&gt; text      |
+| .code[kbd]    |                   | &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; |
+
+---
+class: fullscreen break center middle
+background-image: url('assets/img/bg/unsplash_0gSXazNJJ90.jpg')
+background-size: cover
+background-position: top left
+
+## .dark-blue[HTML Attributes]
+
+---
+exclude: true
+
+* Notice class, id, etc. in Yihui's page
+* Tags have attributes, e.g. `&lt;a&gt;`
+* All tags can have a `class`, an `id`, and/or `style`
+    * `id`: unique identifier
+    * `class`: this kind of thing
+    * `style`: make this one thing look like this (use as a last resort)
+    * `id` and `class` are useful when trying to _find_ or _change appearance_ of an element.
+* Examples
+    * `&lt;header class="title"&gt;`
+    * `&lt;h2 id="how-to-work-with-mathjax"&gt;`
+    * `&lt;p style="text-align: center;"&gt;`
+* **TASK** update our page
+    * What parts of the page should change?
+    * What parts of the page should get special treatment?
+
+---
+layout: true
+
+# HTML Attributes: Extra Information
+
+Some HTML elements **require** attributes to be functional
+
+---
+
+.code.f5[
+&amp;lt;a&amp;gt;js4shiny.com&amp;lt;/a&amp;gt;
+]
+
+.f4[
+&lt;a&gt;js4shiny.com&lt;/a&gt;
+]
+
+---
+
+.code.f5[
+&amp;lt;a&amp;nbsp;.red[href=]"https:&amp;#8203;//js4shiny&amp;#8203;.com"&amp;gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;js4shiny.com&lt;br&gt;&amp;lt;/a&amp;gt;
+]
+
+.f4[
+&lt;a href="https://js4shiny.com" target="_blank"&gt;js4shiny.com&lt;/a&gt;
+]
+
+---
+layout: false
+
+# HTML Attributes: .code[class]
+
+The .code.red[class] attribute differentiates between similar elements
+
+--
+
+.absolute.right-0.w-40[
+![](assets/img/intro/yihui-header-masthead.png)
+]
+.code.f5[
+&amp;lt;header&amp;nbsp;.blue[class]=".purple[masthead]"&amp;gt;
+]
+
+&lt;div class="h-25"&gt;&lt;/div&gt;
+
+--
+
+.absolute.right-1.w-40[
+![](assets/img/intro/yihui-header-title.png)
+]
+.code.f5[
+&amp;lt;header&amp;nbsp;.blue[class]=".orange[title]"&amp;gt;
+]
+
+---
+layout: false
+
+# HTML Attributes: .code[id]
+
+The .code.red[id] attribute .red[identifies] individual elements
+
+--
+
+.code.f5[
+&amp;lt;h2&amp;nbsp;.red[id]=".blue[how-to-work-with-mathjax]"&amp;gt;
+]
+
+![](assets/img/intro/yihui-id-mathjax.png)
+
+--
+
+.code.f5[
+&amp;lt;div&amp;nbsp;.red[id]=".green[disqus_thread]"&amp;gt;
+]
+
+![](assets/img/intro/yihui-id-disqus.png)
+
+---
+
+# HTML Attributes: .code[style]
+
+The .code.red[style] attribute changes the appearance of _just one element_
+
+--
+
+.code.f6[
+&amp;lt;p&amp;nbsp;.red[style]=".blue[text-align:&amp;nbsp;center;]"&amp;gt;
+]
+
+.w-60.center[
+![](assets/img/intro/yihui-style-image.png)
+]
+
+--
+
+.code.f6[
+&amp;lt;p&amp;nbsp;.red[style]=".blue[text-align:&amp;nbsp;right;]"&amp;gt;
+]
+
+.w-60.center[
+![](assets/img/intro/yihui-style-quote.png)
+]
+
+---
+layout: true
+class: center top
+
+# The Most Important&lt;br&gt;HTML Attributes
+
+---
+
+.f4.mha[
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;class&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;this &lt;span class="b dark-pink"&gt;kind&lt;/span&gt; of thing&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;id&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;this &lt;span class="b dark-green"&gt;one&lt;/span&gt; thing&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;style&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;my &lt;span class="b blue"&gt;special&lt;/span&gt; thing&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+.f4.mha[
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;class&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;this &lt;span class="b dark-pink"&gt;kind&lt;/span&gt; of thing&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;id&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;this &lt;span class="b dark-green"&gt;one&lt;/span&gt; thing&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2 o-40"&gt;&lt;span class="code"&gt;style&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2 o-40"&gt;my &lt;span class="b blue"&gt;special&lt;/span&gt; thing&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tr pr2"&gt;&lt;span class="code"&gt;data-&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tl pl2 pa2"&gt;hold my &lt;span class="b gold"&gt;data&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+layout: false
+class: header_background
+
+# Add ids and classes to our web page
+
+
+Which items do we want to style similarly or can we find at **once**? &amp;#10142; `class`
+
+Which items do we need to find, knowing that we'll only get **one**? &amp;#10142; `id`
+
+--
+
+**Add the following classes or ids:**
+
+- `city`
+
+- `age`
+
+- `chart`
+
+- `city-header`
+
+- `city-text`
+
+<div class="countdown" id="timer_5e4855e8" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+.footnote[.code[repl_example("first-page-01")]]
+
+---
+layout: false
+name: css
+class: break white
+background-image: url('assets/img/bg/unsplash_p6p5-uR5N5U.jpg')
+background-size: cover
+
+.w-50[
+# .f-galada[Cascading Style Sheets]
+]
+
+---
+
+## What is it?
+
+&amp;#x1F440; A set of **rules** that define how your webpage looks
+
+???
+
+HTML is supposed to be about content and structure
+but as soon as you start laying out the content
+the boundary between CSS and HTML seems odd.
+
+It's really a dance between HTML and CSS.
+
+--
+
+## What does it do?
+
+&amp;#x1F3A8; If HTML is .b[content], then CSS is **presentation**
+
+Typography, color, adjust position and size, borders, shadows, and more
+
+--
+
+## Where does it go?
+
+- Inside `&lt;style&gt;` tags anywhere
+
+- In a `.css` file that is included with a special `&lt;link&gt;` tag inside `&lt;head&gt;`
+
+- (In `&lt;tag style = ""&gt;`)
+
+---
+
+# HTML and CSS: A Coordinated Dance
+
+--
+
+.center[
+&lt;img src="assets/img/gif/cute-dancing-small.gif" class="w-80 mah"/&gt;
+]
+
+---
+layout: true
+
+# CSS Rules
+
+There are two main components of a CSS rule.
+
+1. The **selector** defines which elements on the page match the rule
+
+1. The **property list** set properties of those elements to specific values.
+
+---
+
+.code.f6.w-50.mh-a.mt4[
+.purple[selector] {&lt;br&gt;
+.ml4[.dark-green[property]: .blue[value];]&lt;br&gt;
+.ml4[.dark-green[property]: .blue[value];]&lt;br&gt;
+}
+]
+
+---
+
+.code.f6.w-50.mh-a.mt3[
+.purple[selector-one],&lt;br&gt;
+.purple[selector-two] {&lt;br&gt;
+.ml4[.dark-green[property]: .blue[value];]&lt;br&gt;
+.ml4[.dark-green[property]: .blue[value];]&lt;br&gt;
+}
+]
+
+---
+layout: true
+
+# Selecting Elements with CSS
+
+.f6.code.center[
+&amp;lt;.red.bg-washed-red[h1] class=".dark-blue.bg-washed-blue[page-title]" id=".dark-green.bg-washed-green[title]" &amp;gt;
+]
+
+---
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-2.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-3.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-4.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-5.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-6.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-7.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/css-selectors-basic/css-selectors-basic-8.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+
+---
+layout: true
+class: header_background
+
+# Give our page some style &amp;#x1F576;&amp;#xFE0F;
+
+---
+
+.flex[
+
+.w-60[
+- Give headings the `color: #466683;`
+
+- City names get `background: #55ebbc;`
+
+- The median age gets `background: #f6e995;`
+
+- Style the chart so that it is
+
+    - `800px` wide
+
+    - `250px` high
+
+    - has a `2px solid #c0c9cc` border
+]
+
+.w-40[
+.mha.mt3[
+&lt;table&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tl pr2 pv2"&gt;Selector&lt;/th&gt;
+    &lt;th class="tr pl2"&gt;By&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tl pr2 pv2"&gt;&lt;span class="code red"&gt;h1&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tr pl2"&gt;element&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tl pr2 pv2"&gt;&lt;span class="code dark-blue"&gt;.page-title&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tr pl2"&gt;class&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tl pr2"&gt;&lt;span class="code dark-green"&gt;#title&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tr pl2 pv2"&gt;id&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+]
+
+.footnote.code[repl_example("first-page-02")]
+
+---
+
+Let's use a good set of fonts: [systemfontstack.com](https://systemfontstack.com)
+
+```css
+body {
+ font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+   helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial,
+   sans-serif;
+}
+```
+
+???
+
+Go to the systemfontstack website and copy and paste, it's super easy.
+
+--
+
+Changing the `body` font changes all the fonts; this is the _cascade_.
+
+---
+layout: false
+class: header_background
+
+# The Best Part of CSS: variables.sup.moon-gray[*]
+
+.flex[
+.w-50[
+```css
+:root {
+  --dark-blue: #466683;
+  --grey: #c0c9cc;
+  --green: #55ebbc;
+  --yellow: #f6e995;
+}
+```
+]
+.w-50[
+```css
+h1,
+h2 {
+  color: var(--dark-blue);
+}
+.city {
+  background: var(--green);
+}
+.age {
+  background: var(--yellow);
+}
+#chart {
+  border: 2px solid var(--gray)
+}
+```
+]
+]
+
+.footnote[.silver.sup[*] Also sometimes called _custom properties_]
+
+---
+layout: false
+class: header_background
+
+# Wrap the City Header in a .code[span]
+
+.big[
+Replace our current HTML
+
+```html
+&lt;h2 id="city-header" class="city"&gt;San Francisco&lt;/h2&gt;
+```
+
+with this
+
+```html
+&lt;h2&gt;
+  &lt;span id="city-header" class="city"&gt;San Francisco&lt;/span&gt;
+&lt;/h2&gt;
+```
+]
+
+---
+layout: false
+class: break break-javascript right bottom
+background-image: url('assets/img/bg/unsplash_Xh6BpT-1tXo.jpg')
+background-size: cover
+
+&lt;h1 id="javascript" class="rotate-350 text-shadow-2" style="margin-bottom: 35px"&gt;&lt;span class="bigger"&gt;JavaScript&lt;/span&gt;&lt;/h1&gt;
+
+---
+class: header_background
+
+# Find The JavaScript Console in Dev Tools
+
+![](assets/img/intro/javascript-dev-console.png)
+
+???
+
+Firefox: &lt;kdb&gt;Cmd + Alt + K&lt;/kdb&gt;
+
+---
+layout: true
+
+&lt;h1 class="mb1"&gt;Like  R, But Different&lt;/h1&gt;
+
+.flex.w-100[
+.w-50.mr5[
+&lt;h2 class="mv1 tc bb bw1"&gt;R&lt;/h2&gt;
+]
+.w-50[
+&lt;h2 class="mv1 tc bb bw1"&gt;JavaScript&lt;/h2&gt;
+]
+]
+
+---
+
+.flex.w-100[
+.w-50.mr5[
+- `+`, `-`, `*`, `/`, `**`
+
+- `x &lt;- 2` or `x = 2`
+
+- Assign/declare at once&lt;br&gt;&amp;nbsp;
+
+- Comments — `# comment`
+]
+.w-50[
+- `+`, `-`, `*`, `/`, `**`
+
+- `x = 2`
+
+- Declare variables with&lt;br&gt;`const`, `let`, `var`
+
+- Comments — `// comment` or
+
+    ```
+    /*
+     * mutliline comments
+     */
+    ```
+]
+]
+
+---
+
+.flex.w-100[
+.w-50.mr5[
+- Numbers — `1.234`
+
+- Integers — `1L`
+
+- Strings — `"apple"` or `'banana'`&lt;br&gt;&amp;nbsp;
+
+- Boolean — `TRUE` or `FALSE`
+
+- Arrays — `c(1, 2, 3)`
+
+- Lists — `list(a = 1, b = 2)`
+]
+.w-50[
+- Numbers — `1.234`
+
+- ~~Integers~~ — &amp;#x261D;
+
+- Strings — `'apple'`, `"banana"` or .code.dark-blue.backtick[${fruit}]
+
+- Boolean — `true` or `false`
+
+- Arrays — `[1, 2, 3]`
+
+- Objects — `{a: 1, b: 2}`
+]
+]
+
+---
+
+.flex.w-100[
+.w-50.mr5[
+- Missing — `NA`
+
+- `NULL`
+
+- `NaN`, `Inf`, `-Inf`
+]
+.w-50[
+- Undefined — `undefined`
+
+- `null`
+
+- `NaN`, `Infinity`, `-Infinity`
+]
+]
+
+
+---
+
+.flex.w-100[
+.w-50.mr5[
+- Functions — `message("hello")`
+
+- Methods — `print.tbl()`
+]
+.w-50[
+- Functions — `alert('hello')`
+
+- Methods — `console.log()`
+]
+]
+
+.w-50[
+If R worked like JavaScript, every `tibble` would carry around it's own print function.
+]
+
+
+---
+layout: false
+
+# What kind of variable am I?
+
+.flex.w-100[
+.w-50.mr3[
+&lt;h3 class="mv1 tc bb bw1"&gt;Won't Change&lt;/h3&gt;
+
+
+```js
+const x = 42
+x = 64
+```
+
+
+&lt;div id="out-js-const-demo"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.w-50[
+&lt;h3 class="mv1 tc bb bw1"&gt;Could Change&lt;/h3&gt;
+
+
+```js
+let x = 42
+x = 64
+x
+```
+
+
+&lt;div id="out-js-let-demo"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+]
+
+--
+
+.flex[
+.w-50.mr3[
+&lt;h3 class="mv1 tc bb bw1"&gt;Old School&lt;/h3&gt;
+
+
+```js
+var x = 42
+x = 48
+x
+```
+
+
+&lt;div id="out-js-var-demo"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.w-50[
+&lt;h3 class="mv1 tc bb bw1"&gt;Don't Overthink&lt;/h3&gt;
+
+.dark-green.big[&amp;#10004;] Use `const` or `let`
+
+.red.big[&amp;#10006;] Don't replace a `const` variable
+
+.red.big[&amp;#10006;] Don't worry
+]
+]
+
+---
+
+&lt;h1 id="this-slide-title"&gt;JavaScript Runs in the Browser&lt;/h1&gt;
+
+The browser builds the document from an internal model **DOM**
+
+Made available to JavaScript via **document**
+
+The methods of `document` let you interact with the browser
+
+--
+
+
+```js
+// Find an element in your page by ID
+let title = document.getElementById('this-slide-title')
+
+// Once you have the element...
+title.textContent
+```
+
+
+&lt;div id="out-getElementById"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+layout: false
+
+# JavaScript Runs in the Browser
+
+.flex[
+.w-50.mr3[
+&lt;h3 class="mv1 tc bb bw1"&gt;Find Elements&lt;/h3&gt;
+
+.code.silver[document.red[.getElementById()]]
+
+.code.silver[document.red[.querySelector()]]
+
+.code.silver[document.red[.querySelectorAll()]]
+]
+.w-50[
+&lt;h3 class="mv1 tc bb bw1"&gt;Modify Elements&lt;/h3&gt;
+
+.code.silver[el.red[.textContent]]
+
+.code.silver[el.red[.innerHTML]]
+
+.code.silver[el.red[.style].blue[.color]]
+]
+]
+
+--
+
+.flex[
+.w-50.mr3[
+.code.red[document] is the name of the object&lt;br&gt;from the browser's API
+]
+
+.w-50[
+.code.red[el] is a variable name and&lt;br&gt;can (or should!) get a better name
+]
+]
+
+--
+
+Let's change **San Francisco** &amp;#10145; **Los Angeles**
+
+---
+layout: false
+class: header_background
+
+# In the developer tools console...
+
+.big[
+1. Change the median age to 35.9
+
+1. Change the background color of the chart placeholder to match the border color (`var(--gray)`)
+]
+
+<div class="countdown" id="timer_5e485906" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
+
+---
+layout: false
+
+# A more permanent solution
+
+--
+
+Obviously, we can't stand next to our users and ask to type code into their browser console
+
+--
+
+&lt;img src="assets/img/gif/awkward-andy.gif" class="w-two-thirds center" /&gt;
+
+---
+
+## Where to Write JavaScript Code
+
+### Write right inside your HTML
+
+```html
+&lt;script&gt;
+  // JavaScript ...
+&lt;/script&gt;
+```
+
+&lt;h3 class="mb1"&gt;Write in a separate file&lt;/h3&gt;
+
+
+```js
+alert('hello rstudio::conf')
+```
+
+
+```html
+&lt;script src="script.js"&gt;&lt;/script&gt;
+```
+
+---
+layout: true
+
+## Where to Put Your JavaScript Code
+
+&lt;div class="w-40 tc white"&gt;&lt;div class="ba bw1 b--black-20 pa1 w-90"&gt;&lt;div class="bg-blue w-100 h-a-150 flex flex-column items-center justify-center tc f3"&gt;HEAD&lt;/div&gt;
+&lt;div class="bg-green w-100 h-a-300 flex flex-column items-center justify-center tc f3"&gt;BODY&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-01.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-02.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-03.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/intro/js-script-where-html/js-script-where-html-10.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+class: header_background
+
+# Make it official
+
+```html
+&lt;script&gt;
+  let city = 'Los Angeles';
+  let age = 38.8;
+  document.getElementById('city-header').textContent = city;
+  document.getElementById('city-text').textContent = city;
+  document.querySelector('#age').textContent = age;
+
+  let chart = document.getElementById('chart');
+  chart.style.background = 'var(--gray)';
+&lt;/script&gt;
+```
+
+Put this `&lt;script&gt;` just before the `&lt;style&gt;` we added earlier.
+
+<div class="countdown" id="timer_5e4858fa" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+.footnote.code[repl_example("first-page-03")]
+
+???
+
+Follow up questions, activity
+
+1. What happens if you move the script to the top of the `&lt;body&gt;`?
+2. How can you find out if your code has errors?
+
+---
+
+# R Markdown is Awesome
+
+You can do all of this in R Markdown, too.
+
+
+```r
+# Open a new, empty plain html R markdown
+js4shiny::js4shiny_rmd("plain")
+```
+
+.flex.w-100[
+.w-50[
+- Put the HTML in the document
+
+- Copy the JavaScript into a js chunk
+
+    ````markdown
+    ```{js}
+    let city = 'Los Angeles'
+    // ...
+    ```
+    ````
+]
+.w-50[
+- Copy the CSS into  a `css` chunk
+
+    ````markdown
+    ```{css}
+    .city {
+      background: var(--green);
+    }
+    .age {
+      background: var(--yellow);
+    }
+    ```
+    ````
+]
+]
+
+???
+
+Hey, it works in `rmarkdown::html_document()` too.
+
+---
+
+# Summary
+
+.can-edit.key-summary[
+- HTML is a tree, called the DOM
+- HTML tags have a name, attributes, and contents
+- HTML for content, CSS for presentation
+- CSS selectors
+- CSS in `&lt;style&gt;` or `.css`
+- JavaScript is like R but different
+- JavaScript runs in the browser
+- JavaScript manipulates the DOM
+]
+
+---
+
+
+# HTML Resources
+
+* Mastering Shiny: Advanced UI&lt;br&gt;
+  https://mastering-shiny.org/advanced-ui.html
+
+* FrontEnd Masters Handbook&lt;br&gt;
+  https://frontendmasters.com/books/front-end-handbook/2019/
+
+* Interneting is Hard&lt;br&gt;
+  https://internetingishard.com/
+
+* HTML Semantics Cheat Sheet&lt;br&gt;
+  https://learn-the-web.algonquindesign.ca/topics/html-semantics-cheat-sheet/
+
+---
+class: center middle
+
+# Next: [Ghost in the Machine (Interactivity)](interactivity.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!-- scripts from markdown source start -->
+<script>
+let data_html_tree = {
+  head: {
+    meta: {charset: "UTF-8"},
+    title: "Californian Cities"
+  },
+  body: {
+    h1: ['Californian Cities'],
+    h2: ['San Francisco'],
+    p: [
+      'The median age of residents...',
+      {strong: 'San Francisco'},
+      'is',
+      {strong: '38.8'},
+      'years old'
+    ]
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  window.jsonView.format(data_html_tree, '#json-html_tree')
+})
+</script>
+<script type="text/javascript">
+const log_out_js_const_demo = redirectLogger(document.querySelector("#out-js-const-demo > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_const_demo(`const x = 42
+x = 64`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_let_demo = redirectLogger(document.querySelector("#out-js-let-demo > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_let_demo(`let x = 42
+x = 64
+x`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_var_demo = redirectLogger(document.querySelector("#out-js-var-demo > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_var_demo(`var x = 42
+x = 48
+x`)
+})
+</script>
+<script type="text/javascript">
+const log_out_getElementById = redirectLogger(document.querySelector("#out-getElementById > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_getElementById(`// Find an element in your page by ID
+let title = document.getElementById('this-slide-title')
+
+// Once you have the element...
+title.textContent`)
+})
+</script>
+<!-- scripts from markdown source end -->
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

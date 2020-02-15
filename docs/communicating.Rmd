@@ -1,0 +1,1318 @@
+---
+title: "Communicating with Shiny"
+subtitle: "Day 2 - Morning - Session 1"
+author: "Garrick Aden-Buie"
+date: '2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: NULL
+    nature:
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+class: title
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  fig.path = "assets/files/communicating_",
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+use_placeholders(FALSE)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "panelset", "editable"))
+```
+
+```{r js4shiny, echo=FALSE}
+htmltools::tagList(
+  js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+)
+```
+
+`r title_slide("Mothership Connection", "Communicating with Shiny", day = 2, session = "am")`
+
+---
+class: break break-shiny
+
+# HTML + JS + CSS +<br>Shiny, oh my!
+
+---
+
+# The Many Ways to Web Dev in Shiny
+
+1. Write your front end in raw web languages
+
+1. Just like HTML, but in R
+
+1. Use helpers to inline the CSS/JS
+
+1. Let .pkg[htmltools] and Shiny manage dependencies
+
+---
+layout: true
+
+<h1 class="mb2">Including Extras in Shiny</h1>
+
+---
+
+.left-column[
+## Raw HTML
+]
+
+
+.right-column[
+
+.panelset[
+.panel[.panel-name[wwww/index.html]
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  \{{ headContent() }}
+  <title>Fancy Pants App</title>
+</head>
+<body>
+  \{{ button }}
+  \{{ slider }}
+</body>
+</html>
+```
+]
+
+.panel[.panel-name[ui.R]
+```r
+htmlTemplate("template.html",
+  button = actionButton("action", "Action"),
+  slider = sliderInput("x", "X", 1, 100, 50)
+)
+```
+]
+]
+]
+
+---
+name: add-raw-html
+
+.left-column[
+## Raw HTML
+]
+
+
+.right-column[
+
+.panelset[
+.panel[.panel-name[wwww/index.html]
+.small[
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="shared/jquery.js"></script>
+  <script src="shared/shiny.js"></script>
+  <link rel="stylesheet" href="shared/shiny.css"/>
+  <title>Fancy Pants App</title>
+</head>
+<body>
+  <button class="btn btn-default action-button"
+    id="action" type="button">
+    Action
+  </button>
+  <pre id="summary" class="shiny-text-output"></pre>
+</body>
+</html>
+```
+]
+]
+
+.panel[.panel-name[server.R]
+```r
+output$summary <- renderPrint({
+  input$action
+})
+```
+]
+
+.panel[.panel-name[R]
+```{r}
+button <- shiny::actionButton("action", "Action")
+cat(format(button))
+textOut <- shiny::verbatimTextOutput("summary")
+cat(format(textOut))
+```
+]
+]
+]
+
+---
+name: add-html-r
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&#x21e4;]](#add-raw-html)
+
+## HTML, but R
+]
+
+.right-column[
+.panelset[
+.panel[.panel-name[HTML]
+```html
+<html lang="en">
+<head>
+  <script src="fancy.js"></script>
+  <link rel="stylesheet" href="fancy.css"/>
+</head>
+<body>
+  <style>/* styles */</style>
+  <script>// javascript...</script>
+  <script src="fancyShoes.js"></script>
+</body>
+</html>
+```
+]
+
+.panel[.panel-name[ui.R]
+```{r eval=FALSE}
+fluidPage(
+  tags$head(
+    tags$script(src = "fancy.js"),
+    tags$link(
+      rel = "stylesheet", 
+      href = "fancy.css"
+    )
+  ),
+  tags$style("/* styles */"),
+  tags$script("// javascript"),
+  tags$script(src = "fancyShoes.js")
+)
+```
+]
+
+.panel[.panel-name[Note]
+
+The source files should live in `www/`
+
+Or you need to use
+
+```{r eval=FALSE}
+shiny::addResourcePath("fancy", "fancy/path/")
+```
+
+Also use `HTML()` to write worry-free
+
+```{r eval=FALSE}
+tags$script(HTML(
+  "el.innerHTML = '<div></div>'"
+))
+```
+]
+]
+]
+
+
+---
+name: add-inline
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&#x21e4;]](#add-raw-html)
+
+## HTML, but R[.o-30.hover-show[&#x21e4;]](#add-html-r)
+
+## Inline
+]
+
+.right-column.pl2.pt0[
+Drop right in, `path` is what you see
+
+```{r eval=FALSE}
+fluidPage(
+  includeCSS("fancy.css"),
+  includeScript("fancy.js")
+)
+```
+
+Avoid adding multiple copies of the same file with
+
+```{r singleton, eval=FALSE}
+fluidPage(
+  includeCSS("fancy.css"),
+  singleton(includeScript("fancy.js")), #<<
+  singleton(includeScript("fancy.js"))  #<<
+)
+```
+]
+
+.footnote[https://shiny.rstudio.com/articles/css.html]
+
+---
+name: add-htmldep
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&#x21e4;]](#add-raw-html)
+
+## HTML, but R[.o-30.hover-show[&#x21e4;]](#add-html-r)
+
+## Inline[.o-30.hover-show[&#x21e4;]](#add-inline)
+
+## htmltools
+]
+
+.right-column.pl2.pt0[
+.panelset[
+.panel[.panel-name[fancyPkg]
+```{r eval=FALSE}
+fancy_pants_dependency <- function() {
+  htmltools::htmlDependency(
+    name = "fancyPants",
+    version = "1.2.3",
+    package = "fancyPkg",
+    src = "pants",
+    script = "fancy.js",      #<<
+    stylesheet = "fancy.css", #<<
+    all_files = FALSE
+  )
+}
+```
+]
+
+.panel[.panel-name[fancyUI]
+```{r fancy-pants-ui, eval=FALSE}
+fancy_pants <- function(style = "shiny") {
+  htmltools::tagList(
+    # ... pants UI ...,
+    fancy_pants_dependency()
+  )
+}
+```
+]
+
+.panel[.panel-name[app.R]
+```{r fancy-pants-app, eval=FALSE}
+fluidPage(
+  fancy_pants("jeans"),
+  fancy_pants("shiny"),
+  fancy_pants("stretchy")
+)
+```
+
+But the dependencies are only loaded once!
+]
+]
+
+.panel[.panel-name[html]
+```html
+<html lang="en">
+<head>
+* <script src="fancy.js"></script>
+* <link rel="stylesheet" href="fancy.css"/>
+</head>
+<body>
+  <div class="fancy" id="jeans"></div>
+  <div class="shiny" id="jeans"></div>
+  <div class="stretchy" id="jeans"></div>
+</body>
+</html>
+```
+]
+
+.panel[.panel-name[Also...]
+```{r eval=FALSE}
+htmltools::htmlDependency(
+  name = "fancyPants",
+  version = "1.2.3",
+  package = "fancyPkg",
+  src = c(
+    file = "pants",                      #<<
+    href = "https://cdn.fast.com/fancy", #<<
+  ),
+  script = "fancy.js",
+  stylesheet = "fancy.css",
+  all_files = FALSE                      #<<
+)
+```
+
+]
+]
+
+---
+class: header_background
+
+# What method do you like best?
+
+Write down at least one pro and con of using each method.
+
+- Raw HTML (`htmlTemplate()`)
+
+- HTML written in R
+
+- `includeCSS()` and `includeScript()`
+
+- `htmltools::htmlDependency()`
+
+`r countdown::countdown(2, top = "200px")`
+
+--
+
+Compare your list with your neighbors.
+Does their list change your mind about any of your answers?
+
+`r countdown::countdown(2)`
+
+---
+name: shiny-events-first
+layout: false
+class: break fullscreen white middle center animated slideInDown
+background-image: url('assets/img/bg/unsplash_c9UcT2bMBc0.jpg')
+background-size: cover
+background-position: bottom center
+
+# Shiny Events
+
+---
+class: break break-javascript huge animated lightSpeedIn fast
+
+# .o-50[$(]jQuery.o-50[)]
+
+
+---
+
+# JavaScript Frameworks Over Time
+
+```{r google-js-framework-search-trends, echo=FALSE, fig.width=16, fig.height=7}
+searches <-
+  readr::read_csv("data/jquery-react-angluar-vue.csv", 
+    col_types = readr::cols(Month = readr::col_date(format = "%Y-%m")), 
+    skip = 1) %>% 
+  tidyr::gather("Search Term", "n", -Month) %>% 
+  dplyr::mutate(`Search Term` = stringr::str_remove(`Search Term`, ":.+$")) %>% 
+  dplyr::mutate(`Search Term` = factor(
+    `Search Term`, 
+    levels = c("jquery", "react" ,"vue", "angular"),
+    labels = c("jQuery", "React", "Vue", "Angular")
+  ))
+
+g <- 
+  ggplot2::ggplot(searches) +
+  ggplot2::aes(Month, n, color = `Search Term`) +
+  ggplot2::geom_smooth(size = 2, alpha = 0.75, se = FALSE) +
+  ggplot2::theme_minimal(base_size = 32) +
+  ggplot2::labs(x = NULL) +
+  ggplot2::guides(
+    color = ggplot2::guide_legend(
+      title = NULL,
+      label.theme = ggplot2::element_text(size = 32, vjust = 0.5, color = "#2f4858"),
+      keyheight = 4,
+      override.aes = list(size = 5)
+    )
+  ) +
+  ggplot2::theme(
+    axis.text.x = ggplot2::element_text(color = "#2f4858"),
+    axis.title.x = ggplot2::element_text(color = "#2f4858"),
+    axis.title.y = ggplot2::element_blank(),
+    axis.text.y = ggplot2::element_blank(),
+    axis.ticks.y = ggplot2::element_blank()
+  ) +
+  ggplot2::scale_color_manual(values = c(
+    jQuery = "#d33f49",
+    React = "#75aadb",
+    Angular = "#466683",
+    Vue = "#f0db4f"
+  ))
+
+g
+```
+
+.footnote[Source: [Google Trends](https://trends.google.com/trends/explore?date=2010-01-01%202020-01-25&geo=US&q=jquery,react,angular,vue)]
+
+???
+
+jQuery was hugely popular, and still is!
+
+Some analyses suggest it's used by 86% of pages on the internet.
+
+It's also used by 100% of Shiny apps.
+
+---
+
+# What's up with .dark-blue[$]?
+
+--
+
+`$` is a valid variable name in JavaScript
+
+```js
+var $ = jQuery
+```
+
+--
+
+`_` is too and a few libraries take advantage of that (e.g. .pkg[lodash], .pkg[underscore])
+
+--
+
+.fl.w-30[
+Anytime you see...
+
+```js
+$('.shiny')
+// or
+$().on('click')
+```
+]
+
+--
+
+.fl.w-50[
+think
+
+```js
+jQuery('shiny')
+// or
+jQuery().on('click')
+```
+]
+
+---
+
+# jQuery and Vanilla JavaScript
+
+jQuery was way ahead of its time, but vanilla JavaScript caught up
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('.shiny')
+```
+]
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .querySelectorAll('.shiny')
+```
+]
+
+--
+
+.cl.mt2.mb0[
+The result is very similar, but jQuery adds extra methods.
+]
+
+.fl.w-50.mt0[
+```js
+$el instanceof jQuery //true
+$el.hide()
+// the elements are hidden!
+```
+]
+
+.fl.w-50.mt0[
+```js
+el instanceof NodeList //true
+el.hide()
+// TypeError: el.hide is not a function
+```
+]
+
+
+---
+class: center middle animated rotateIn fast
+
+.f2.f-galada.text-shadow-4[You Might Not Need jQuery]
+
+--
+class: not-animated
+
+.f4.f-lato.silver[unless you do certain things]
+
+--
+
+.f6.f-lato.silver[(and there's nothing wrong with using it)]
+
+--
+
+.f6.f-lato[.mr2[&#x1F516;] [youmightnotneedjquery.com](http://youmightnotneedjquery.com/)]
+
+--
+
+.f6.f-lato[.mr2[&#x1F516;] [youmightnotneedjs.com](http://youmightnotneedjs.com/)]
+
+???
+
+Two goals: 
+
+1. show the very very basics of jQuery
+
+1. When do you **need* to use jQuery?
+
+---
+
+# Finding Elements with jQuery
+
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .querySelectorAll('.shiny')
+```
+]
+
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('.shiny')
+```
+]
+
+--
+
+.fl.w-50.cl[
+
+```js
+const el = document
+  .getElementById('shiny')
+```
+]
+
+
+.fl.w-50[
+```js
+const $el = $('#shiny')
+```
+]
+
+
+---
+
+# Creating Elements with jQuery
+
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .createElement('div')
+el.id = 'shiny'
+document.body.appendChild(el)
+```
+]
+
+--
+
+.fl.w-50[
+.h3[jQuery]
+```js
+$('<div>')
+  .setAttr('id', 'shiny')
+  .appendTo('body')
+```
+]
+
+
+---
+layout: true
+
+# Adding, Removing, Toggling a Class
+
+---
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .getElementById('shiny')
+
+*el.classList.add('fancy') 
+*el.classList.remove('fancy')
+*el.classList.toggle('fancy')
+```
+]
+
+--
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('#shiny')
+
+
+*$el.addClass('fancy')
+*$el.removeClass('fancy')
+*$el.toggleClass('fancy')
+```
+]
+
+--
+
+.fl.w-50.cl[
+```js
+const el = document
+  .getElementById('shiny')
+  
+*el.classList.contains('fancy')
+```
+]
+
+
+.fl.w-50[
+```js
+const $el = $('#shiny')
+
+
+*$el.hasClass('fancy')
+```
+]
+
+???
+
+A detail that isn't obvious from this example
+is that the `$el` is an object and the
+jQuery methods apply to all of the objects...
+
+Whereas we have to write extra code in vanilla
+to do the same thing
+
+
+---
+
+.fl.w-60[
+.h3[Vanilla]
+
+```js
+const els = document
+  .querySelectorAll('.shiny')
+
+*els.forEach(
+*  el => el.classList.add('fancy')
+*)
+```
+]
+
+
+.fl.w-40[
+.h3[jQuery]
+```js
+const $els = $('.shiny')
+
+*$els.addClass('fancy')
+```
+]
+
+---
+layout: true
+
+# Listening to Events
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+*el.addEventListener('click', ev => {
+*  // respond to event
+*})
+```
+
+.h3[jQuery]
+
+```js
+const $el = $('.shiny')
+*$el.on('click', ev => {
+*  // respond to event
+*})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+*el.addEventListener('click', ev => {
+* // respond to event
+*})
+```
+
+.h3[jQuery]
+
+```js
+const $el = $('.shiny')
+*$el.on('click', '.fancy', ev => {
+* // respond to event if it happened
+* // on an element with .fancy class
+*})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+el.addEventListener('click', ev => {
+* // respond to event
+})
+```
+
+.h3[jQuery]
+
+```js
+*$(document).on('click', '.fancy', ev => {
+  // respond to click events on .fancy
+  // *even if* the .fancy element is added later
+})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+document.addEventListener('click', ev => {
+* if (ev.target.classList.contains('.fancy')) {
+*   // then go head and respond
+* }
+})
+```
+
+.h3[jQuery]
+
+```js
+*$(document).on('click', '.fancy', ev => {
+  // respond to click events on .fancy
+  // *even if* the .fancy element is added later
+})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+  // Run this code when the DOM is good and ready
+})
+```
+
+--
+
+.h3[jQuery]
+
+```js
+$(function() {
+  // Whenever you're ready, browser.
+})
+```
+
+---
+
+You can create your own events in Vanilla JavaScript and in jQuery
+
+--
+
+But you can't respond to custom events created in jQuery using Vanilla JavaScript
+
+--
+
+So you .red[need to use jQuery to handle Shiny's custom events]
+
+---
+layout: false
+template: shiny-events-first
+name: shiny-events
+
+---
+layout: false
+
+# Shiny State of Events
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[connected]] | Session first starts |
+| .code[.silver[shiny:].blue[disconnected]] | Session ends |
+| .code[.silver[shiny:].blue[sessioninitialized]] | Shiny is ready |
+| .code[.silver[shiny:].blue[idle]] | Shiny is idle |
+| .code[.silver[shiny:].blue[busy]] | Shiny is busy |
+
+---
+layout: true
+
+# Shiny Output Events
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+| .code[.silver[shiny:].blue[error]] | Recalculation did not compute |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+| .code[.silver[shiny:].blue[error]] | Recalculation did not compute |
+| .code[.silver[shiny:].blue[visualchange]] | Ouput resized, hidden or shown |
+
+---
+layout: false
+
+# Shiny Input Events
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[inputchanged]] | The input changed(?) |
+| .code[.silver[shiny:].blue[updateinput]] | Shiny updated the input |
+
+.mt5[
+Learn more: [shiny.rstudio.com/articles/js-events.html](https://shiny.rstudio.com/articles/js-events.html)
+]
+
+---
+layout: true
+class: header_background
+
+# Shiny Events
+
+---
+
+.f6.code[repl_example("shiny-events-1")]
+
+Find the `#run` button
+
+When the plot is recalculating: `.on('shiny:recalculating')`
+- add the .code[disabled] class to the button
+- use `.setAttribute()` to set disabled to true
+
+Then undo the above steps when the output is ready: `.on('shiny:value')`
+- Note: you need to *remove* the disabled attribute
+  
+  `.removeAttribute('disabled')`
+  
+---
+
+.f6.code[repl_example("shiny-events-2")]
+
+I've added Font Awesome icons with
+
+```
+rmarkdown::html_dependency_font_awesome()
+```
+
+- Store the run button's original `.innerHTML`
+
+- When the plot is recalculating replace the button text with
+
+  ```
+  <i class="fas fa-spinner fa-spin fa-lg"></i>
+  ```
+
+- When the plot is done, restore the original button text
+  
+
+---
+
+.f6.code[repl_example("shiny-events-3")]
+
+Now I've added `style.css`
+
+```
+addResourcePath("figures", js4shiny:::js4shiny_file('man', 'figures'))
+
+tags$head(includeCSS("style.css"))
+```
+
+and a loader inside `plot-container`.
+
+- Use jQuery to find the loader div
+
+- Then use jQuery's `.hide()` and `.show()` methods
+  to hide the plot and show the loader when the plot
+  is recalculating
+  
+- And reverse when the plot is done
+
+---
+
+.f6.code[repl_example("shiny-events-4")]
+
+- Does this give you any ideas for your own apps?
+
+- .pkg[shinyjs]
+
+  - `disable()`, `enable()`
+  
+  - `show()`, `hide()`
+
+- Questions about events?
+
+  
+
+---
+layout: false
+class: center top white break
+background-image: url('assets/img/bg/unsplash_71CjSSB83Wo.jpg')
+background-size: cover
+background-position: top center
+
+<h1 class="mt3">Calling Shiny</h1>
+
+---
+layout: true
+
+# From .red[R &#10142;] .blue[Shiny]
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", data)
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", c(13, 21, 42))
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+```{r}
+jsonlite::toJSON(list(type = "fancy", value = 42))
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", c(13, 21, 42))
+```
+
+```{r}
+jsonlite::toJSON(c(13, 21, 42))
+```
+
+---
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+```{r}
+jsonlite::toJSON(TRUE, auto_unbox = TRUE)
+```
+
+---
+
+Then, we need to tell Shiny how to handle the message
+
+```{js eval=FALSE}
+Shiny.addCustomMessageHandler('fancyMessage', function(message) {
+  // ... do things with the message ...
+})
+```
+
+---
+
+You can define the function separately if you want
+
+```{js eval=FALSE}
+function fancyMessageHandler(message) {
+  // ... do things with the message ...
+}
+
+Shiny.addCustomMessageHandler('fancyMessage', fancyMessageHandler)
+```
+
+---
+
+And you can change the name of the argument
+
+```{js eval=FALSE}
+Shiny.addCustomMessageHandler('fancyMessage', function(x) {
+  // ... do things with the x ...
+})
+```
+
+---
+
+But your handler function needs .red[one and only one] argument
+
+```{js eval=FALSE}
+Shiny.addCustomMessageHandler('fancyMessage', function(x, y) {
+  // Shiny will yell at you!
+})
+```
+
+---
+
+Putting the two together, your message might .b[conditionally trigger an action]
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+```{js eval=FALSE, name="fancy.js"}
+Shiny.addCustomMessageHandler('fancyMessage', function(condition) {
+  if (condition) {
+    // show element
+  } else {
+    // hide element
+  }
+})
+```
+
+
+---
+
+Putting the two together, your message might .b[update text]
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", 42)
+```
+
+```{js eval=FALSE, name="fancy.js"}
+Shiny.addCustomMessageHandler('fancyMessage', function(value) {
+  const numberPants = document.getElementById('number-of-pants')
+  
+  numberPants.textContent = value
+})
+```
+
+
+---
+
+Putting the two together, your message might .b[update several things]
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+```{js eval=FALSE, name="fancy.js"}
+Shiny.addCustomMessageHandler('fancyMessage', function(opts) {
+  const numberPants = document.getElementById('number-of-pants')
+  
+  numberPants.textContent = opts.value
+  numberPants.classList.add(opts.type)
+})
+```
+
+
+---
+
+If your message is a list, .b[destructuring] is your friend
+
+```{r eval=FALSE, name = "server.R"}
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+???
+
+What's destructuring?
+
+--
+
+```{js eval=FALSE, name="fancy.js"}
+*Shiny.addCustomMessageHandler('fancyMessage', function({type, value}){
+  const numberPants = document.getElementById('number-of-pants')
+  
+* numberPants.textContent = value
+* numberPants.classList.add(type)
+})
+```
+
+---
+layout: false
+exclude: true
+
+FIXME - hide/show example using messages
+
+---
+layout: true
+
+# From .red[Shiny &#10142;] .blue[R]
+
+---
+
+```{js eval=FALSE, name = "fancy.js"}
+Shiny.setInputValue('fancyPants', 42)
+```
+
+--
+
+```{r input, echo=FALSE}
+input <- list(fancyPants = 42)
+```
+
+```{r name = "server.R"}
+# inside observe({})
+input$fancyPants
+```
+
+---
+
+```{js eval=FALSE, name = "fancy.js"}
+let nPants = document.getElementById('n-fancy-pants')
+
+nPants.addEventListener('click', function(event) {
+  Shiny.setInputValue('fancyPants', event.target.value)
+})
+```
+
+```{r name = "server.R"}
+# inside observe({})
+input$fancyPants
+```
+
+---
+
+Shiny won't resend values that don't change, unless...
+
+```{js eval=FALSE, name = "fancy.js"}
+Shiny.setInputValue('fancyPants', true, {priority: 'event'})
+```
+
+---
+layout: false
+class: header_background
+
+# Try it in the console
+
+.f6.code[repl_example("shiny-setInputValue")]
+
+- Run the app and send it to your browser
+
+- Open that JavaScript console and run something like
+
+  ```js
+  Shiny.setInputValue('hi', 'rstudio::conf')
+  ```
+  
+- Try sending strings, numbers, arrays and objects
+
+`r countdown::countdown(2)`
+
+---
+layout: true
+
+# R .red[&#8596;] Shiny
+
+---
+
+`r live_coding(message = "for a fancier htmlwidget")`
+
+???
+
+This is my last "fancier" I promise
+
+[Better Data Updates](https://github.com/gadenbuie/js4shiny-frappeCharts/blob/master/dev/dev.md#better-data-updates)
+
+One more slide to get us back in the head space of Frappe Charts
+
+---
+layout: false
+
+# Our goal
+
+1. We want our chart to be able to receieve updates from Shiny
+
+   Re-render without re-drawing the whole plot.
+   
+   [bit.ly/js4shiny-frappe-update](http://bit.ly/js4shiny-frappe-update)
+
+
+--
+
+1. We want to send data back to Shiny about which element of the plot
+   is currently selected
+   
+   .code[isNavigable === true]
+   
+   [bit.ly/js4shiny-frappe-nav](http://bit.ly/js4shiny-frappe-nav)

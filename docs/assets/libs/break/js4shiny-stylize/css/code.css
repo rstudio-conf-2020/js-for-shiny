@@ -1,0 +1,146 @@
+pre {
+  font-family: var(--font-monospace);
+  /* background-color: var(--text-lighter); */
+  padding: 0.8em;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.2em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-left: 3px solid var(--text-lighter);
+}
+
+pre code {
+  border: none;
+  color: var(--text);
+}
+
+pre::after {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  opacity: 0.5;
+}
+
+pre.js {
+  border-color: var(--yellow);
+  background-color: var(--washed-yellow);
+}
+
+pre.js::after {
+  content: 'js';
+  color: var(--yellow);
+  opacity: 1;
+}
+
+pre.r {
+  border-color: var(--blue);
+  background-color: var(--washed-blue);
+}
+
+pre.r::after {
+  content: 'r';
+  color: var(--blue);
+}
+
+pre.json {
+  border-color: var(--purple);
+  background-color: var(--washed-purple);
+}
+
+pre.json::after {
+  content: 'json';
+  color: var(--purple);
+}
+
+pre.node,
+pre.bash,
+pre.sh {
+  border-color: var(--green);
+  background-color: var(--washed-green);
+}
+
+pre.node::after {
+  content: 'node';
+  color: var(--green);
+  opacity: 1;
+}
+
+pre.bash::after,
+pre.sh::after {
+  content: 'sh';
+  color: var(--green);
+  opacity: 1;
+}
+
+pre.md,
+pre.markdown,
+pre.yaml {
+  border-color: var(--red);
+  background-color: var(--washed-red);
+}
+
+pre.yaml::after {
+  content: 'yaml';
+  color: var(--red);
+}
+
+pre.markdown::after,
+pre.md::after {
+  content: 'md';
+  color: var(--red);
+}
+
+pre.html {
+  border-color: #E34C26;
+  background-color: #fcede9;
+}
+
+pre.html::after {
+  content: 'html';
+  color: #E34C26;
+}
+
+pre.css {
+  background-color: #e9edfc;
+  border-color: #264DE4;
+  position: relative;
+}
+pre.css::after {
+  content: 'css';
+  color: #264de4;
+}
+
+.pre-name {
+  margin-bottom: -1em;
+  border-bottom: 3px solid #00000010;
+  font-family: var(--font-monospace);
+  text-align: right;
+  padding-right: 1em;
+  color: var(--text-med);
+  z-index: -1;
+}
+
+p code,
+p kbd,
+p samp {
+  font-family: var(--font-monospace);
+  font-size: 0.9rem;
+}
+
+p code,
+p kbd {
+  border-radius: var(--border-radius);
+  padding: 0px 2px;
+}
+
+p code {
+  /* border:1px solid var(--text-light); */
+  /* background-color: var(--text-lighter); */
+  color: var(--red);
+}
+
+/* don't show empty output divs */
+div[id^="out-"] > pre:empty {
+  display: none;
+}

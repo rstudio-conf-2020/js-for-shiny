@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Communicating with Shiny</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-28" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="assets/libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="assets/libs/panelset/panelset.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x40e69e2b60f4c77962f6d833b20d6e5","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Mothership Connection&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Mothership Connection | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Mothership Connection&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Mothership Connection | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Mothership Connection&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Mothership Connection</h1>
+<h2>Communicating with Shiny</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+class: break break-shiny
+
+# HTML + JS + CSS +&lt;br&gt;Shiny, oh my!
+
+---
+
+# The Many Ways to Web Dev in Shiny
+
+1. Write your front end in raw web languages
+
+1. Just like HTML, but in R
+
+1. Use helpers to inline the CSS/JS
+
+1. Let .pkg[htmltools] and Shiny manage dependencies
+
+---
+layout: true
+
+&lt;h1 class="mb2"&gt;Including Extras in Shiny&lt;/h1&gt;
+
+---
+
+.left-column[
+## Raw HTML
+]
+
+
+.right-column[
+
+.panelset[
+.panel[.panel-name[wwww/index.html]
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  \{{ headContent() }}
+  &lt;title&gt;Fancy Pants App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  \{{ button }}
+  \{{ slider }}
+&lt;/body&gt;
+&lt;/html&gt;
+```
+]
+
+.panel[.panel-name[ui.R]
+```r
+htmlTemplate("template.html",
+  button = actionButton("action", "Action"),
+  slider = sliderInput("x", "X", 1, 100, 50)
+)
+```
+]
+]
+]
+
+---
+name: add-raw-html
+
+.left-column[
+## Raw HTML
+]
+
+
+.right-column[
+
+.panelset[
+.panel[.panel-name[wwww/index.html]
+.small[
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;script src="shared/jquery.js"&gt;&lt;/script&gt;
+  &lt;script src="shared/shiny.js"&gt;&lt;/script&gt;
+  &lt;link rel="stylesheet" href="shared/shiny.css"/&gt;
+  &lt;title&gt;Fancy Pants App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button class="btn btn-default action-button"
+    id="action" type="button"&gt;
+    Action
+  &lt;/button&gt;
+  &lt;pre id="summary" class="shiny-text-output"&gt;&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+]
+]
+
+.panel[.panel-name[server.R]
+```r
+output$summary &lt;- renderPrint({
+  input$action
+})
+```
+]
+
+.panel[.panel-name[R]
+
+```r
+button &lt;- shiny::actionButton("action", "Action")
+cat(format(button))
+```
+
+```
+## &lt;button id="action" type="button" class="btn btn-default action-button"&gt;Action&lt;/button&gt;
+```
+
+```r
+textOut &lt;- shiny::verbatimTextOutput("summary")
+cat(format(textOut))
+```
+
+```
+## &lt;pre id="summary" class="shiny-text-output noplaceholder"&gt;&lt;/pre&gt;
+```
+]
+]
+]
+
+---
+name: add-html-r
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&amp;#x21e4;]](#add-raw-html)
+
+## HTML, but R
+]
+
+.right-column[
+.panelset[
+.panel[.panel-name[HTML]
+```html
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;script src="fancy.js"&gt;&lt;/script&gt;
+  &lt;link rel="stylesheet" href="fancy.css"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;style&gt;/* styles */&lt;/style&gt;
+  &lt;script&gt;// javascript...&lt;/script&gt;
+  &lt;script src="fancyShoes.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+]
+
+.panel[.panel-name[ui.R]
+
+```r
+fluidPage(
+  tags$head(
+    tags$script(src = "fancy.js"),
+    tags$link(
+      rel = "stylesheet", 
+      href = "fancy.css"
+    )
+  ),
+  tags$style("/* styles */"),
+  tags$script("// javascript"),
+  tags$script(src = "fancyShoes.js")
+)
+```
+]
+
+.panel[.panel-name[Note]
+
+The source files should live in `www/`
+
+Or you need to use
+
+
+```r
+shiny::addResourcePath("fancy", "fancy/path/")
+```
+
+Also use `HTML()` to write worry-free
+
+
+```r
+tags$script(HTML(
+  "el.innerHTML = '&lt;div&gt;&lt;/div&gt;'"
+))
+```
+]
+]
+]
+
+
+---
+name: add-inline
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&amp;#x21e4;]](#add-raw-html)
+
+## HTML, but R[.o-30.hover-show[&amp;#x21e4;]](#add-html-r)
+
+## Inline
+]
+
+.right-column.pl2.pt0[
+Drop right in, `path` is what you see
+
+
+```r
+fluidPage(
+  includeCSS("fancy.css"),
+  includeScript("fancy.js")
+)
+```
+
+Avoid adding multiple copies of the same file with
+
+
+```r
+fluidPage(
+  includeCSS("fancy.css"),
+* singleton(includeScript("fancy.js")),
+* singleton(includeScript("fancy.js"))
+)
+```
+]
+
+.footnote[https://shiny.rstudio.com/articles/css.html]
+
+---
+name: add-htmldep
+
+.left-column[
+
+## Raw HTML[.o-30.hover-show[&amp;#x21e4;]](#add-raw-html)
+
+## HTML, but R[.o-30.hover-show[&amp;#x21e4;]](#add-html-r)
+
+## Inline[.o-30.hover-show[&amp;#x21e4;]](#add-inline)
+
+## htmltools
+]
+
+.right-column.pl2.pt0[
+.panelset[
+.panel[.panel-name[fancyPkg]
+
+```r
+fancy_pants_dependency &lt;- function() {
+  htmltools::htmlDependency(
+    name = "fancyPants",
+    version = "1.2.3",
+    package = "fancyPkg",
+    src = "pants",
+*   script = "fancy.js",
+*   stylesheet = "fancy.css",
+    all_files = FALSE
+  )
+}
+```
+]
+
+.panel[.panel-name[fancyUI]
+
+```r
+fancy_pants &lt;- function(style = "shiny") {
+  htmltools::tagList(
+    # ... pants UI ...,
+    fancy_pants_dependency()
+  )
+}
+```
+]
+
+.panel[.panel-name[app.R]
+
+```r
+fluidPage(
+  fancy_pants("jeans"),
+  fancy_pants("shiny"),
+  fancy_pants("stretchy")
+)
+```
+
+But the dependencies are only loaded once!
+]
+]
+
+.panel[.panel-name[html]
+```html
+&lt;html lang="en"&gt;
+&lt;head&gt;
+* &lt;script src="fancy.js"&gt;&lt;/script&gt;
+* &lt;link rel="stylesheet" href="fancy.css"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="fancy" id="jeans"&gt;&lt;/div&gt;
+  &lt;div class="shiny" id="jeans"&gt;&lt;/div&gt;
+  &lt;div class="stretchy" id="jeans"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+]
+
+.panel[.panel-name[Also...]
+
+```r
+htmltools::htmlDependency(
+  name = "fancyPants",
+  version = "1.2.3",
+  package = "fancyPkg",
+  src = c(
+*   file = "pants",
+*   href = "https://cdn.fast.com/fancy",
+  ),
+  script = "fancy.js",
+  stylesheet = "fancy.css",
+* all_files = FALSE
+)
+```
+
+]
+]
+
+---
+class: header_background
+
+# What method do you like best?
+
+Write down at least one pro and con of using each method.
+
+- Raw HTML (`htmlTemplate()`)
+
+- HTML written in R
+
+- `includeCSS()` and `includeScript()`
+
+- `htmltools::htmlDependency()`
+
+<div class="countdown" id="timer_5e48580c" style="top:200px;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+Compare your list with your neighbors.
+Does their list change your mind about any of your answers?
+
+<div class="countdown" id="timer_5e485715" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+name: shiny-events-first
+layout: false
+class: break fullscreen white middle center animated slideInDown
+background-image: url('assets/img/bg/unsplash_c9UcT2bMBc0.jpg')
+background-size: cover
+background-position: bottom center
+
+# Shiny Events
+
+---
+class: break break-javascript huge animated lightSpeedIn fast
+
+# .o-50[$(]jQuery.o-50[)]
+
+
+---
+
+# JavaScript Frameworks Over Time
+
+&lt;img src="assets/files/communicating_google-js-framework-search-trends-1.png" width="1152" /&gt;
+
+.footnote[Source: [Google Trends](https://trends.google.com/trends/explore?date=2010-01-01%202020-01-25&amp;geo=US&amp;q=jquery,react,angular,vue)]
+
+???
+
+jQuery was hugely popular, and still is!
+
+Some analyses suggest it's used by 86% of pages on the internet.
+
+It's also used by 100% of Shiny apps.
+
+---
+
+# What's up with .dark-blue[$]?
+
+--
+
+`$` is a valid variable name in JavaScript
+
+```js
+var $ = jQuery
+```
+
+--
+
+`_` is too and a few libraries take advantage of that (e.g. .pkg[lodash], .pkg[underscore])
+
+--
+
+.fl.w-30[
+Anytime you see...
+
+```js
+$('.shiny')
+// or
+$().on('click')
+```
+]
+
+--
+
+.fl.w-50[
+think
+
+```js
+jQuery('shiny')
+// or
+jQuery().on('click')
+```
+]
+
+---
+
+# jQuery and Vanilla JavaScript
+
+jQuery was way ahead of its time, but vanilla JavaScript caught up
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('.shiny')
+```
+]
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .querySelectorAll('.shiny')
+```
+]
+
+--
+
+.cl.mt2.mb0[
+The result is very similar, but jQuery adds extra methods.
+]
+
+.fl.w-50.mt0[
+```js
+$el instanceof jQuery //true
+$el.hide()
+// the elements are hidden!
+```
+]
+
+.fl.w-50.mt0[
+```js
+el instanceof NodeList //true
+el.hide()
+// TypeError: el.hide is not a function
+```
+]
+
+
+---
+class: center middle animated rotateIn fast
+
+.f2.f-galada.text-shadow-4[You Might Not Need jQuery]
+
+--
+class: not-animated
+
+.f4.f-lato.silver[unless you do certain things]
+
+--
+
+.f6.f-lato.silver[(and there's nothing wrong with using it)]
+
+--
+
+.f6.f-lato[.mr2[&amp;#x1F516;] [youmightnotneedjquery.com](http://youmightnotneedjquery.com/)]
+
+--
+
+.f6.f-lato[.mr2[&amp;#x1F516;] [youmightnotneedjs.com](http://youmightnotneedjs.com/)]
+
+???
+
+Two goals: 
+
+1. show the very very basics of jQuery
+
+1. When do you **need* to use jQuery?
+
+---
+
+# Finding Elements with jQuery
+
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .querySelectorAll('.shiny')
+```
+]
+
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('.shiny')
+```
+]
+
+--
+
+.fl.w-50.cl[
+
+```js
+const el = document
+  .getElementById('shiny')
+```
+]
+
+
+.fl.w-50[
+```js
+const $el = $('#shiny')
+```
+]
+
+
+---
+
+# Creating Elements with jQuery
+
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .createElement('div')
+el.id = 'shiny'
+document.body.appendChild(el)
+```
+]
+
+--
+
+.fl.w-50[
+.h3[jQuery]
+```js
+$('&lt;div&gt;')
+  .setAttr('id', 'shiny')
+  .appendTo('body')
+```
+]
+
+
+---
+layout: true
+
+# Adding, Removing, Toggling a Class
+
+---
+
+.fl.w-50[
+.h3[Vanilla]
+
+```js
+const el = document
+  .getElementById('shiny')
+
+*el.classList.add('fancy') 
+*el.classList.remove('fancy')
+*el.classList.toggle('fancy')
+```
+]
+
+--
+
+.fl.w-50[
+.h3[jQuery]
+```js
+const $el = $('#shiny')
+
+
+*$el.addClass('fancy')
+*$el.removeClass('fancy')
+*$el.toggleClass('fancy')
+```
+]
+
+--
+
+.fl.w-50.cl[
+```js
+const el = document
+  .getElementById('shiny')
+  
+*el.classList.contains('fancy')
+```
+]
+
+
+.fl.w-50[
+```js
+const $el = $('#shiny')
+
+
+*$el.hasClass('fancy')
+```
+]
+
+???
+
+A detail that isn't obvious from this example
+is that the `$el` is an object and the
+jQuery methods apply to all of the objects...
+
+Whereas we have to write extra code in vanilla
+to do the same thing
+
+
+---
+
+.fl.w-60[
+.h3[Vanilla]
+
+```js
+const els = document
+  .querySelectorAll('.shiny')
+
+*els.forEach(
+*  el =&gt; el.classList.add('fancy')
+*)
+```
+]
+
+
+.fl.w-40[
+.h3[jQuery]
+```js
+const $els = $('.shiny')
+
+*$els.addClass('fancy')
+```
+]
+
+---
+layout: true
+
+# Listening to Events
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+*el.addEventListener('click', ev =&gt; {
+*  // respond to event
+*})
+```
+
+.h3[jQuery]
+
+```js
+const $el = $('.shiny')
+*$el.on('click', ev =&gt; {
+*  // respond to event
+*})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+*el.addEventListener('click', ev =&gt; {
+* // respond to event
+*})
+```
+
+.h3[jQuery]
+
+```js
+const $el = $('.shiny')
+*$el.on('click', '.fancy', ev =&gt; {
+* // respond to event if it happened
+* // on an element with .fancy class
+*})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+const el = document.querySelectorAll('.shiny')
+el.addEventListener('click', ev =&gt; {
+* // respond to event
+})
+```
+
+.h3[jQuery]
+
+```js
+*$(document).on('click', '.fancy', ev =&gt; {
+  // respond to click events on .fancy
+  // *even if* the .fancy element is added later
+})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+document.addEventListener('click', ev =&gt; {
+* if (ev.target.classList.contains('.fancy')) {
+*   // then go head and respond
+* }
+})
+```
+
+.h3[jQuery]
+
+```js
+*$(document).on('click', '.fancy', ev =&gt; {
+  // respond to click events on .fancy
+  // *even if* the .fancy element is added later
+})
+```
+
+---
+
+.h3[Vanilla]
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+  // Run this code when the DOM is good and ready
+})
+```
+
+--
+
+.h3[jQuery]
+
+```js
+$(function() {
+  // Whenever you're ready, browser.
+})
+```
+
+---
+
+You can create your own events in Vanilla JavaScript and in jQuery
+
+--
+
+But you can't respond to custom events created in jQuery using Vanilla JavaScript
+
+--
+
+So you .red[need to use jQuery to handle Shiny's custom events]
+
+---
+layout: false
+template: shiny-events-first
+name: shiny-events
+
+---
+layout: false
+
+# Shiny State of Events
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[connected]] | Session first starts |
+| .code[.silver[shiny:].blue[disconnected]] | Session ends |
+| .code[.silver[shiny:].blue[sessioninitialized]] | Shiny is ready |
+| .code[.silver[shiny:].blue[idle]] | Shiny is idle |
+| .code[.silver[shiny:].blue[busy]] | Shiny is busy |
+
+---
+layout: true
+
+# Shiny Output Events
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+| .code[.silver[shiny:].blue[error]] | Recalculation did not compute |
+
+---
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[outputinvalidated]] | Element will be updated |
+| .code[.silver[shiny:].blue[recalculating]] | Shiny is thinking about this element |
+| .code[.silver[shiny:].blue[recalculated]] | Shiny server is done thinking |
+| .code[.silver[shiny:].blue[value]] | The element changed on the page |
+| .code[.silver[shiny:].blue[error]] | Recalculation did not compute |
+| .code[.silver[shiny:].blue[visualchange]] | Ouput resized, hidden or shown |
+
+---
+layout: false
+
+# Shiny Input Events
+
+| Event Name | When |
+|----|---|
+| .code[.silver[shiny:].blue[inputchanged]] | The input changed(?) |
+| .code[.silver[shiny:].blue[updateinput]] | Shiny updated the input |
+
+.mt5[
+Learn more: [shiny.rstudio.com/articles/js-events.html](https://shiny.rstudio.com/articles/js-events.html)
+]
+
+---
+layout: true
+class: header_background
+
+# Shiny Events
+
+---
+
+.f6.code[repl_example("shiny-events-1")]
+
+Find the `#run` button
+
+When the plot is recalculating: `.on('shiny:recalculating')`
+- add the .code[disabled] class to the button
+- use `.setAttribute()` to set disabled to true
+
+Then undo the above steps when the output is ready: `.on('shiny:value')`
+- Note: you need to *remove* the disabled attribute
+  
+  `.removeAttribute('disabled')`
+  
+---
+
+.f6.code[repl_example("shiny-events-2")]
+
+I've added Font Awesome icons with
+
+```
+rmarkdown::html_dependency_font_awesome()
+```
+
+- Store the run button's original `.innerHTML`
+
+- When the plot is recalculating replace the button text with
+
+  ```
+  &lt;i class="fas fa-spinner fa-spin fa-lg"&gt;&lt;/i&gt;
+  ```
+
+- When the plot is done, restore the original button text
+  
+
+---
+
+.f6.code[repl_example("shiny-events-3")]
+
+Now I've added `style.css`
+
+```
+addResourcePath("figures", js4shiny:::js4shiny_file('man', 'figures'))
+
+tags$head(includeCSS("style.css"))
+```
+
+and a loader inside `plot-container`.
+
+- Use jQuery to find the loader div
+
+- Then use jQuery's `.hide()` and `.show()` methods
+  to hide the plot and show the loader when the plot
+  is recalculating
+  
+- And reverse when the plot is done
+
+---
+
+.f6.code[repl_example("shiny-events-4")]
+
+- Does this give you any ideas for your own apps?
+
+- .pkg[shinyjs]
+
+  - `disable()`, `enable()`
+  
+  - `show()`, `hide()`
+
+- Questions about events?
+
+  
+
+---
+layout: false
+class: center top white break
+background-image: url('assets/img/bg/unsplash_71CjSSB83Wo.jpg')
+background-size: cover
+background-position: top center
+
+&lt;h1 class="mt3"&gt;Calling Shiny&lt;/h1&gt;
+
+---
+layout: true
+
+# From .red[R &amp;#10142;] .blue[Shiny]
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", data)
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", c(13, 21, 42))
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+
+```r
+jsonlite::toJSON(list(type = "fancy", value = 42))
+```
+
+```
+## {"type":["fancy"],"value":[42]}
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", c(13, 21, 42))
+```
+
+
+```r
+jsonlite::toJSON(c(13, 21, 42))
+```
+
+```
+## [13,21,42]
+```
+
+---
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+
+```r
+jsonlite::toJSON(TRUE, auto_unbox = TRUE)
+```
+
+```
+## true
+```
+
+---
+
+Then, we need to tell Shiny how to handle the message
+
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(message) {
+  // ... do things with the message ...
+})
+```
+
+---
+
+You can define the function separately if you want
+
+
+```js
+function fancyMessageHandler(message) {
+  // ... do things with the message ...
+}
+
+Shiny.addCustomMessageHandler('fancyMessage', fancyMessageHandler)
+```
+
+---
+
+And you can change the name of the argument
+
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(x) {
+  // ... do things with the x ...
+})
+```
+
+---
+
+But your handler function needs .red[one and only one] argument
+
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(x, y) {
+  // Shiny will yell at you!
+})
+```
+
+---
+
+Putting the two together, your message might .b[conditionally trigger an action]
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", TRUE)
+```
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(condition) {
+  if (condition) {
+    // show element
+  } else {
+    // hide element
+  }
+})
+```
+
+
+---
+
+Putting the two together, your message might .b[update text]
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", 42)
+```
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(value) {
+  const numberPants = document.getElementById('number-of-pants')
+  
+  numberPants.textContent = value
+})
+```
+
+
+---
+
+Putting the two together, your message might .b[update several things]
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+Shiny.addCustomMessageHandler('fancyMessage', function(opts) {
+  const numberPants = document.getElementById('number-of-pants')
+  
+  numberPants.textContent = opts.value
+  numberPants.classList.add(opts.type)
+})
+```
+
+
+---
+
+If your message is a list, .b[destructuring] is your friend
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+session$sendCustomMessage("fancyMessage", 
+  list(type ="fancy", value = 42)
+)
+```
+
+???
+
+What's destructuring?
+
+--
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+*Shiny.addCustomMessageHandler('fancyMessage', function({type, value}){
+  const numberPants = document.getElementById('number-of-pants')
+  
+* numberPants.textContent = value
+* numberPants.classList.add(type)
+})
+```
+
+---
+layout: false
+exclude: true
+
+FIXME - hide/show example using messages
+
+---
+layout: true
+
+# From .red[Shiny &amp;#10142;] .blue[R]
+
+---
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+Shiny.setInputValue('fancyPants', 42)
+```
+
+--
+
+
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+# inside observe({})
+input$fancyPants
+```
+
+```
+## [1] 42
+```
+
+---
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+let nPants = document.getElementById('n-fancy-pants')
+
+nPants.addEventListener('click', function(event) {
+  Shiny.setInputValue('fancyPants', event.target.value)
+})
+```
+
+&lt;div class="pre-name"&gt;server.R&lt;/div&gt;
+
+```r
+# inside observe({})
+input$fancyPants
+```
+
+```
+## [1] 42
+```
+
+---
+
+Shiny won't resend values that don't change, unless...
+
+&lt;div class="pre-name"&gt;fancy.js&lt;/div&gt;
+
+```js
+Shiny.setInputValue('fancyPants', true, {priority: 'event'})
+```
+
+---
+layout: false
+class: header_background
+
+# Try it in the console
+
+.f6.code[repl_example("shiny-setInputValue")]
+
+- Run the app and send it to your browser
+
+- Open that JavaScript console and run something like
+
+  ```js
+  Shiny.setInputValue('hi', 'rstudio::conf')
+  ```
+  
+- Try sending strings, numbers, arrays and objects
+
+<div class="countdown" id="timer_5e48554f" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+layout: true
+
+# R .red[&amp;#8596;] Shiny
+
+---
+
+class: break center middle
+
+.f1[&amp;#x1F468;&amp;#x1F3FC;&amp;#x200D;&amp;#x1F4BB;]&lt;br&gt;
+.code.f6[for a fancier htmlwidget]
+
+???
+
+This is my last "fancier" I promise
+
+[Better Data Updates](https://github.com/gadenbuie/js4shiny-frappeCharts/blob/master/dev/dev.md#better-data-updates)
+
+One more slide to get us back in the head space of Frappe Charts
+
+---
+layout: false
+
+# Our goal
+
+1. We want our chart to be able to receieve updates from Shiny
+
+   Re-render without re-drawing the whole plot.
+   
+   [bit.ly/js4shiny-frappe-update](http://bit.ly/js4shiny-frappe-update)
+
+
+--
+
+1. We want to send data back to Shiny about which element of the plot
+   is currently selected
+   
+   .code[isNavigable === true]
+   
+   [bit.ly/js4shiny-frappe-nav](http://bit.ly/js4shiny-frappe-nav)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

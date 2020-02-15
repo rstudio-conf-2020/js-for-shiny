@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>JavaScript</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Ghost in the Machine&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Ghost in the Machine | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Ghost in the Machine&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Ghost in the Machine | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Ghost in the Machine&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/text-poster/text-poster.css" rel="stylesheet" />
+    <script src="assets/libs/text-poster/text-poster.js"></script>
+    <script src="assets/libs/text-poster/text-poster-init.js"></script>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Ghost in the Machine</h1>
+<h2>JavaScript</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+
+# Questions and Follow up
+
+.can-edit.key-QandA[
+- Questions and answers to anything that came up in the first half
+]
+
+---
+class: break inverse center
+
+.w-100.h-75.mh-a.pt4.f-nunito[
+<div class="text-poster" style="width:100%;height:100%;padding:1em;">
+<div class="text-poster__text" data-text="Any application that can be &#10;written in JavaScript, &#10;will eventually be &#10;written in JavaScript.&#10;"></div>
+</div>
+]
+
+&lt;div class="tr absolute right-1 bottom-1"&gt;Attwood's Law&lt;br&gt;https://blog.codinghorror.com/the-principle-of-least-power/&lt;/div&gt;
+
+---
+layout: true
+
+.footnote[Why Javascript | http://bit.ly/jsm_19]
+
+---
+
+
+class: 
+background-image: url('assets/img/javascript/write-for-loops-js/write-for-loops-js-1.png')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/javascript/write-for-loops-js/write-for-loops-js-2.png')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/javascript/write-for-loops-js/write-for-loops-js-3.png')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+
+class: break center middle
+
+.f1[&amp;#x1F468;&amp;#x1F3FC;&amp;#x200D;&amp;#x1F4BB;]&lt;br&gt;
+.code.f6[repl_js()]
+
+---
+class: fullscreen
+background-image: url('assets/img/bg/unsplash_w5zpEiVtNIk.jpg')
+background-size: cover
+
+???
+
+what is scrabble?
+
+tiles with letters, letters have points, squares have point multipliers
+
+---
+
+class: class
+
+```js
+let myScore = 12
+let yourScore = 33
+
+if (true) {
+  console.log('Yay!')
+}
+```
+
+???
+
+- if ... else
+- if ... else if ... else
+- comparisons `&lt;` `&gt;`
+- if (myScore)
+
+---
+class: header_background 
+
+# Your Turn: Is it Truthy or Falsy?
+
+.code.f6[repl_example("truthy-falsy")]
+
+Try a few of the options below to see which values are _truthy_ and which are _falsy_.
+
+- `true`, `false`
+
+- A number, e.g. `42` or `0`
+
+- A number in a string, e.g. `"42"` or `"0"`
+
+- Strings, e.g `'yes'` or `'false'`
+
+- A negative number
+
+- An object and a empty object
+
+- An array and an empty array
+
+<div class="countdown" id="timer_5e4858bd" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
+
+---
+
+# What's .green[true] in JavaScript?
+
+.w-33.fl.ml4[
+## False
+
+- .code.red[false]
+
+- .code.red[0]
+
+- .code.red[""]
+
+- .code.red[null]
+
+- .code.red[undefined]
+
+- .code.red[NaN]
+]
+
+--
+
+.w-30.fl[
+## True
+
+Everything else.
+]
+
+---
+layout: true
+
+# What is .green[equal] in JavaScript?
+
+---
+
+.f4.ml4[
+
+```js
+42 == '42'
+```
+
+
+&lt;div id="out-js-loose-equality"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+---
+
+.f4.ml4[
+
+```js
+42 == '42'
+```
+
+
+&lt;div id="out-js-loose-equality-2"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.f4.ml4[
+
+```js
+42 === '42'
+```
+
+
+&lt;div id="out-js-strict-equality"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+&lt;style type="text/css"&gt;
+#out-js-loose-equality,
+#out-js-strict-equality {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#out-js-loose-equality:hover,
+#out-js-strict-equality:hover {
+  opacity: 1
+}
+&lt;/style&gt;
+
+---
+
+.f4.flex[
+.w-50.ml4[
+
+```js
+42 == '42'
+```
+
+
+&lt;div id="out-unnamed-chunk-3"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.w-50[
+.red[&amp;#10006;] loose equality
+]
+]
+
+.f4.flex[
+.w-50.ml4[
+
+```js
+42 === '42'
+```
+
+
+&lt;div id="out-unnamed-chunk-4"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+.w-50[
+.green[&amp;#10004;] strict equality
+]
+]
+
+---
+
+
+.f4.ml4[
+
+```js
+42 != '42'
+```
+
+
+&lt;div id="out-js-loose-inequality"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.f4.ml4[
+
+```js
+42 !== '42'
+```
+
+
+&lt;div id="out-js-strict-inequality"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+&lt;style type="text/css"&gt;
+#out-js-loose-inequality,
+#out-js-strict-inequality {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#out-js-loose-inequality:hover,
+#out-js-strict-inequality:hover {
+  opacity: 1
+}
+&lt;/style&gt;
+
+---
+layout: false
+
+
+class: class
+
+```js
+let myScore = 12
+let yourScore = 33
+
+if (myScore &gt; yourScore) {
+  console.log('Yay!')
+} else {
+  console.log('bummer')
+}
+```
+
+???
+
+- set up ternary operator
+- go to next slide to discuss
+- come back to wrap up into a result
+- Use string addition `'You ' + result + '!'`
+- What is the answer to `1 + '1'`?
+- String templates are awesome!
+- you try
+
+```
+const result = 
+  myScore &gt; yourScore ? 'win' : 'lose'
+
+console.log(`You ${result}!`)
+```
+
+---
+layout: true
+
+# Brevity is the soul of &amp;#x1F615;
+
+---
+
+.tc.f4.code.mt5[
+.silver[condition] ? .green[true] : .red[false]
+]
+
+---
+
+.tc.f4.code.mt5[
+.silver[condition] ? .green[&amp;#x1F601;] : .red[&amp;#x1F641;]
+]
+
+--
+
+.tc.f4.code[
+Is .silver[condition]? then .green[&amp;#x1F601;] else .red[&amp;#x1F641;]
+]
+
+---
+layout: false
+class: header_background
+
+# Your Turn: Game Over!
+
+.code.f6[repl_example("if-else-game-over")]
+
+Use `if ... else` or the ternary `if` statement to determine the outcome of the game.
+
+Tell the player how they did.&lt;br&gt;
+Report the final scores and the final outcome.
+
+Use string addition
+
+```
+points + ' points'`
+```
+
+or template strings
+
+```
+`${points} points`
+```
+
+---
+
+class: class
+
+```js
+let scores = {player: 12, opponent: 33}
+
+// What's the outcome of the game for player?
+if (scores.player &gt; scores.opponent) {
+  result = 'won'
+} else if (scores.player &lt; scores.opponent) {
+  result = 'lost'
+} else {
+  result = 'tied'
+}
+
+// Tell the player how they did
+let outcome = 'You scored: ' + scores.player
+outcome = outcome + '\nOpponent: ' + scores.opponent
+outcome = outcome + '\n\nYou ' + result
+
+console.log(outcome)
+```
+
+???
+
+- did you come with a solution sort of like this?
+- rewrite to declare `result`: `let result = 'tied'`
+- rewrite to use `+=` for `outcome`
+- demonstrate issue with newlines in string addition
+- rewrite using template strings
+
+---
+layout: true
+
+# Destructuring
+
+---
+
+We've used variables to **structure** an object
+
+
+
+```js
+let player = 12
+let opponent = 33
+let scores = {player: 12, opponent: 33}
+```
+
+
+
+
+```js
+scores
+```
+
+
+&lt;div id="out-unnamed-chunk-8"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+...is sort of the opposite.
+
+We can **destructure** objects by matching variable names to key names
+
+--
+
+
+```js
+scores
+```
+
+
+&lt;div id="out-unnamed-chunk-9"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+--
+
+
+```js
+let {player, opponent} = scores
+
+console.log("player: ", player)
+console.log("opponent: ", opponent)
+```
+
+
+&lt;div id="out-unnamed-chunk-10"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+class: class
+
+```js
+const scores = {player: 12, opponent: 33}
+
+// rewrite using destructuring
+if (scores.player &gt; scores.opponent) {
+  result = 'won'
+} else if (scores.player &lt; scores.opponent) {
+  result = 'lost'
+} else {
+  result = 'tied'
+}
+
+// Tell the player how they did
+let outcome = 'You scored: ' + scores.player
+outcome = outcome + '\nOpponent: ' + scores.opponent
+outcome = outcome + '\n\nYou ' + result
+
+console.log(outcome)
+```
+
+---
+layout: true
+
+# Destructuring Arrays
+
+
+```js
+const wordPoints = [10, 3, 7, 4]
+```
+
+
+
+---
+
+
+```js
+let [first, second] = wordPoints
+console.log({ first, second })
+```
+
+
+&lt;div id="out-unnamed-chunk-12"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+
+```js
+let [first, second, ...others] = wordPoints
+console.log({ first, second, others })
+```
+
+
+&lt;div id="out-unnamed-chunk-13"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+layout: true
+
+# Rest and Spread: The Other Three Dots
+
+---
+
+.f6[
+.code[.red[...].blue[rest]] gets the rest of the things that weren't pulled out
+]
+
+
+```js
+let [first, second, ...others] = wordPoints
+console.log({ first, second, others })
+```
+
+
+&lt;div id="out-unnamed-chunk-14"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+.f6[
+.code[.red[...].blue[rest]] also works for objects
+]
+
+
+
+```js
+scores.result = 'You lost'
+console.log(scores)
+
+let {result, ...score} = scores
+
+console.log('result: ', result)
+console.log(score.player)
+```
+
+
+&lt;div id="out-unnamed-chunk-15"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+---
+layout: true
+
+# Rest and Spread: The Other Three Dots
+
+.f6[
+.code[.red[...].blue[spread]] flatens out arrays and objects
+]
+
+
+```js
+let myPoints = [3, 2, 5, 4]
+let yourPoints = [7, 4, 2, 8]
+```
+
+
+
+---
+
+What will we get if we put them together like this?
+
+.hide-output[
+
+```js
+let ourPoints = [myPoints, yourPoints]
+ourPoints
+```
+
+
+&lt;div id="out-unnamed-chunk-16"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+---
+
+If we want a flat array, we can use .code.red[...spread]
+
+
+```js
+let ourPoints = [...myPoints, ...yourPoints]
+ourPoints
+```
+
+
+&lt;div id="out-unnamed-chunk-17"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+.flex[
+.w-60[
+
+Which is also useful when building up an array
+
+```js
+let newPoints = 9
+myPoints = //________
+mypoints
+```
+]
+
+.w-40[
+.big.blue[&amp;#x1F914; Where do I put the dots?]
+
+1. .code[...myPoints]
+
+1. .code[...myPoints, ...newPoints]
+
+1. .code[...newPoints]
+]
+]
+
+
+
+---
+
+.flex[
+.w-60[
+
+Which is also useful when building up an array
+
+
+```js
+let newPoints = 9
+myPoints = [...myPoints, newPoints]
+myPoints
+```
+
+
+&lt;div id="out-unnamed-chunk-18"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+.w-40[
+.big.blue[&amp;#x1F914; Where do I put the dots?]
+
+1. .b[.code[...myPoints]]
+
+1. .silver[.code[...myPoints, ...newPoints]]
+
+1. .silver[.code[...newPoints]]
+]
+]
+
+---
+
+class: class
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// whats our word score?
+```
+
+???
+
+- split into an array of letters
+- create `score = 0`
+- add to the score
+- mention `+=`
+- `for ... of`
+- standard `for` loop
+
+---
+
+class: class
+
+```js
+let bonusSquare = 3
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// whats our word score if we inclue bonuses?
+let letters = word.split('')
+
+let score = 0
+for (let letter of letters) {
+  let pts = lettersPoints[letter]
+  score += pts
+}
+
+console.log(`${word} is worth ${score} points!`)
+```
+
+???
+
+we need to use standard for loop for this
+
+---
+layout: true
+
+# For loops are for everyone
+
+.flex[
+.w-25[
+&lt;h2&gt;For...of&lt;br&gt;.gray[Arrays]&lt;/h2&gt;
+]
+
+.w-75.big.code.lh-copy.mt1[
+.red[for] (.silver[let] .blue[x] .red[of] stuff) {&lt;br&gt;
+.silver[&amp;nbsp;&amp;nbsp;// something with .blue[x]&lt;br&gt;]
+}
+]
+]
+
+---
+
+.flex[
+.w-25[
+&lt;h2&gt;Classic&lt;/h2&gt;
+]
+
+.w-75.big.code.lh-copy[
+.red[for] (.blue[start]; .green[while?]; .purple[after];) {&lt;br&gt;
+.silver[&amp;nbsp;&amp;nbsp;//something with .blue[start vars]&lt;br&gt;]
+}
+]
+]
+
+---
+
+.flex[
+.w-25[
+&lt;h2&gt;Classic&lt;/h2&gt;
+]
+
+.w-75.big.code.lh-copy[
+.red[for] (.blue[let i=0]; .green[i &lt; stuff.length]; .purple[i++];) {&lt;br&gt;
+.silver[&amp;nbsp;&amp;nbsp;// something with .blue[i]&lt;br&gt;]
+.silver[&amp;nbsp;&amp;nbsp;// generally stuff[.blue[i]]&lt;br&gt;]
+}
+]
+]
+
+---
+layout: true
+
+# Assignment Operators
+
+---
+
+```js
+let score = 0
+for (let letter of letters) {
+  let pts = lettersPoints[letter]
+* score += pts
+}
+```
+
+--
+
+.hide-output[
+
+```js
+let score = 0
+score += 67
+score *= 2
+score -= 8
+score /= 3
+score
+```
+
+
+&lt;div id="out-unnamed-chunk-21"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+---
+
+
+```js
+let message = 'This'
+message = message + ' is'
+
+if (message.length &lt; 5) {
+  message = message + ' helpful but'
+} else {
+  message = message + ' tiring and'
+}
+message = message + ' gets annoying'
+
+message
+```
+
+
+&lt;div id="out-unnamed-chunk-22"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+---
+
+
+```js
+let message = 'This'
+message += ' is'
+
+if (message.length &lt; 5) {
+  message += ' helpful but'
+} else {
+  message += ' tiring and'
+}
+message += ' gets annoying'
+
+message
+```
+
+
+&lt;div id="out-unnamed-chunk-23"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+layout: true
+
+# Incrementing in Place
+
+.tc.mt5.f3.code[
+&amp;nbsp;&amp;nbsp;.dark-pink[x].blue[++]
+]
+
+.tc.mt4.f3.code[
+.dark-pink[++].blue[x]&amp;nbsp;&amp;nbsp;
+]
+
+---
+
+???
+
+While we're at it, let's make things even faster to type!
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-01.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-02.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-03.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-10.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/incrementing/incrementing-11.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+class: header_background
+
+# Count the number of letters
+
+.f5.code[repl_example("count-letters")]
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  
+}
+```
+
+<div class="countdown" id="timer_5e4857c0" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
+
+---
+
+class: class
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  
+}
+
+
+// repl_example("count-letters")
+```
+
+???
+
+write out answer, possibly with help from the audience
+
+or **skip to next slide**
+
+---
+
+class: class
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+// calculate the score by letter count
+letters
+```
+
+???
+
+- Show `Object.keys(letters)`
+- use for...of to loop over keys
+- lookup letter count and multiply by points
+- get total!
+
+---
+
+class: class
+
+```js
+let word = 'flyby'
+let lettersPoints = {b: 3, f:4, l:1, y:4}
+
+// how many of each letter in the word?
+let letters = {}
+
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+// calculate the score by letter count
+let score = 0
+for (let letter of Object.keys(lettersPoints)) {
+  score += letters[letter] * lettersPoints[letter]
+}
+```
+
+&lt;div class="f6 blue tc absolute top-0 left-0 right-0 mt0 pt1"&gt;Functions&lt;/div&gt;
+
+???
+
+rewrite both steps as functions:
+
+1. `countLetters(word)`
+
+1. `tallyScore(word)`
+
+discuss **scope**
+
+---
+exclude: true
+
+NOTE TO SELF
+
+here's the plan:
+
+1. figure out what exercises or things we should do with `.forEach()`, `.map()`, `.filter()` and `.reduce()`
+
+1. Then use the anonymous functions as exercises, e.g.
+
+  - Write a function that returns the number of points for a letter
+    even though that's just the same as `letterPoints[letter]`.
+ 
+
+---
+
+class: class
+
+```js
+let word = 'syzygy'
+
+let letters = {}
+
+// here's the for loop we wrote before...
+for (let letter of word) {
+  if (letters[letter]) {
+    letters[letter] += 1
+  } else {
+    letters[letter] = 1
+  }
+}
+
+letters
+```
+
+???
+
+replace with `.forEach`
+
+.smaller[
+```js
+let word = 'syzygy'
+
+let letters = {}
+
+const addLetter = (l) =&gt; {
+  if (letters[l]) {
+    letters[l] += 1
+  } else {
+    letters[l] = 1
+  }
+}
+
+// here's the for loop we wrote before...
+// for (let letter of word) {
+//   add_letter(letter)
+// }
+word.split('').forEach(l =&gt; addLetter(l))
+
+letters
+```
+]
+
+---
+class: header_background
+
+# Your Turn: Replace the for loop
+
+.f6.code[repl_example("for-loop-to-for-each")]
+
+
+
+```js
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10} 
+let score = 0
+
+// replace this for loop with .forEach()
+for (let letter of word) {
+  score += lettersPoints[letter]
+}
+score
+```
+
+
+&lt;div id="out-unnamed-chunk-28"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+Replace the `for...of` loop with `.forEach()`&lt;br&gt;
+using an arrow function.
+
+<div class="countdown" id="timer_5e48574b" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+???
+
+
+```js
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// replace this for loop with .forEach()
+word.split('').forEach((l) =&gt; score += lettersPoints[l])
+
+score
+```
+
+---
+
+class: class
+
+```js
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// what are the points by letter of word?
+// I want an array of points e.g. [1, 2, 3]
+word.split('').forEach((l) =&gt; score += lettersPoints[l])
+
+score
+```
+
+
+???
+
+Convert to `.map()` to get array of points
+
+```js
+let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10}
+let score = 0
+
+// what are the letters in the word
+console.log(word.split(''))
+
+// what are the points by letter of word?
+const getPoints = (l) =&gt; lettersPoints[l]
+
+getPoints(word.split('')[2])
+
+word.split('')
+  .map((l) =&gt; lettersPoints[l])
+```
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-01a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-01b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-01c.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-02a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-02b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-03a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-03b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-04a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-04b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-05a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/map/map-05b.svg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-01a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-01b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-01c.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-02a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-02b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-03a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-03b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-04a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-04b.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-05a.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/forEach/forEach-05b.svg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+class: header_background
+
+# Your Turn: Mapping Word Scores
+
+.f6.code[repl_example("mapping-words-1")]
+
+Write one function that takes a word and returns
+the point values of each letter as an array.
+
+Then use `.map()` to apply this function to the array of `words`.
+
+```js
+const lettersPoints = { 
+  "a": 1, "b": 3, "c": 3, // ....
+}
+
+let words = ['freezer', 'jukebox']
+```
+
+<div class="countdown" id="timer_5e48579c" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: class
+
+```js
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let words = ['freezer', 'jukebox']
+
+// Write one function that takes a word and returns
+// the point values of each letter as an array
+function word2points(word) {
+  return word
+}
+
+// Then use map to apply this function to the
+// array of words above.
+words.map(word2points)
+```
+
+---
+class: header_background
+
+# Your Turn: Keep on Mapping
+
+.f6.code[repl_example("mapping-words-2")]
+
+Write another function that takes one array of numbers, e.g. `[1, 2, , 3]`,
+and calculates the sum of the array.
+
+Then use `.map()` again to get an array of word scores.
+
+<div class="countdown" id="timer_5e485562" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+
+class: class
+
+```js
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let words = ['freezer', 'jukebox']
+
+// Write one function that takes a word and returns
+// the point values of each letter as an array
+function word2points(word) {
+  return word
+    .split('')
+    .map((l) =&gt; lettersPoints[l])
+}
+
+// Then use map to apply this function to the
+// array of words above.
+words.map(word2points)
+
+// Write another function that takes an array
+// of numbers and returns the total of these values
+// e.g. [1, 2, 3] =&gt; 6
+function score(points) {
+  return points
+}
+
+words
+  .map(word2points)
+  .map(score)
+```
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-100.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-101.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-200.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-201.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-202.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-300.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-301.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-302.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-400.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-401.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-402.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-500.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-501.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fade fast
+background-image: url('assets/img/javascript/filter/filter-502.svg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+
+class: class
+
+```js
+let word = 'queue'
+
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 },
+  {"letter": "e", "points": 1 },
+  {"letter": "q", "points": 10 },
+  {"letter": "u", "points": 1 }
+] 
+
+// what are the tiles for our word?
+```
+
+???
+
+Introduce `.filter()`
+
+
+---
+class: header_background
+
+# Your Turn: High-Roller Letters
+
+.f6.code[repl_example("filter-high-points")]
+
+This time, we have an array of `tiles` and each tile has a `.letter` and `.points`.
+
+How many possible points values are there in Scrabble?
+Use `.map()` to get an array of all the point values
+and then use `for ... of` loop to collect unique values into an array.
+
+Finally, use filter to get the tiles with the 3 largest point values.
+
+```js
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 }
+  // ...
+]
+```
+
+---
+
+class: class
+
+```js
+const tiles = [
+  {"letter": "a", "points": 1 },
+  {"letter": "b", "points": 3 },
+  {"letter": "c", "points": 3 },
+  {"letter": "d", "points": 2 },
+  {"letter": "e", "points": 1 },
+  {"letter": "f", "points": 4 },
+  {"letter": "g", "points": 2 },
+  {"letter": "h", "points": 4 },
+  {"letter": "i", "points": 1 },
+  {"letter": "j", "points": 8 },
+  {"letter": "k", "points": 5 },
+  {"letter": "l", "points": 1 },
+  {"letter": "m", "points": 3 },
+  {"letter": "n", "points": 1 },
+  {"letter": "o", "points": 1 },
+  {"letter": "p", "points": 3 },
+  {"letter": "q", "points": 10 },
+  {"letter": "r", "points": 1 },
+  {"letter": "s", "points": 1 },
+  {"letter": "t", "points": 1 },
+  {"letter": "u", "points": 1 },
+  {"letter": "v", "points": 4 },
+  {"letter": "w", "points": 4 },
+  {"letter": "x", "points": 8 },
+  {"letter": "y", "points": 4 },
+  {"letter": "z", "points": 10 },
+  {"letter": " ", "points": 0 }
+]
+
+
+// Which letters have the highest points?
+// Note that tiles is now an array of objects
+let allPoints = tiles.map(tile =&gt; tile.points)
+
+let possiblePoints = []
+for (let pt of allPoints) {
+  if (!possiblePoints.includes(pt)) {
+    possiblePoints.push(pt)
+  }
+}
+
+possiblePoints
+
+// Then filter tiles to have an array of just
+// the top 3 largest point values
+tiles.filter(tile =&gt; tile.points &gt;= 5)
+```
+
+
+---
+exclude: true
+
+class: class
+
+```js
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let word = 'jukebox'
+let letters = word.split('')
+
+letters
+
+// Get just the letters in the word
+```
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-100.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-101.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-102.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-103.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-104.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-105.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-200.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-201.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-202.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-203.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-204.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-205.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-300.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-301.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-302.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-400.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-401.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-402.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-500.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-501.svg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/javascript/reduce/reduce-502.svg')
+background-size: contain
+background-position: top left
+
+---
+
+
+class: class
+
+```js
+const lettersPoints = {
+  "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10, " ": 0
+}
+
+let word = 'quixotic'
+
+word.split('')
+  .map(letter =&gt; lettersPoints[letter])
+```
+
+???
+
+```js
+.reduce((total, pts) =&gt; total + pts)
+```
+
+---
+class: header_background
+
+# Your Turn: Reduced to a number
+
+.f6.code[repl_example("mapping-words-3")]
+
+ Rewrite the internals of `score()` to use `.reduce()`.
+
+Use `words.map()` and the functions to calculate an array of word points.
+Then use `score()` one last time to calculate the player's total score.
+
+```js
+// replace the .forEach() method below with .reduce()
+function score(points) {
+  let total = 0
+  points.forEach(pt =&gt; total += pt)
+  return total
+}
+```
+
+<div class="countdown" id="timer_5e4858ab" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: class
+
+```js
+const tiles = [
+  {"letter":"a","points":1},{"letter":"b","points":3},{"letter":"c","points":3},{"letter":"d","points":2},{"letter":"e","points":1},{"letter":"f","points":4},{"letter":"g","points":2},{"letter":"h","points":4},{"letter":"i","points":1},{"letter":"j","points":8},{"letter":"k","points":5},{"letter":"l","points":1},{"letter":"m","points":3},{"letter":"n","points":1},{"letter":"o","points":1},{"letter":"p","points":3},{"letter":"q","points":10},{"letter":"r","points":1},{"letter":"s","points":1},{"letter":"t","points":1},{"letter":"u","points":1},{"letter":"v","points":4},{"letter":"w","points":4},{"letter":"x","points":8},{"letter":"y","points":4},{"letter":"z","points":10},{"letter":" ","points":0}
+]
+
+// Earlier we found all unique point values
+// We can do this in one .reduce() instead
+let allPoints = tiles.map(tile =&gt; tile.points)
+
+let possiblePoints = []
+for (let pt of allPoints) {
+  if (!possiblePoints.includes(pt)) {
+    possiblePoints.push(pt)
+  }
+}
+```
+
+&lt;div class="f6 blue tc absolute top-0 left-0 right-0 mt0 pt1"&gt;.code[.reduce()] — More fun than .code[sum()]&lt;/div&gt;
+
+???
+
+```js
+// Earlier we found all unique point values
+// We can do this in one .reduce() instead
+tiles.reduce(function(possible, tile) {
+  if (!possible.includes(tile.points)) {
+    possible.push(tile.points)
+    console.log(possible, tile.points)
+  }
+  return possible
+}, [])
+```
+
+---
+background-image: url('assets/img/bg/unsplash_y8OPPvo_5mU.jpg')
+background-size: cover
+background-position: center center
+background-repeat: no-repeat
+
+&lt;div class="rotate-train f2 white b" style="margin-left: -140px; margin-top: 79px;"&gt;How are you?&lt;/div&gt;
+
+???
+
+Okay, from here we can do a group activity...
+
+- [Go to Next Session](#next)
+
+- [Go to break](break.html)
+
+- [Browser Events](#browser-events)
+
+- [Pair Programming R Look Alikes](#r-in-js)
+
+---
+name: browser-events
+layout: true
+
+# Browser Events
+
+---
+
+.flex.flex-wrap[
+.w-50[
+## Discrete Events
+
+- click
+- dblclick
+- contextmenu
+- keyup
+- keydown
+- change
+- input
+]
+
+.w-50[
+## Continuous
+
+- mousedown
+- mouseup
+- mouseenter
+- mouseleave
+- mousemove
+- wheel
+]
+]
+
+Review [event listener lifecycle](interactivity.html#browser-events)
+
+---
+layout: true
+
+## Event Listener Template
+
+---
+
+.big.code[
+element.addEventListener('type', function(event) {&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)&lt;br&gt;
+})
+]
+
+---
+
+.big.code.silver[
+.red[element].addEventListener('type', function(event) {&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)&lt;br&gt;
+})
+]
+
+.big[
+Choose the .code.red[element] to spy on, e.g.
+
+```js
+const btn = document.querySelector('#easy-btn')
+btn.addEventListener()
+
+// or listen to all events in the document
+document.addEventListener()
+```
+]
+
+---
+
+.big.code[
+.blue[element].red[.addEventListener]('type', function(event) {&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)&lt;br&gt;
+})
+]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.red['type'], function(event) {&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)&lt;br&gt;
+})
+]
+
+.big[Choose the event type to listen for]
+
+.footnote[[bit.ly/mdn-browser-events](http://bit.ly/mdn-browser-events)]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.blue['click'], .red[function(event) {]&lt;br&gt;
+.red.o-40[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...]&lt;br&gt;
+.red.o-40[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)]&lt;br&gt;
+.red[}])
+]
+
+.flex[
+.w-40.big[
+The .code.red[event] object contains information about _what happened_
+]
+
+.w-60[
+| .code[event] | Description |
+|---|---|
+| .code[.target] | where the event happened |
+| .code[.currentTarget] | which element is listening |
+| .code[.x], .code[.y] | x, y coordinates |
+| others | depending on event type |
+]
+]
+
+---
+
+.big.code[
+const btn = document.querySelector('#easy-btn')
+
+.blue[btn].addEventListener(.blue['click'], .blue[function(event) {]&lt;br&gt;
+.silver[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// do something here ...]&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;console.log(event)&lt;br&gt;
+.blue[}])
+]
+
+---
+layout: false
+class: center middle
+
+class: break center middle
+
+.f1[&amp;#x1F939;]&lt;br&gt;
+.code.f6[&lt;br&gt;repl_example("browser-event-types")&lt;br&gt;&lt;br&gt;repl_example("event-bubbling")&lt;br&gt;repl_example("animation-by-transition")]
+
+---
+name: next
+class: center middle
+
+# Next: [Bringing It All Back Home&lt;br&gt;(R for Web Dev)](r-for-web.html)
+
+---
+name: r-in-js
+class: header_background
+
+# Pair Programming: R Look-A-Likes
+
+We take for granted the built in functions we get in R.
+
+I've created a few exercises recreating iconic R functions.
+
+.f6.code.mv3.block[repl_example("r-in-js")]
+
+Find a partner for **pair programming**.
+
+One person chooses an exercise and is the **driver** and types code in their &amp;#x1F4BB;.
+
+The other person is the **navigator** (or back-seat driver) &amp;#x1F697;.
+
+Change roles after each exercise.
+
+<div class="countdown" id="timer_5e4856cf" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!-- scripts from markdown source start -->
+<script type="text/javascript">
+const log_out_js_loose_equality = redirectLogger(document.querySelector("#out-js-loose-equality > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_loose_equality(`42 == '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_loose_equality_2 = redirectLogger(document.querySelector("#out-js-loose-equality-2 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_loose_equality_2(`42 == '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_strict_equality = redirectLogger(document.querySelector("#out-js-strict-equality > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_strict_equality(`42 === '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_3 = redirectLogger(document.querySelector("#out-unnamed-chunk-3 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_3(`42 == '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_4 = redirectLogger(document.querySelector("#out-unnamed-chunk-4 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_4(`42 === '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_loose_inequality = redirectLogger(document.querySelector("#out-js-loose-inequality > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_loose_inequality(`42 != '42'`)
+})
+</script>
+<script type="text/javascript">
+const log_out_js_strict_inequality = redirectLogger(document.querySelector("#out-js-strict-inequality > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_js_strict_inequality(`42 !== '42'`)
+})
+</script>
+<script type="text/javascript">
+let player = 12
+let opponent = 33
+let scores = {player: 12, opponent: 33}
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_8 = redirectLogger(document.querySelector("#out-unnamed-chunk-8 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_8(`scores`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_9 = redirectLogger(document.querySelector("#out-unnamed-chunk-9 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_9(`scores`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_10 = redirectLogger(document.querySelector("#out-unnamed-chunk-10 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_10(`let {player, opponent} = scores
+
+console.log("player: ", player)
+console.log("opponent: ", opponent)`)
+})
+</script>
+<script type="text/javascript">
+const wordPoints = [10, 3, 7, 4]
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_12 = redirectLogger(document.querySelector("#out-unnamed-chunk-12 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_12(`let [first, second] = wordPoints
+console.log({ first, second })`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_13 = redirectLogger(document.querySelector("#out-unnamed-chunk-13 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_13(`let [first, second, ...others] = wordPoints
+console.log({ first, second, others })`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_14 = redirectLogger(document.querySelector("#out-unnamed-chunk-14 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_14(`let [first, second, ...others] = wordPoints
+console.log({ first, second, others })`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_15 = redirectLogger(document.querySelector("#out-unnamed-chunk-15 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_15(`scores.result = 'You lost'
+console.log(scores)
+
+let {result, ...score} = scores
+
+console.log('result: ', result)
+console.log(score.player)`)
+})
+</script>
+<script type="text/javascript">
+let myPoints = [3, 2, 5, 4]
+let yourPoints = [7, 4, 2, 8]
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_16 = redirectLogger(document.querySelector("#out-unnamed-chunk-16 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_16(`let ourPoints = [myPoints, yourPoints]
+ourPoints`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_17 = redirectLogger(document.querySelector("#out-unnamed-chunk-17 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_17(`let ourPoints = [...myPoints, ...yourPoints]
+ourPoints`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_18 = redirectLogger(document.querySelector("#out-unnamed-chunk-18 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_18(`let newPoints = 9
+myPoints = [...myPoints, newPoints]
+myPoints`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_21 = redirectLogger(document.querySelector("#out-unnamed-chunk-21 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_21(`let score = 0
+score += 67
+score *= 2
+score -= 8
+score /= 3
+score`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_22 = redirectLogger(document.querySelector("#out-unnamed-chunk-22 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_22(`let message = 'This'
+message = message + ' is'
+
+if (message.length < 5) {
+  message = message + ' helpful but'
+} else {
+  message = message + ' tiring and'
+}
+message = message + ' gets annoying'
+
+message`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_23 = redirectLogger(document.querySelector("#out-unnamed-chunk-23 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_23(`let message = 'This'
+message += ' is'
+
+if (message.length < 5) {
+  message += ' helpful but'
+} else {
+  message += ' tiring and'
+}
+message += ' gets annoying'
+
+message`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_28 = redirectLogger(document.querySelector("#out-unnamed-chunk-28 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_28(`let word = 'syzygy'
+let lettersPoints = {"g":2,"s":1,"y":4,"z":10} 
+let score = 0
+
+// replace this for loop with .forEach()
+for (let letter of word) {
+  score += lettersPoints[letter]
+}
+score`)
+})
+</script>
+<!-- scripts from markdown source end -->
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

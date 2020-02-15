@@ -1,0 +1,691 @@
+---
+title: "Interactivty"
+subtitle: "Day 1 - Morning - Session 1"
+author: "Garrick Aden-Buie"
+date: '2020-01-27'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: NULL
+    nature:
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+class: title
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+use_placeholders(TRUE, TRUE)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "editable"))
+```
+
+```{r js4shiny, echo=FALSE}
+js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+```
+
+`r title_slide("OK Computer", "Interacting with the Browser", session = "am")`
+
+---
+class: break left top fullscreen
+background-image: url('assets/img/bg/unsplash__zoBLWLscqg.jpg')
+background-size: contain
+background-position: center bottom
+
+<h2 id="arrays-and-objects" class="white b">Arrays<br>& Objects</h2>
+
+```{css echo=FALSE}
+#arrays-and-objects {
+  position: absolute;
+  bottom: -65px;
+  line-height: 0.85;
+  left: 10px;
+  top: 111px;
+}
+```
+
+---
+class: break center middle
+
+.f1[&#x1F468;&#x1F3FC;&#x200D;&#x1F4BB;]<br>
+.code.f6[[live coding]]
+
+`r jump_to("prototypes")`
+
+---
+
+# Meet Object
+
+- Objects are like R's lists (except used a whole lot more in JS)
+- Each entry has a name called a **key** and a value.
+- The value is a **property** if it's a constant or a **method** if it's a function
+- Access elements with `.dot` or `[bracket]` notation
+- Undefined properties are ... _undefined_
+- `const` means can't reasign the _whole_ object
+
+```{js}
+const stats = {pkg: 'dplyr', downloads: 893}
+
+stats.pkg
+stats['downloads']
+const propName = 'downloads'
+stats[propName]
+stats.rank
+
+stats.downloads = 893
+stats
+```
+
+---
+
+# Creating an object from variables
+
+- Turn your variables into objects with this one easy trick
+
+```{js}
+let pkg = 'dplyr'
+let downloads = 893
+
+const stats = {pkg: 'dplyr', downloads: 893}
+stats = {pkg, downloads}
+```
+
+---
+
+# Objects can hold arrays or more objects
+
+- Objects, like lists, hold anything: strings, numbers, arrays, other objects
+- Get the array of object keys with `Object.keys()`
+
+```{js}
+let stats = {
+  pkg: 'dplyr',
+  downloads: 893,
+  depends: ['glue', 'magrittr', 'rlang']
+}
+let future = {}
+
+stats.version = {major: 0, minor: 8, patch: 3}
+
+Object.keys(stats)
+Object.keys(stats.depends)
+Object.keys(future)
+```
+
+---
+
+# Meet Array
+
+- Arrays are also collection, but have **indices** instead of keys
+- Arrays look a lot like R's vectors but...
+- ...arrays can hold anything
+- What makes them special: indices, order, length
+
+```{js array-global, js_redirect=FALSE}
+let pkgs = ['dplyr', 'ggplot2', 'tidyr', 'shiny']
+let downloads = [893, 762, 679, 395]
+```
+
+```{js js_redirect=TRUE}
+let random = [1, 2, 'three']
+let nothingYet = []
+```
+
+```{js}
+pkgs.length
+```
+
+---
+
+# Array Indexing
+
+- Arrays are homogeneous and can even include additional arrays
+- JavaScript is zero indexed
+- Bracket notation gets you **one** entry only
+- Arrays != vectors
+
+```{js}
+let pkgs = [['dplyr', 'tidyr'], 'ggplot2', 'shiny']
+
+pkgs[0]
+pkgs[0][1]
+
+pkgs * 1000
+```
+
+---
+
+# Arrays come with **properties** & **methods**
+
+```{js}
+//property
+pkgs.length
+
+// some methods don't change the array
+pkgs.includes('shiny')
+pkgs.slice(1, 4)
+
+// some methods do!
+pkgs.push('glue')
+pkgs.pop()
+
+// some do not clearly state their intentions
+pkgs.sort()
+```
+
+---
+
+# Arrays are objects
+
+- Arrays are actually objets with special properties
+- One of those properties is that the keys are indices
+- What **typeof** thing is this? But is it an **instanceof**?
+
+```{js}
+Object.keys(pkgs)
+let stats = {pkg: pkgs[0], downloads: 900}
+
+typeof pkgs
+typeof stats
+
+stats instanceof Object
+pkgs instanceof Object
+pkgs instanceof Array
+```
+
+---
+
+# Yeah, but is it an array?
+
+- More helpfully Array has a method
+
+```{js}
+Array.isArray(pkgs)
+```
+
+---
+layout: true
+
+# Prototype & Inheritance
+
+---
+name: prototypes
+
+`r slides_from_images("assets/img/interactivity/prototypes-methods/", class = "")`
+
+---
+layout: false
+class: header_background
+
+# Array Practice
+
+A common pattern you'll see often is to initialize an empty array `[]`
+that is built up over time.
+
+1. Give yourself an empty `pkgs = []`
+
+2. 30 seconds to think of your favorite packages
+   using `.push()` to add each package.
+
+3. Follow up:
+
+  * How many packages did you think of?
+  * What's the 3rd package your thought of?
+  * What's the last package you thought of?
+  * Get the last package but also remove it from your list.
+  * Alphabetize your packages.
+
+`r countdown::countdown(0, 30, right = "125px", top = "28%")`
+
+---
+class: break center
+background-image: url('assets/img/bg/unsplash_RJkKjLu8I9I.jpg')
+background-size: cover
+background-position: 0 -25px
+
+.f1.mt5[
+# Functions
+]
+
+---
+class: break center animated bounceIn slower
+background-image: url('assets/img/bg/unsplash_tEzFyBNxcJg.jpg')
+background-size: cover
+background-position: 0 -20px
+
+<div class = "f1 black f-marker text-shadow-2 rotate-350 mt4 pa0">
+There are too many ways to write functions
+</div>
+
+---
+
+# The Forms of Function
+
+.flex[
+.w-60[
+```js
+function increment(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- Most popular
+- Use it before you define it (**hoisted**)
+]
+]
+
+--
+
+.flex[
+.w-60[
+```js
+const increment = function(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- What is this, **R**?
+- Define it first
+]
+]
+
+--
+
+.flex[
+.w-60[
+```js
+function(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- &#x1F575;&#x1F3FC; .ml1[Anonymous]
+- Used in callbacks
+- or must be called right away `(function() {...})()`
+]
+]
+
+---
+
+class: center middle
+
+<div class="f1">&#x1F469;&#x1F3FD;&#x200D;&#x1F4BB;</div>
+.f5.code.mt0[
+.silver[js4shiny::]repl_js()
+]
+
+---
+
+```js
+function increment(x, by) {
+  return x + by
+}
+
+increment(1, 2)
+```
+
+???
+
+- with and without default arguments
+- can you reference the argument in the function name?
+- arguments are positional
+- arguments without defaults and without values?
+- `const name = function()`
+
+---
+
+```js
+const increment = (x, by) => {
+  return x + by
+}
+
+increment(30, 12)
+```
+
+---
+
+# Functional Recommendations
+
+.flex[
+.w-50.pr2[
+<h3 class="mv1">General Functions</h3>
+
+- Use these just about anywhere
+- Don't think too hard when you read it later
+]
+.w-50[
+```js
+function increment(x, by) {
+  return x + by
+}
+```
+]
+]
+
+.flex.mt3[
+.w-50.pr2[
+<h3 class="mv1">Anonymous Functions</h3>
+
+- Use when it fits on one line
+- Or anywhere you'd use<br>`~ { .x + by }`
+]
+.w-50[
+```js
+const inc = (x, by) => x + by
+```
+]
+]
+
+---
+class: header_background
+
+# Refactor the JavaScript in our first page
+
+1. Create `cities`: an array of objects with the city name and age for
+  - San Francisco — 38.8
+  - Los Angeles — 35.9
+
+1. Write a function `updateCityAge` that takes a `city` and `age` and updates the document
+
+1. In the browser, use the array and function to switch between San Francisco and Los Angeles.
+
+`r countdown::countdown(3)`
+
+.footnote.code[repl_example("first-page-04")]
+
+---
+
+```js
+const cities = [
+  {city: 'San Francisco', age: 38.8},
+  {city: 'Los Angeles',   age: 35.9}
+]
+
+function updateCityAge(city, age) {
+  console.log(
+  `${city} residents are ~${age} years old`
+  )
+}
+
+updateCityAge(cities[0].city, cities[0].age)
+updateCityAge(cities[1].city, cities[1].age)
+```
+
+---
+class: break left middle
+background-size: cover
+background-image: url('assets/img/bg/unsplash_8gYCAkMuvsY.jpg')
+
+### Browser Events
+
+---
+layout: true
+
+# Reactions, not reactivity
+
+---
+name: browser-events
+
+```{r echo=FALSE, results="asis"}
+cat(slides_from_images("assets/img/interactivity/browser-events/", class = "animated fadeIn"))
+```
+
+---
+layout: false
+
+# Adding Event Listeners
+
+You need
+
+1. An **event type** to listen for
+1. An an **element** to spy on
+1. A **callback** (function) to run when the event happens
+
+--
+
+.code.silver.mt2[
+.blue.b[element].addEventListener(.dark-blue.b['click'], .dark-green[function (]event.dark-green[) {]<br>
+.ml3.dark-green[// ... do things ... ]<br>
+.ml3.dark-green[// ... possibly info in event]<br>
+.dark-green[}])
+]
+
+---
+class: break center middle
+
+.f1[&#x1F468;&#x1F3FC;&#x200D;&#x1F4BB;]<br>
+.code.f6[[live coding]]
+
+`r jump_to("json")`
+
+.footnote.code.can-edit[repl_example("first-page-05")]
+
+---
+
+## Add Button
+
+```html
+<button id="next-city" value="0">Next City</button>
+```
+
+## Use first city on load
+
+```js
+updateCityAge(cities[0])
+```
+
+---
+
+## Event listen to console.log()
+
+* What function will we use to find the button?
+
+```js
+const btn = document.getElementById('next-city')
+btn.addEventListener('click', function(event) {
+  console.log(event)
+})
+```
+
+## Find the info we want to get from the event
+
+**event.target**
+
+```js
+btn.addEventListener('click', function(event) {
+  console.log(event.target.value)
+})
+```
+
+---
+
+## The button's value === current city
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  console.log(cities[btnValue])
+})
+```
+
+---
+
+## btnValue + 1 and show that city
+
+Note we could have done `btn.value` to get the value, too
+What happens if you just do `btnValue + 1`?
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  btnValue = Number(btnValue) + 1
+  btn.value = btnValue
+  updateCityAge(cities[btnValue])
+})
+```
+
+---
+
+## If the counter > length of cities, start over
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  btnValue = Number(btnValue) + 1
+  if (btnValue >= cities.length) {
+    btnValue = 0
+  }
+  btn.value = btnValue
+  updateCityAge(cities[btnValue])
+})
+```
+
+```
+[
+  {city: 'Fresno', age: 31.8},
+  {city: 'Santa Rosa', age: 41.4}
+]
+```
+
+---
+layout: true
+
+# JSON, quickly
+
+.flex[
+.w-50[
+```{js, js_redirect = FALSE}
+const cities = [
+  {
+    city: 'San Francisco',
+    age: 38.8
+  },
+  {
+    city: 'Los Angeles',
+    age: 35.9
+  }
+]
+```
+]
+.w-50[
+```{json data-cities, eval=FALSE}
+[
+  {
+    "city": "San Francisco",
+    "age": 38.8
+  },
+  {
+    "city": "Los Angeles",
+    "age": 35.9
+  }
+]
+```
+]
+]
+
+---
+name: json
+
+---
+
+```{js}
+const citiesAsJson = JSON.stringify(cities); citiesAsJson
+```
+
+---
+
+```{js js_redirect=FALSE, echo=FALSE}
+const citiesAsJson = JSON.stringify(cities)
+```
+
+```{js}
+JSON.parse(citiesAsJson)[0]
+```
+
+
+---
+layout: false
+name: more-data
+class: header_background
+
+# Add More Data!
+
+.w-70[
+- Run `repl_example("first-page-07")`
+
+- I added JSON data inside `<script id="data-cities">`
+
+- Find the element and save its `.textContent` to a variable
+
+- Use `JSON.parse()` to convert the JSON string to data in place of `cities`.
+
+- Watch out! The data calls age `median_age`, make sure you update your function.
+
+- _Bonus:_ Search MDN for _destructuring assignment_
+  and use the _Object destructuring_ section to learn
+  how to assign a property to a new variable name
+
+- _Bonus:_ Add `median_home_price` to your page, too.
+]
+
+`r countdown::countdown(5)`
+
+---
+
+# Styles and JavaScript in External Files
+
+Our `index.html` is getting crowded.
+
+### Styles: `style.css`
+
+```html
+<head>
+  <link href="style.css" rel="stylesheet" />
+</head>
+```
+
+### Script: `script.js`
+
+```html
+// last thing in <body>
+<script src="script.js"></script>
+```
+
+.footnote.code[repl_example("first-page-09")]
+
+???
+
+Can discuss placement of either here
+
+---
+class: center middle
+
+# Next: [Look Sharp! (Style)](style.html)
+
+???
+
+If I have extra time I can demo
+
+`repl_example("event-types")`

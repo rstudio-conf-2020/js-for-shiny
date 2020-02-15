@@ -1,0 +1,70 @@
+.jv__line {
+	margin: 4px 0;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.jv__caret-icon {
+  width: 18px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.8em;
+  line-height: 0.7;
+}
+
+.jv__caret-icon .jv__caret-down::before {
+	content: "\25BE";
+}
+
+.jv__caret-icon .jv__caret-right::before {
+	content: "\25B8";
+}
+
+.jv__empty-icon {
+	width: 18px;
+}
+
+.jv__json-type {
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.jv__json-key {
+	color: #444;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.jv__json-index {
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.jv__json-separator {
+
+}
+
+.jv__json-value {
+	margin-left: 8px;
+}
+
+.jv__json-number {
+	color: #f9ae58;
+}
+
+.jv__json-boolean {
+	color: #ec5f66;
+}
+
+.jv__json-string {
+	color: #86b25c;
+}
+
+.jv__json-size {
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.jv__hide {
+	display: none;
+}

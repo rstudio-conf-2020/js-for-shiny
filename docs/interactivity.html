@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Interactivty</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"bbc061cd0c254b0f8b748eb4cc7971d9","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;OK Computer&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="OK Computer | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;OK Computer&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="OK Computer | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;OK Computer&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>OK Computer</h1>
+<h2>Interacting with the Browser</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+class: break left top fullscreen
+background-image: url('assets/img/bg/unsplash__zoBLWLscqg.jpg')
+background-size: contain
+background-position: center bottom
+
+&lt;h2 id="arrays-and-objects" class="white b"&gt;Arrays&lt;br&gt;&amp; Objects&lt;/h2&gt;
+
+&lt;style type="text/css"&gt;
+#arrays-and-objects {
+  position: absolute;
+  bottom: -65px;
+  line-height: 0.85;
+  left: 10px;
+  top: 111px;
+}
+&lt;/style&gt;
+
+---
+class: break center middle
+
+.f1[&amp;#x1F468;&amp;#x1F3FC;&amp;#x200D;&amp;#x1F4BB;]&lt;br&gt;
+.code.f6[[live coding]]
+
+<div class="f4 ma0 pa0 hover-show o-40 pointer absolute right-1 bottom-1">
+<a href="#prototypes">&amp;#x23ED;</a>
+</div>
+
+---
+
+# Meet Object
+
+- Objects are like R's lists (except used a whole lot more in JS)
+- Each entry has a name called a **key** and a value.
+- The value is a **property** if it's a constant or a **method** if it's a function
+- Access elements with `.dot` or `[bracket]` notation
+- Undefined properties are ... _undefined_
+- `const` means can't reasign the _whole_ object
+
+
+```js
+const stats = {pkg: 'dplyr', downloads: 893}
+
+stats.pkg
+stats['downloads']
+const propName = 'downloads'
+stats[propName]
+stats.rank
+
+stats.downloads = 893
+stats
+```
+
+
+&lt;div id="out-unnamed-chunk-2"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Creating an object from variables
+
+- Turn your variables into objects with this one easy trick
+
+
+```js
+let pkg = 'dplyr'
+let downloads = 893
+
+const stats = {pkg: 'dplyr', downloads: 893}
+stats = {pkg, downloads}
+```
+
+
+&lt;div id="out-unnamed-chunk-3"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Objects can hold arrays or more objects
+
+- Objects, like lists, hold anything: strings, numbers, arrays, other objects
+- Get the array of object keys with `Object.keys()`
+
+
+```js
+let stats = {
+  pkg: 'dplyr',
+  downloads: 893,
+  depends: ['glue', 'magrittr', 'rlang']
+}
+let future = {}
+
+stats.version = {major: 0, minor: 8, patch: 3}
+
+Object.keys(stats)
+Object.keys(stats.depends)
+Object.keys(future)
+```
+
+
+&lt;div id="out-unnamed-chunk-4"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Meet Array
+
+- Arrays are also collection, but have **indices** instead of keys
+- Arrays look a lot like R's vectors but...
+- ...arrays can hold anything
+- What makes them special: indices, order, length
+
+
+```js
+let pkgs = ['dplyr', 'ggplot2', 'tidyr', 'shiny']
+let downloads = [893, 762, 679, 395]
+```
+
+
+
+
+```js
+let random = [1, 2, 'three']
+let nothingYet = []
+```
+
+
+&lt;div id="out-unnamed-chunk-5"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+```js
+pkgs.length
+```
+
+
+&lt;div id="out-unnamed-chunk-6"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Array Indexing
+
+- Arrays are homogeneous and can even include additional arrays
+- JavaScript is zero indexed
+- Bracket notation gets you **one** entry only
+- Arrays != vectors
+
+
+```js
+let pkgs = [['dplyr', 'tidyr'], 'ggplot2', 'shiny']
+
+pkgs[0]
+pkgs[0][1]
+
+pkgs * 1000
+```
+
+
+&lt;div id="out-unnamed-chunk-7"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Arrays come with **properties** &amp; **methods**
+
+
+```js
+//property
+pkgs.length
+
+// some methods don't change the array
+pkgs.includes('shiny')
+pkgs.slice(1, 4)
+
+// some methods do!
+pkgs.push('glue')
+pkgs.pop()
+
+// some do not clearly state their intentions
+pkgs.sort()
+```
+
+
+&lt;div id="out-unnamed-chunk-8"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Arrays are objects
+
+- Arrays are actually objets with special properties
+- One of those properties is that the keys are indices
+- What **typeof** thing is this? But is it an **instanceof**?
+
+
+```js
+Object.keys(pkgs)
+let stats = {pkg: pkgs[0], downloads: 900}
+
+typeof pkgs
+typeof stats
+
+stats instanceof Object
+pkgs instanceof Object
+pkgs instanceof Array
+```
+
+
+&lt;div id="out-unnamed-chunk-9"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+# Yeah, but is it an array?
+
+- More helpfully Array has a method
+
+
+```js
+Array.isArray(pkgs)
+```
+
+
+&lt;div id="out-unnamed-chunk-10"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+layout: true
+
+# Prototype &amp; Inheritance
+
+---
+name: prototypes
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-2.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-3.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-4.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-5.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-6.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-7.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-8.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: 
+background-image: url('assets/img/interactivity/prototypes-methods/prototypes-methods-9.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+class: header_background
+
+# Array Practice
+
+A common pattern you'll see often is to initialize an empty array `[]`
+that is built up over time.
+
+1. Give yourself an empty `pkgs = []`
+
+2. 30 seconds to think of your favorite packages
+   using `.push()` to add each package.
+
+3. Follow up:
+
+  * How many packages did you think of?
+  * What's the 3rd package your thought of?
+  * What's the last package you thought of?
+  * Get the last package but also remove it from your list.
+  * Alphabetize your packages.
+
+<div class="countdown" id="timer_5e48563d" style="top:28%;right:125px;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">00</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
+
+---
+class: break center
+background-image: url('assets/img/bg/unsplash_RJkKjLu8I9I.jpg')
+background-size: cover
+background-position: 0 -25px
+
+.f1.mt5[
+# Functions
+]
+
+---
+class: break center animated bounceIn slower
+background-image: url('assets/img/bg/unsplash_tEzFyBNxcJg.jpg')
+background-size: cover
+background-position: 0 -20px
+
+&lt;div class = "f1 black f-marker text-shadow-2 rotate-350 mt4 pa0"&gt;
+There are too many ways to write functions
+&lt;/div&gt;
+
+---
+
+# The Forms of Function
+
+.flex[
+.w-60[
+```js
+function increment(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- Most popular
+- Use it before you define it (**hoisted**)
+]
+]
+
+--
+
+.flex[
+.w-60[
+```js
+const increment = function(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- What is this, **R**?
+- Define it first
+]
+]
+
+--
+
+.flex[
+.w-60[
+```js
+function(x, by) {
+  return x + by
+}
+```
+]
+.w-40[
+- &amp;#x1F575;&amp;#x1F3FC; .ml1[Anonymous]
+- Used in callbacks
+- or must be called right away `(function() {...})()`
+]
+]
+
+---
+
+class: center middle
+
+&lt;div class="f1"&gt;&amp;#x1F469;&amp;#x1F3FD;&amp;#x200D;&amp;#x1F4BB;&lt;/div&gt;
+.f5.code.mt0[
+.silver[js4shiny::]repl_js()
+]
+
+---
+
+```js
+function increment(x, by) {
+  return x + by
+}
+
+increment(1, 2)
+```
+
+???
+
+- with and without default arguments
+- can you reference the argument in the function name?
+- arguments are positional
+- arguments without defaults and without values?
+- `const name = function()`
+
+---
+
+```js
+const increment = (x, by) =&gt; {
+  return x + by
+}
+
+increment(30, 12)
+```
+
+---
+
+# Functional Recommendations
+
+.flex[
+.w-50.pr2[
+&lt;h3 class="mv1"&gt;General Functions&lt;/h3&gt;
+
+- Use these just about anywhere
+- Don't think too hard when you read it later
+]
+.w-50[
+```js
+function increment(x, by) {
+  return x + by
+}
+```
+]
+]
+
+.flex.mt3[
+.w-50.pr2[
+&lt;h3 class="mv1"&gt;Anonymous Functions&lt;/h3&gt;
+
+- Use when it fits on one line
+- Or anywhere you'd use&lt;br&gt;`~ { .x + by }`
+]
+.w-50[
+```js
+const inc = (x, by) =&gt; x + by
+```
+]
+]
+
+---
+class: header_background
+
+# Refactor the JavaScript in our first page
+
+1. Create `cities`: an array of objects with the city name and age for
+  - San Francisco — 38.8
+  - Los Angeles — 35.9
+
+1. Write a function `updateCityAge` that takes a `city` and `age` and updates the document
+
+1. In the browser, use the array and function to switch between San Francisco and Los Angeles.
+
+<div class="countdown" id="timer_5e4856b8" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+.footnote.code[repl_example("first-page-04")]
+
+---
+
+```js
+const cities = [
+  {city: 'San Francisco', age: 38.8},
+  {city: 'Los Angeles',   age: 35.9}
+]
+
+function updateCityAge(city, age) {
+  console.log(
+  `${city} residents are ~${age} years old`
+  )
+}
+
+updateCityAge(cities[0].city, cities[0].age)
+updateCityAge(cities[1].city, cities[1].age)
+```
+
+---
+class: break left middle
+background-size: cover
+background-image: url('assets/img/bg/unsplash_8gYCAkMuvsY.jpg')
+
+### Browser Events
+
+---
+layout: true
+
+# Reactions, not reactivity
+
+---
+name: browser-events
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-02.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-03.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-10.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-11.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/interactivity/browser-events/browser-events-12.jpg')
+background-size: contain
+background-position: top left
+
+---
+layout: false
+
+# Adding Event Listeners
+
+You need
+
+1. An **event type** to listen for
+1. An an **element** to spy on
+1. A **callback** (function) to run when the event happens
+
+--
+
+.code.silver.mt2[
+.blue.b[element].addEventListener(.dark-blue.b['click'], .dark-green[function (]event.dark-green[) {]&lt;br&gt;
+.ml3.dark-green[// ... do things ... ]&lt;br&gt;
+.ml3.dark-green[// ... possibly info in event]&lt;br&gt;
+.dark-green[}])
+]
+
+---
+class: break center middle
+
+.f1[&amp;#x1F468;&amp;#x1F3FC;&amp;#x200D;&amp;#x1F4BB;]&lt;br&gt;
+.code.f6[[live coding]]
+
+<div class="f4 ma0 pa0 hover-show o-40 pointer absolute right-1 bottom-1">
+<a href="#json">&amp;#x23ED;</a>
+</div>
+
+.footnote.code.can-edit[repl_example("first-page-05")]
+
+---
+
+## Add Button
+
+```html
+&lt;button id="next-city" value="0"&gt;Next City&lt;/button&gt;
+```
+
+## Use first city on load
+
+```js
+updateCityAge(cities[0])
+```
+
+---
+
+## Event listen to console.log()
+
+* What function will we use to find the button?
+
+```js
+const btn = document.getElementById('next-city')
+btn.addEventListener('click', function(event) {
+  console.log(event)
+})
+```
+
+## Find the info we want to get from the event
+
+**event.target**
+
+```js
+btn.addEventListener('click', function(event) {
+  console.log(event.target.value)
+})
+```
+
+---
+
+## The button's value === current city
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  console.log(cities[btnValue])
+})
+```
+
+---
+
+## btnValue + 1 and show that city
+
+Note we could have done `btn.value` to get the value, too
+What happens if you just do `btnValue + 1`?
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  btnValue = Number(btnValue) + 1
+  btn.value = btnValue
+  updateCityAge(cities[btnValue])
+})
+```
+
+---
+
+## If the counter &gt; length of cities, start over
+
+```js
+btn.addEventListener('click', function(event) {
+  let btnValue = event.target.value
+  btnValue = Number(btnValue) + 1
+  if (btnValue &gt;= cities.length) {
+    btnValue = 0
+  }
+  btn.value = btnValue
+  updateCityAge(cities[btnValue])
+})
+```
+
+```
+[
+  {city: 'Fresno', age: 31.8},
+  {city: 'Santa Rosa', age: 41.4}
+]
+```
+
+---
+layout: true
+
+# JSON, quickly
+
+.flex[
+.w-50[
+
+```js
+const cities = [
+  {
+    city: 'San Francisco',
+    age: 38.8
+  },
+  {
+    city: 'Los Angeles',
+    age: 35.9
+  }
+]
+```
+
+
+]
+.w-50[
+
+```json
+[
+  {
+    "city": "San Francisco",
+    "age": 38.8
+  },
+  {
+    "city": "Los Angeles",
+    "age": 35.9
+  }
+]
+```
+]
+]
+
+---
+name: json
+
+---
+
+
+```js
+const citiesAsJson = JSON.stringify(cities); citiesAsJson
+```
+
+
+&lt;div id="out-unnamed-chunk-13"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+---
+
+
+
+```js
+JSON.parse(citiesAsJson)[0]
+```
+
+
+&lt;div id="out-unnamed-chunk-15"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+---
+layout: false
+name: more-data
+class: header_background
+
+# Add More Data!
+
+.w-70[
+- Run `repl_example("first-page-07")`
+
+- I added JSON data inside `&lt;script id="data-cities"&gt;`
+
+- Find the element and save its `.textContent` to a variable
+
+- Use `JSON.parse()` to convert the JSON string to data in place of `cities`.
+
+- Watch out! The data calls age `median_age`, make sure you update your function.
+
+- _Bonus:_ Search MDN for _destructuring assignment_
+  and use the _Object destructuring_ section to learn
+  how to assign a property to a new variable name
+
+- _Bonus:_ Add `median_home_price` to your page, too.
+]
+
+<div class="countdown" id="timer_5e485600" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Styles and JavaScript in External Files
+
+Our `index.html` is getting crowded.
+
+### Styles: `style.css`
+
+```html
+&lt;head&gt;
+  &lt;link href="style.css" rel="stylesheet" /&gt;
+&lt;/head&gt;
+```
+
+### Script: `script.js`
+
+```html
+// last thing in &lt;body&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+```
+
+.footnote.code[repl_example("first-page-09")]
+
+???
+
+Can discuss placement of either here
+
+---
+class: center middle
+
+# Next: [Look Sharp! (Style)](style.html)
+
+???
+
+If I have extra time I can demo
+
+`repl_example("event-types")`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!-- scripts from markdown source start -->
+<script type="text/javascript">
+const log_out_unnamed_chunk_2 = redirectLogger(document.querySelector("#out-unnamed-chunk-2 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_2(`const stats = {pkg: 'dplyr', downloads: 893}
+
+stats.pkg
+stats['downloads']
+const propName = 'downloads'
+stats[propName]
+stats.rank
+
+stats.downloads = 893
+stats`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_3 = redirectLogger(document.querySelector("#out-unnamed-chunk-3 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_3(`let pkg = 'dplyr'
+let downloads = 893
+
+const stats = {pkg: 'dplyr', downloads: 893}
+stats = {pkg, downloads}`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_4 = redirectLogger(document.querySelector("#out-unnamed-chunk-4 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_4(`let stats = {
+  pkg: 'dplyr',
+  downloads: 893,
+  depends: ['glue', 'magrittr', 'rlang']
+}
+let future = {}
+
+stats.version = {major: 0, minor: 8, patch: 3}
+
+Object.keys(stats)
+Object.keys(stats.depends)
+Object.keys(future)`)
+})
+</script>
+<script type="text/javascript">
+let pkgs = ['dplyr', 'ggplot2', 'tidyr', 'shiny']
+let downloads = [893, 762, 679, 395]
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_5 = redirectLogger(document.querySelector("#out-unnamed-chunk-5 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_5(`let random = [1, 2, 'three']
+let nothingYet = []`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_6 = redirectLogger(document.querySelector("#out-unnamed-chunk-6 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_6(`pkgs.length`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_7 = redirectLogger(document.querySelector("#out-unnamed-chunk-7 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_7(`let pkgs = [['dplyr', 'tidyr'], 'ggplot2', 'shiny']
+
+pkgs[0]
+pkgs[0][1]
+
+pkgs * 1000`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_8 = redirectLogger(document.querySelector("#out-unnamed-chunk-8 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_8(`//property
+pkgs.length
+
+// some methods don't change the array
+pkgs.includes('shiny')
+pkgs.slice(1, 4)
+
+// some methods do!
+pkgs.push('glue')
+pkgs.pop()
+
+// some do not clearly state their intentions
+pkgs.sort()`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_9 = redirectLogger(document.querySelector("#out-unnamed-chunk-9 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_9(`Object.keys(pkgs)
+let stats = {pkg: pkgs[0], downloads: 900}
+
+typeof pkgs
+typeof stats
+
+stats instanceof Object
+pkgs instanceof Object
+pkgs instanceof Array`)
+})
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_10 = redirectLogger(document.querySelector("#out-unnamed-chunk-10 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_10(`Array.isArray(pkgs)`)
+})
+</script>
+<script type="text/javascript">
+const cities = [
+  {
+    city: 'San Francisco',
+    age: 38.8
+  },
+  {
+    city: 'Los Angeles',
+    age: 35.9
+  }
+]
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_13 = redirectLogger(document.querySelector("#out-unnamed-chunk-13 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_13(`const citiesAsJson = JSON.stringify(cities); citiesAsJson`)
+})
+</script>
+<script type="text/javascript">
+const citiesAsJson = JSON.stringify(cities)
+</script>
+<script type="text/javascript">
+const log_out_unnamed_chunk_15 = redirectLogger(document.querySelector("#out-unnamed-chunk-15 > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_unnamed_chunk_15(`JSON.parse(citiesAsJson)[0]`)
+})
+</script>
+<!-- scripts from markdown source end -->
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

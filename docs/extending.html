@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Extending Shiny</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-28" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x84564aa0d884e9aa08e60d91d4d5128","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Licensed to ill&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Licensed to ill | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Licensed to ill&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Licensed to ill | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Licensed to ill&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Licensed to ill</h1>
+<h2>Extending Shiny</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+
+# Questions and Follow up
+
+.can-edit.key-QandA[
+- Questions and answers to anything that came up in the first half
+]
+
+
+---
+class: break white animated slideInUp slideOutRight
+background-image: url('assets/img/bg/unsplash_F7Rl02ir0Gg.jpg')
+background-size: cover
+
+# Shiny Inputs
+
+---
+class: animated slideInLeft slideOutUp
+background-image: url('assets/img/bg/unsplash_-EnI0H6Wm6s.jpg')
+background-size: cover
+
+---
+class: animated slideInUp
+
+# Let's Build a Shiny Input!
+
+We're going to do all the steps of this project together (again).
+
+Be kind to your neighbors and help them if they get stuck.
+
+.center.mt4[
+# Open up your .dark-pink[frappeCharts] Project
+
+&lt;a class="f4" href="http://bit.ly/js4shiny-input" target="_blank"&gt;bit.ly/js4shiny-input&lt;/a&gt;
+]
+
+---
+name: overview
+
+# The Shiny Input Binding
+
+.f6[Skeleton Snippet: [bit.ly/js4shiny-input-binding](http://bit.ly/js4shiny-input-binding)]
+
+.w-90.mh-a[
+- .b.code[find()] .fr[How to find your input elements on the page]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[subscribe()] .fr[What browser events will trigger an update from your input]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[getRatePolicy()] .fr[How often to send updates back to the server]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[getValue()] .fr[What is the value of your input?]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[receiveMessage()] .fr[Let the input receive messages from the server]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[setValue()] .fr[Update your HTML from server]
+]
+
+---
+name: checkbox
+class: header_background
+
+# Learn from checkboxInput()
+
+.f6[[bit.ly/js4shiny-checkbox](http://bit.ly/js4shiny-checkbox)]
+
+Find a partner and read through the input binding definition together.
+
+Take turns explaining to each other what each method does:
+
+.code[
+- find
+- getValue
+- setValue
+- subscribe
+- unsubscribe
+- getState
+- receiveMessage
+]
+
+<div class="countdown" id="timer_5e48572d" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+name: get-value
+class: header_background
+
+## Update .getValue()
+
+The `.value` of a `textarea` element is a string containing the text
+inside the element.
+
+Update `.getValue()` to
+
+1.  Return the number of characters the user has typed ([changelog:
+    b3958d](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/b3958d5e3f60fbac3a0100673696bd413a276fb4))
+
+2.  Return the number of words the user has entered ([changelog:
+    e3fa48](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/e3fa485bb60853e391302289213d3cd5f0846b3e))
+
+3.  Create variables for both number of characters and words and return
+    both in an object ([changelog:
+    edfb93](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/edfb9399eae5207cc4a3ef9b48e62c9c92230477))
+
+---
+name: debounce
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-03.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-10.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-11.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-12.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-13.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-14.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-15.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-16.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-17.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-18.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-19.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-20.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-21.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-22.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-23.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-24.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-25.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-26.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-27.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-28.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-29.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-30.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn fast
+background-image: url('assets/img/extending/direct-debounce-throttle/direct-debounce-throttle-31.jpg')
+background-size: contain
+background-position: top left
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,87 @@
+---
+title: Slides | JavaScript for Shiny Users
+author: Garrick Aden-Buie
+output: js4shiny::html_document_js
+---
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+  meta_description('Slides for the "JavaScript for Shiny Users" workshop at rstudio::conf(2020)') %>%
+  meta_social(
+    title = "JavaScript for Shiny Users",
+    url = "https://js4shiny.com",
+    image = "https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg",
+    image_alt = "Hex logo of the js4shiny workshop and package",
+    og_type = "website",
+    og_author = "Garrick Aden-Buie",
+    twitter_card_type = "summary",
+    twitter_creator = "@grrrck"
+  )
+```
+
+# JavaScript for Shiny Users
+
+1. [Welcome](welcome.html)
+
+1. [Breaks](break.html)
+
+1. [Work Time](working.html)
+
+1. [Extra Bits](extras.html)
+
+## Monday, January 27
+
+### Session 1
+
+1. [Hello, WWW](hello-www.html)
+    - [How it works](hello-www.html#how-it-works)
+    - [What Do HTML, CSS, and JS Do?](hello-www.html#button-example)
+    - [Motivation](hello-www.html#motivation)
+
+1. [Maiden Voyage (How to WWW)](how-to-www.html)
+
+### Session 2
+
+1. [Maiden Voyage (continued: CSS)](how-to-www.html#css)
+
+### Session 3
+
+1. [OK Computer (Interactivity)](interactivity.html)
+
+### Session 4
+
+1. [Bringing It All Back Home (Web Dev in R)](r-for-web.html)
+
+### Bonus Material
+
+1. [Look Sharp! (Style)](style.html)
+
+2. [Ghost in the Machine (JavaScript)](javascript.html)
+
+---
+
+## Tuesday, January 28
+
+### Session 1 - 2
+
+1. [The Blueprint (htmlwidgets)](htmlwidgets.html)
+
+### Session 3
+
+1. [r2d3 with Nick Strayer](http://nickstrayer.me/js4shiny_r2d3/slides/#1)
+
+2. [Mothership Connection (Communicating with Shiny)](communicating.html)
+
+
+3. `golem` with Colin Fay
+
+### Session 4
+
+1. [Licensed to Ill (Extending Shiny)](extending.html)
+    - [Use the dev journal](https://github.com/gadenbuie/js4shiny-frappeCharts/tree/shiny-input/inst/shiny-input-app#readme)
+    - [Shiny Inputs Overview](extending.html#overview)
+        - [Checkbox Activity](extending.html#checkbox)
+        - [Debounce](extending.html#debounce)
+
+1. [Thank you](thank-you.html)

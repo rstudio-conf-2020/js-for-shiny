@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hello to JavaScript for Shiny Users</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"d02fbd02b8b049f0990eb1d5a3deb8e8","expires":14}</script>
+    <script src="assets/libs/himalaya/himalaya.js"></script>
+    <script src="assets/libs/js-cookie/js.cookie.js"></script>
+    <link href="assets/libs/editable/editable.css" rel="stylesheet" />
+    <script src="assets/libs/editable/editable.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Welcome!&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Welcome! | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Welcome!&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Welcome! | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Welcome!&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link href="assets/libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: break top right
+background-image: url(assets/img/bg/unsplash_bpt7mjgrBRQ.jpg)
+background-size: cover
+
+&lt;div class="f3 f-nunito w-80 fr mt3"&gt;JavaScript for Shiny Users&lt;/div&gt;
+
+&lt;div class="f4 white absolute bottom-1 right-2 lh-copy can-edit key-setup"&gt;Ready?&lt;br&gt;RStudio Cloud: bit.ly/js4shiny-cloud&lt;br&gt;js4shiny.com/setup&lt;/div&gt;
+
+&lt;!-- &lt;img class="w-33 absolute bottom-1 right-2" src="assets/img/rstudio-2020-logo.png" /&gt; --&gt;
+
+---
+class: title
+
+
+
+
+
+<h1>Welcome!</h1>
+<h2>JavaScript for Shiny Users</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+exclude: true
+
+# Overview
+
+.pull-left[
+- Meet your neighbor
+- Meet the team
+- Are we ready?
+    - everything installed
+    - where to find things
+    - workshop overview &amp; announcements
+- Create a folder for workshop things
+]
+
+.pull-right[
+
+]
+
+---
+class: break white bottom
+background-image: url('assets/img/bg/unsplash_R-WtV-QyVnY.jpg')
+background-size: cover
+
+&lt;div class="f1 b mb3 lh-solid"&gt;Welcome to &lt;br&gt;&lt;span class="fw1 n"&gt;rstudio::conf&lt;/span&gt;
+&lt;/div&gt;
+
+---
+
+# Workshop Policies
+
+.w-70[
+1. Identify the exits closes to you in case of emergency
+
+1. Please review the .blue[rstudio::conf] code of conduct that applies to all workshops.
+   Issues can be addressed in three ways
+   
+  1. **In person:** contact and .blue[rstudio::conf] staff member 
+     or the conference registration desk
+       
+  1. **By email:** send a message to .code[conf&amp;commat;rstudio.com]
+  
+  1. **By phone:** call 844—448—1212
+  
+1. Please do not photograph people wearing .red[red lanyards]
+
+1. A chill-out room is available for neurologically diverse attendees
+   on the 4th floor of Tower 1.
+]
+
+&lt;div class="icon-rstudio cover absolute bottom-1 right-1" style="width:128px;height:128px"&gt;&lt;/div&gt;
+
+---
+
+# Meet our team...
+
+.flex.tc[
+.w-20.mr3[
+&lt;img class="br-100" src="assets/img/people/carson.jpg" /&gt;
+.f5[Carson]
+
+.gray[&amp;commat;cpsievert]
+]
+
+.w-20.mr3[
+&lt;img class="br-100" src="assets/img/people/colin.jpg" /&gt;
+.f5[Colin]
+
+.gray[&amp;commat;_ColinFay]
+]
+
+.w-20.mr3[
+&lt;img class="br-100" src="assets/img/people/garrick.png" /&gt;
+.f5[Garrick]
+
+.gray[&amp;commat;grrrck]
+]
+
+.w-20.mr3[
+&lt;img class="br-100" src="assets/img/people/maya.png" /&gt;
+.f5[Maya]
+
+.gray[&amp;commat;Mayacelium]
+]
+
+.w-20.mr3[
+&lt;img class="br-100" src="assets/img/people/nick.png" /&gt;
+.f5[Nick]
+
+.small.gray[&amp;commat;NicholasStrayer]
+]
+
+]
+
+.tc.f5.gray[
+Learn more about us at&lt;br&gt;
+js4shiny.com/.dark-blue[people]
+]
+
+???
+
+**Carson**:
+
+- sofware engineer at rstudio: shiny, plotly, rmarkdown
+- author of _Interactive data visualization with R, plotly, and shiny_
+- phd from Iowa State
+
+**Colin**:
+
+- Data scientist and R hacker at ThinkR
+- known for: Golem and bubble much much more
+
+**Maya**:
+
+- Creates custom Shiny apps for clinical trials at Cytel
+- 2019 Intern at RStudio designed tidyblocks: visual programming language
+- Creates awsome inforgraphics for Jambase
+
+**Nick**:
+
+- currently phd candidate in biostats at Vanderbilt
+- done data journalism for NYT&lt;br&gt;
+  data sci for Jon Hopkins Data Science Lab&lt;br&gt;
+  data artist in residence at Conduce
+- Blogs at live free or dichotomize
+  
+  
+
+**Nick**:
+
+- 
+
+---
+
+# Meet your neighbors
+
+.f6[
+1. Hi, my name is...
+
+2. What do you do with data and .f-galada.f5[Shiny]?
+
+3. The last thing I looked up on Stack Overflow was...
+]
+
+&lt;div class="f1 absolute top-1 right-2 pt0"&gt;&amp;#x1F44B;&lt;/div&gt;
+
+---
+class: break white center top
+background-image: url('assets/img/bg/unsplash_6K-xLVV0-wg.jpg')
+background-size: cover
+background-position: 0 -70px
+
+.mt5[
+# Ready?
+]
+
+---
+class: fullscreen
+
+.flex.w-100.h-100.items-center.justify-center.tc[
+.w-33.pb3.mr4[
+# WiFi
+
+.f1[&amp;#x1F4F6;]
+
+.code.f4.can-edit.key-wifi-network[rstudio20]
+]
+
+.w-33.pb3[
+# Password
+
+.f1[&amp;#x1F4BB;]
+
+.code.f4.can-edit.key-wifi-password[tidyverse20]
+]
+]
+
+---
+# Latest **js4shiny**?
+
+.f5.w-70.mh-a.mt4[
+```r
+devtools::install_github(
+  "gadenbuie/js4shiny",
+  dependencies = TRUE
+)
+```
+
+.tc.mt4[
+.blue[pkg.]js4shiny.com
+]
+]
+
+---
+
+# Setup issues, like **npm** problems?
+
+.f5[
+Don't worry, you don't need it yet.
+
+Get help with .green[node/npm] between .b[Session 3 and 4].
+]
+
+---
+
+# Skip the setup, use rstudio.cloud
+
+.center.mt4[
+.f3[[bit.ly/js4shiny-cloud](http://bit.ly/js4shiny-cloud)]
+
+![](assets/img/intro/rstudio-cloud-fork-project.png)
+]
+
+---
+
+# Where to find .silver[thing] online?
+
+.tr.w-40.mh-a.f5[
+.fl[&amp;#x1F3E0;] [js4shiny.com](https://www.js4shiny.com)
+
+.fl[&amp;#x1F4E6;] [.blue[pkg.].light-silver[js4shiny.com]](https://pkg.js4shiny.com)
+
+.fl[&amp;#x1F4AC;] [.blue[chat.].light-silver[js4shiny.com]](https://chat.js4shiny.com)
+
+.fl[&amp;#x1F64B;] [.blue[help.].light-silver[js4shiny.com]](https://help.js4shiny.com)
+
+.fl[&amp;#x1F5C3;] [.blue[repo.].light-silver[js4shiny.com]](https://repo.js4shiny.com)
+]
+
+---
+
+# Share what you're learning
+
+.f6[
+&amp;#x1F425; Feel free to tweet about .red[&amp;#35;js4shiny]
+
+&amp;#x1F5E3; Share what you're learning!
+
+&amp;#x1F4F8; Pictures are okay
+
+&amp;#x1F933; Selfies are cool
+
+&amp;#x1F4F9; .red[Please don't video]
+]
+
+---
+
+# Sticky Notes
+
+.flex.tc.f5.h4[
+.w-33[
+
+&lt;div class="square bg-red mh-a"&gt;&lt;/div&gt;
+
+I'm stuck!
+]
+
+.w-33[
+
+&lt;div class="square bg-yellow mh-a"&gt;&lt;/div&gt;
+
+I'm not stuck,&lt;br&gt;
+but I need &amp;#x1F4BB; help
+]
+
+.w-33[
+
+&lt;div class="square mh-a f1 flex justify-center items-center"&gt;&lt;span class="bigger ma0 pa0"&gt;&amp;#x1F64B;&lt;/span&gt;&lt;/div&gt;
+
+I need help understanding something&lt;br&gt;
+.smaller[which likely means others do too!]
+]
+]
+
+&lt;style type="text/css"&gt;
+.square {
+  width: 200px;
+  height: 200px;
+}
+&lt;/style&gt;
+
+---
+class: center
+
+# chat.js4shiny.com
+
+&lt;img src="assets/img/intro/js4shiny-chat.png" class="w-80 mh-a shadow-5"/&gt;
+
+---
+class: center
+
+# help.js4shiny.com
+
+&lt;img src="assets/img/intro/js4shiny-help.png" class="w-80 mh-a shadow-2"/&gt;
+
+---
+class: break center middle
+background-image: url('assets/img/bg/unsplash_pvMVecxVoW0.jpg')
+background-size: cover
+
+&lt;h1 class="dark-gray n"&gt;Set?&lt;/h1&gt;
+
+---
+layout: false
+class: header_background
+
+# Browser Check
+
+.flex.h-100.items-center[
+.w-third[
+.w-40.center[
+![](assets/img/firefox_256.png)
+]
+.f5.center[
+Firefox
+]
+]
+
+.w-third[
+.w-40.center[
+![](assets/img/chrome_256.png)
+]
+.f5.center[
+Chrome
+]
+]
+
+.w-third[
+.w-40.center.mt2[
+![](assets/img/rstudio-icon.png)
+]
+.tc.f5[
+RStudio
+]
+]
+]
+
+---
+class: header_background
+
+# New Tab, Clean Slate
+
+.w-90.mh-a[
+![](assets/img/intro/firefox-preferences-home.png)
+]
+
+
+---
+class: header_background
+
+# Setup Home Base
+
+## Make a folder where you can put things
+
+- .mr1[&amp;#x1F4C2;] Create a new folder somewhere **easy to find**
+  - not version controlled
+  - not inside another project
+
+- &lt;img src="assets/img/rstudio-icon.png" height="39px" class="mr1" style="vertical-align: middle"&gt; Make an **RStudio project** _inside_ that folder
+  - e.g. .pkg[js4shiny-workshop]
+  - This will be "homebase"
+  - Open this project to get started
+ 
+- .mr1[&amp;#x26C5;] .pkg[bit.ly/js4shiny-cloud]
+
+<div class="countdown" id="timer_5e4856a8" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+  
+???
+
+- Don't version control parent because we'll create more R projects/packages in this folder
+
+---
+class: center middle
+
+&lt;img src="assets/img/rstudio-icon.png" height="150px" class="mr1" style="vertical-align: middle"&gt;
+
+# How do you like your RStudio?
+
+???
+
+I may need to move my panes around a bit
+
+so let's take a second to see how I have mine set up
+
+---
+class: center middle
+
+# Let's Go! &amp;#x1F44B; [Hello, world wide web](hello-www.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'FALSE';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

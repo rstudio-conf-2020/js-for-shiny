@@ -1,0 +1,174 @@
+---
+title: "We're taking a break"
+author: "Garrick Aden-Buie"
+date: '2020-01-27 - 2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs/break"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: false
+    nature:
+      ratio: 16:9
+      slideNumberFormat: ""
+---
+
+class: center middle
+
+# We're Taking a Break
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+xaringanExtra::use_editable(id = "js4shiny-breaks")
+```
+
+```{r js4shiny, echo=FALSE}
+htmltools::tagList(
+  js4shiny::html_dependency_stylize(c("fonts", "variables", "code"))
+)
+```
+
+---
+name: whiteboard
+class: center middle big can-edit
+
+Hello
+
+---
+
+class: fullscreen bottom center countdown-clouds
+background-image: url('assets/img/bg/unsplash_71vAb1FXB6g.jpg')
+background-size: cover
+
+```{r echo=FALSE}
+countdown::countdown_fullscreen(
+  minutes = 30,
+  id = "clouds",
+  update_every = 60,
+  style = "background:none;",
+  box_shadow = NULL,
+  bottom = "1em",
+  font_size = "350px"
+)
+```
+
+.f4[JavaScript for Shiny Users]
+
+```{css echo=FALSE}
+.countdown-clouds .countdown.running .countdown-digits {
+  color: var(--dark-blue);
+}
+.countdown-clouds .countdown.finished .countdown-digits {
+  color: var(--pink);
+}
+```
+
+---
+
+class: fullscreen relative
+background-image: url('assets/img/bg/unsplash_bpt7mjgrBRQ.jpg')
+background-size: cover
+
+<div class="f3 b absolute top-0 right-1 mt3">JavaScript For Shiny Users</div>
+
+<div class="f3 white b absolute bottom-0 right-1 tr mv2 f-lato">
+Will Be Back<br>
+at .can-edit[13:30]
+</div>
+
+---
+
+class: fullscreen relative
+background-image: url('assets/img/bg/unsplash_sK1nYjXcXCY.jpg')
+background-size: cover
+
+<div class="flex w-100 pt4">
+<div class="f-marker f2 black-80 tc w-60">Be back by</div>
+</div>
+<div class="flex w-100 pt2">
+<div class="f-marker f2 black-80 tc w-60 can-edit">10:30</div>
+</div>
+
+<div class="js4shiny-hex-sticker"><img src="assets/img/js4shiny_400.png" /></div>
+
+```{css echo=FALSE}
+.js4shiny-hex-sticker {
+  position: absolute;
+  opacity: 0.7;
+  width: 10%;
+  right: 278px;
+  top: 338px;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0px 0px 1px #686868);
+}
+```
+
+---
+name: lunch
+class: break white center top
+background-image: url('assets/img/bg/unsplash_FH3nWjvia-U.jpg')
+background-size: cover
+
+<div class="f2 white f-nunito mt3 can-edit key-location">Continental Ballroom Room 6</div>
+
+---
+background-image: url('https://media.giphy.com/media/AaeanOqPuenS0/giphy.gif')
+background-size: cover
+
+```{r echo=FALSE} 
+countdown::countdown(
+  minutes = 20, 
+  id = "falling-hex",
+  warn_when = 5*60, 
+  update_every = 15,
+  blink_colon = TRUE, 
+  left = 0, 
+  right = 0, 
+  top = 0,
+  bottom = 0
+)
+```
+
+.center.absolute.bottom-1.left-0.right-0.white.f6.o-70[
+JavaScript for Shiny Users
+]
+
+```{css echo=FALSE}
+#falling-hex.countdown{
+  background: none;
+  border: none!important;
+  left: 0;
+  right: 0;
+  font-size: 400px;
+  box-shadow: none;
+  opacity: 0.75;
+}
+#falling-hex.countdown .countdown-digits {
+  color: white;
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#falling-hex.countdown.running .countdown-digits {
+  color: white;
+}
+#falling-hex.countdown.warning .countdown-digits {
+  color: var(--yellow);
+}
+#falling-hex.countdown.finished .countdown-digits {
+  color: var(--light-pink);
+}
+```

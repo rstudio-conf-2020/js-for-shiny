@@ -1,0 +1,78 @@
+---
+title: "Thank you!"
+author: "JavaScript for Shiny Users"
+date: '2020-01-27 - 2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: false
+    nature:
+      ratio: 16:9
+      slideNumberFormat: ""
+---
+
+class: middle
+
+.w-33.fl.mr4[
+![](assets/img/bg/unsplash_CjI_2QX7hvU.jpg)
+]
+
+# Thank You!
+
+.f5[
+Before you go...<br>
+please fill out the course survery
+
+.red[rstd.io/ws-survey]
+]
+
+(It only takes a few minutes, I promise)
+
+
+.gray.absolute.bottom-1[Have a blast at rstudio::conf!]
+
+<div class="js4shiny-hex-sticker"></div>
+
+```{css echo=FALSE}
+.js4shiny-hex-sticker {
+  position: absolute;
+  opacity: 0.8;
+  width: 180px;
+  height: 200px;
+  right: 40px;
+  bottom: 30px;
+  transform: rotate(-10deg);
+  filter: drop-shadow(2px 4px 5px #686868);
+  background-image: url(assets/img/js4shiny_400.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+```
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r js4shiny, echo=FALSE}
+htmltools::tagList(
+  js4shiny::html_dependency_stylize(c("fonts", "variables"))
+)
+```

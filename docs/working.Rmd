@@ -1,0 +1,166 @@
+---
+title: "Work Time!"
+author: "Garrick Aden-Buie"
+date: '2020-01-27 - 2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs/working"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: false
+    nature:
+      ratio: 16:9
+      slideNumberFormat: ""
+---
+
+class: center middle
+
+# Work Time
+
+.f4.center[
+&#x1F469;&#x1F3FC;&#x200D;&#x1F4BB;
+&#x1F468;&#x1F3FE;&#x200D;&#x1F4BB;
+&#x1F469;&#x1F3FB;&#x200D;&#x1F4BB;
+&#x1F469;&#x1F3FE;&#x200D;&#x1F4BB;
+&#x1F468;&#x1F3FD;&#x200D;&#x1F4BB;
+&#x1F468;&#x1F3FB;&#x200D;&#x1F4BB;
+]
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r js4shiny, echo=FALSE}
+htmltools::tagList(
+  js4shiny::html_dependency_stylize(c("fonts", "variables", "code"))
+)
+```
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_2FPjlAyMQTA.jpg')
+background-size: cover
+
+```{r} 
+countdown::countdown(1, id = "all-hands", warn_when = 15, blink_colon = FALSE)
+```
+
+```{css echo=FALSE}
+#all-hands.countdown{
+  background: none;
+  border: none!important;
+  left: 0;
+  right: 52%!important;
+  font-size: 96px;
+  box-shadow: none;
+}
+#all-hands.countdown .countdown-digits {
+  color: white;
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#all-hands.countdown.running .countdown-digits {
+  color: white;
+}
+#all-hands.countdown.warning .countdown-digits {
+  color: var(--yellow);
+}
+#all-hands.countdown.finished .countdown-digits {
+  color: var(--pink);
+}
+```
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_vSchPA-YA_A.jpg')
+background-size: cover
+
+```{r} 
+countdown::countdown(3, id = "desk", warn_when = 20, blink_colon = FALSE)
+```
+
+```{css echo=FALSE}
+#desk.countdown{
+  background: none;
+  border: none!important;
+  left: 0;
+  right: 0;
+  top: 0px;
+  padding-top: 0px !important;
+  bottom: unset !important;
+  font-size: 148px;
+  box-shadow: none;
+}
+#desk.countdown .countdown-digits {
+  color: var(--text);
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#desk.countdown.running .countdown-digits {
+  color: var(--text);
+}
+#desk.countdown.warning .countdown-digits {
+  color: var(--yellow);
+}
+#desk.countdown.finished .countdown-digits {
+  color: var(--pink);
+}
+```
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_RYyr-k3Ysqg.jpg')
+background-size: cover
+
+```{r} 
+countdown::countdown(
+  minutes = 5,
+  id = "typing",
+  warn_when = 20,
+  blink_colon = FALSE,
+  bottom = "160px",
+  right = "40px"
+)
+```
+
+```{css echo=FALSE}
+#typing.countdown {
+  background: none;
+  border: none!important;
+  padding: 0px !important;
+  font-size: 242px;
+  box-shadow: none;
+  margin: 0;
+}
+#typing.countdown .countdown-digits {
+  color: var(--text);
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#typing.countdown.running .countdown-digits {
+  color: var(--green);
+}
+#typing.countdown.warning .countdown-digits {
+  color: var(--gold);
+}
+#typing.countdown.finished .countdown-digits {
+  color: var(--red);
+}
+```

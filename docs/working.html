@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Work Time!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <link href="assets/libs/working/js4shiny-stylize/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/working/js4shiny-stylize/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/working/js4shiny-stylize/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/working/countdown/countdown.css" rel="stylesheet" />
+    <script src="assets/libs/working/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center middle
+
+# Work Time
+
+.f4.center[
+&amp;#x1F469;&amp;#x1F3FC;&amp;#x200D;&amp;#x1F4BB;
+&amp;#x1F468;&amp;#x1F3FE;&amp;#x200D;&amp;#x1F4BB;
+&amp;#x1F469;&amp;#x1F3FB;&amp;#x200D;&amp;#x1F4BB;
+&amp;#x1F469;&amp;#x1F3FE;&amp;#x200D;&amp;#x1F4BB;
+&amp;#x1F468;&amp;#x1F3FD;&amp;#x200D;&amp;#x1F4BB;
+&amp;#x1F468;&amp;#x1F3FB;&amp;#x200D;&amp;#x1F4BB;
+]
+
+
+
+
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_2FPjlAyMQTA.jpg')
+background-size: cover
+
+<div class="countdown" id="all-hands" style="right:0;bottom:0;" data-warnwhen="15">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+&lt;style type="text/css"&gt;
+#all-hands.countdown{
+  background: none;
+  border: none!important;
+  left: 0;
+  right: 52%!important;
+  font-size: 96px;
+  box-shadow: none;
+}
+#all-hands.countdown .countdown-digits {
+  color: white;
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#all-hands.countdown.running .countdown-digits {
+  color: white;
+}
+#all-hands.countdown.warning .countdown-digits {
+  color: var(--yellow);
+}
+#all-hands.countdown.finished .countdown-digits {
+  color: var(--pink);
+}
+&lt;/style&gt;
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_vSchPA-YA_A.jpg')
+background-size: cover
+
+<div class="countdown" id="desk" style="right:0;bottom:0;" data-warnwhen="20">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+&lt;style type="text/css"&gt;
+#desk.countdown{
+  background: none;
+  border: none!important;
+  left: 0;
+  right: 0;
+  top: 0px;
+  padding-top: 0px !important;
+  bottom: unset !important;
+  font-size: 148px;
+  box-shadow: none;
+}
+#desk.countdown .countdown-digits {
+  color: var(--text);
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#desk.countdown.running .countdown-digits {
+  color: var(--text);
+}
+#desk.countdown.warning .countdown-digits {
+  color: var(--yellow);
+}
+#desk.countdown.finished .countdown-digits {
+  color: var(--pink);
+}
+&lt;/style&gt;
+
+---
+
+class: fullscreen bottom center
+background-image: url('assets/img/bg/unsplash_RYyr-k3Ysqg.jpg')
+background-size: cover
+
+<div class="countdown" id="typing" style="right:40px;bottom:160px;" data-warnwhen="20">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+&lt;style type="text/css"&gt;
+#typing.countdown {
+  background: none;
+  border: none!important;
+  padding: 0px !important;
+  font-size: 242px;
+  box-shadow: none;
+  margin: 0;
+}
+#typing.countdown .countdown-digits {
+  color: var(--text);
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+#typing.countdown.running .countdown-digits {
+  color: var(--green);
+}
+#typing.countdown.warning .countdown-digits {
+  color: var(--gold);
+}
+#typing.countdown.finished .countdown-digits {
+  color: var(--red);
+}
+&lt;/style&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'FALSE';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

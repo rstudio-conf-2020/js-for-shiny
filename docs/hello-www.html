@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to JavaScript for Shiny Users</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Garrick Aden-Buie" />
+    <meta name="date" content="2020-01-27" />
+    <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="assets/libs/tile-view/tile-view.js"></script>
+    <link href="assets/libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="assets/libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="assets/libs/panelset/panelset.js"></script>
+    <link href="assets/libs/js4shiny/css/_variables-fonts.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/_variables.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/css/code.css" rel="stylesheet" />
+    <link href="assets/libs/js4shiny/jsonview/jsonview.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny/jsonview/jsonview.min.js"></script>
+    <link href="assets/libs/js4shiny-redirectConsoleLog/jslog.css" rel="stylesheet" />
+    <script src="assets/libs/js4shiny-redirectConsoleLog/redirectConsoleLog.js"></script>
+    <meta name="description" content="Slides for &quot;Hello World Wide Web&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:title" content="Hello World Wide Web | JavaScript for Shiny Users"/>
+    <meta name="twitter:description" content="Slides for &quot;Hello World Wide Web&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="twitter:url" content="https://js4shiny.com"/>
+    <meta name="twitter:image:src" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="twitter:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@grrrck"/>
+    <meta name="twitter:site" content="@grrrck"/>
+    <meta name="og:title" content="Hello World Wide Web | JavaScript for Shiny Users"/>
+    <meta name="og:description" content="Slides for &quot;Hello World Wide Web&quot; from the &quot;JavaScript for Shiny Users&quot; workshop at rstudio::conf(2020)"/>
+    <meta name="og:url" content="https://js4shiny.com"/>
+    <meta name="og:image" content="https://slides.js4shiny.com/assets/img/js4shiny-preview.jpg"/>
+    <meta name="og:image:alt" content="Hex logo of the js4shiny workshop and package"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:locale" content="en_US"/>
+    <meta name="article:author" content="Garrick Aden-Buie"/>
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/tachyons.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/js4shiny-xaringan-extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title
+
+
+
+
+
+<h1>Hello World Wide Web</h1>
+<h2>JavaScript for Shiny Users</h2>
+<div class="rstudio-conf-logo"></div>
+<div class="talk-meta">
+<p class="talk-author">Garrick Aden-Buie</p>
+<p class="talk-date">rstudio::conf(2020, "JavaScript for Shiny Users")</p>
+</div>
+
+---
+class: break break-javascript bottom right
+
+## JS&lt;br&gt;CSS&lt;br&gt;HTML&lt;br&gt;...WTF?
+
+---
+name: how-it-works
+layout: true
+
+# How does the web work?
+
+???
+
+* Browser requests `rstudio.com`
+* gets `rstudio.com/index.html`
+* `index.html` says here's the document
+* and you also need these other files
+* browser reads document structure, styles, javascript
+* builds a web page and hands it to you
+* what `index.html` says it should be and what the page *is* when you see it are very different
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-04.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-05.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-06.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-07.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-08.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-09.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-10.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-11.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-12.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-13.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-14.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-15.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-16.jpg')
+background-size: contain
+background-position: top left
+
+
+---
+
+
+class: animated fadeIn
+background-image: url('assets/img/intro/how-web-works/how-web-works-17.jpg')
+background-size: contain
+background-position: top left
+
+
+
+
+---
+layout: false
+
+class: fullscreen animated zoomIn
+background-image: url('assets/img/intro/color-by-number.png')
+background-size: cover
+background-position: top left
+
+???
+
+* HTML tells the browser **what**:
+  * content
+  * images
+  * other files
+
+---
+class: fullscreen 
+background-image: url('assets/img/intro/anna-kolosyuk-D5nh6mCW52c-unsplash.jpg')
+background-size: cover
+background-position: top left
+
+???
+
+* CSS tells the browser **how** to show things to you
+
+---
+class: fullscreen 
+background-image: url('assets/img/intro/alice-achterhof-FwF_fKj5tBo-unsplash.jpg')
+background-size: cover
+background-position: 0 -50px
+
+???
+
+* JavaScript can step in at any point and mess with the whole process
+
+---
+name: button-example
+class: fullscreen h-100
+
+
+
+.pa2.pl3[
+## HTML
+]
+
+.fl.w-70.pa2.pl3.nt3[
+```html
+&lt;button id="button-demo" value='0'&gt;
+  &amp;#x1F44D; Plus one
+&lt;/button&gt;
+```
+]
+
+.fr.w-30.pa2.pl3.pt3.nt3[
+&lt;button value='0'&gt;&amp;#x1F44D; Plus one&lt;/button&gt;
+]
+
+???
+
+Go through the example twice...
+The first time, just showing the basics, focusing on the role of the languages.
+
+The second time, talk through
+
+- connected via `id`
+- css controls appearance
+  - note: appearance _in states_ so sometimes it feels like it does something but it doesn't change the HTML
+- js can change the HTML, change the styles, move things around, react etc.
+
+Finally use last block as quick intro to JS
+
+---
+class: fullscreen h-100
+
+.pa2.pl3[
+## CSS
+]
+
+.fl.w-70.pa2.pl3.nt3[
+
+```css
+#button-demo {
+  color: #4d8dc9;
+  background-color: white;
+  border: 2px solid #4d8dc9;
+  padding: 0.5em 1em;
+}
+```
+
+
+&lt;style type="text/css"&gt;
+#button-demo {
+  color: #4d8dc9;
+  background-color: white;
+  border: 2px solid #4d8dc9;
+  padding: 0.5em 1em;
+}
+&lt;/style&gt;
+]
+
+&lt;div id="button-demo-no-hover"&gt;
+.fr.w-30.pa2.pl3.pt3.nt3[
+&lt;button id="button-demo" value='0'&gt;&amp;#x1F44D; Plus one&lt;/button&gt;
+]
+&lt;/div&gt;
+
+&lt;style&gt;
+  #button-demo-no-hover #button-demo {
+    background-color: white;
+    border: 2px solid #4d8dc9;
+    color: #4d8dc9;
+  }
+  #button-demo-no-hover #button-demo {
+    transform: scale(1);
+  }
+&lt;/style&gt;
+
+---
+class: fullscreen h-100
+
+.pa2.pl3[
+## CSS
+]
+
+.fl.w-70.pa2.pl3.nt3[
+
+```css
+#button-demo {
+  color: #4d8dc9;
+  background-color: white;
+  border: 2px solid #4d8dc9;
+  padding: 0.5em 1em;
+}
+```
+
+
+```css
+#button-demo:hover {
+  background-color: #4d8dc9;
+  color: white;
+}
+```
+
+
+&lt;style type="text/css"&gt;
+#button-demo:hover {
+  background-color: #4d8dc9;
+  color: white;
+}
+&lt;/style&gt;
+]
+
+&lt;div id="button-demo-no-active"&gt;
+.fr.w-30.pa2.pl3.pt3.nt3[
+&lt;button id="button-demo" value='0'&gt;&amp;#x1F44D; Plus one&lt;/button&gt;
+]
+&lt;/div&gt;
+
+&lt;style&gt;#button-demo-no-active #button-demo { transform: scale(1); }&lt;/style&gt;
+
+---
+class: fullscreen h-100
+
+.pa2.pl3[
+## CSS
+]
+
+.fl.w-70.pa2.pl3.nt3[
+```css
+#button-demo {
+  color: #4d8dc9;
+  background-color: white;
+  border: 2px solid #4d8dc9;
+  padding: 0.5em 1em;
+}
+#button-demo:hover {
+  background-color: #4d8dc9;
+  color: white;
+}
+```
+
+
+```css
+#button-demo:active {
+  transform: scale(0.9);
+}
+```
+
+
+&lt;style type="text/css"&gt;
+#button-demo:active {
+  transform: scale(0.9);
+}
+&lt;/style&gt;
+]
+
+.fr.w-30.pa2.pl3.pt3.nt3[
+&lt;button id="button-demo" value='0'&gt;&amp;#x1F44D; Plus one&lt;/button&gt;
+]
+
+---
+class: fullscreen h-100
+
+.pa2.pl3[
+## JS
+]
+
+.fl.w-70.pa2.pl3.nt3[
+
+```js
+const btn = document.getElementById('button-demo')
+```
+
+```js
+btn.addEventListener('click', function() {
+  let clicks = parseInt(btn.value)
+  clicks = clicks + 1
+  btn.value = clicks
+  btn.innerHTML = `&amp;#x1F44D; Plus one (${clicks})`
+  console.log('Clicks: ' + clicks)
+})
+```
+
+
+&lt;div id="out-button-demo-js"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+]
+
+&lt;div id="button-demo-full"&gt;
+.fr.w-30.pa2.pl3.pt3.nt3[
+&lt;button id="button-demo" value='0'&gt;&amp;#x1F44D; Plus one&lt;/button&gt;
+]
+&lt;/div&gt;
+
+&lt;div id="out-button-demo-js-reset"&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;style type="text/css"&gt;
+#out-button-demo-js-reset { display: none; }
+&lt;/style&gt;
+
+---
+name: motivation
+class: break break-shiny huge
+
+# Shiny + .js
+
+.marker.f5[What can we do with Shiny and Javascript?]
+
+---
+
+# Use color to give feedback
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/01-feedback-color.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/01-feedback-color.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Hold your horses...
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/02-feedback-icon-animation_initial.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/02-feedback-icon-animation_initial.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Waiting is easier with communication
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/02-feedback-icon-animation_solution.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/02-feedback-icon-animation_solution.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Direct attention with animation
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/03-feedback-animation-wiggle.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/03-feedback-animation-wiggle.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Send messages to your users
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/04-feedback-update-text.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/04-feedback-update-text.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Guide users through your app
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/05-control-focus.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/05-control-focus.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Add keyboard shortcuts
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/06-control-keyboard-events.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/06-control-keyboard-events.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+layout: true
+
+# Make R Markdown awesome-r
+
+---
+
+.panelset[
+.panel[.panel-name[pkg-stats.Rmd]
+
+```markdown
+## ggplot2 {.pkg-stats}
+
+downloads
+:    846k/month
+
+stars
+:    4.2k
+
+forks
+:    1.5k
+```
+]
+
+.panel[.panel-name[pkg-stats.html]
+
+```html
+&lt;h2 class="pkg-stat" id="ggplot2"&gt;ggplot2&lt;/h2&gt;
+&lt;dl&gt;
+  &lt;dt&gt;downloads&lt;/dt&gt;
+  &lt;dd&gt;846k/month&lt;/dd&gt;
+  &lt;dt&gt;stars&lt;/dt&gt;
+  &lt;dd&gt;4.2k&lt;/dd&gt;
+  &lt;dt&gt;forks&lt;/dt&gt;
+  &lt;dd&gt;1.5k&lt;/dd&gt;
+&lt;/dl&gt;
+```
+]
+
+
+.panel[.panel-name[Browser]
+
+.relative.w-100.h-abs-475[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/08-design-rewrite_initial.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/08-design-rewrite_initial.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]]
+]
+
+---
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/08-design-rewrite_solution.html" class="fullscreen-iframe-scale-150"&gt;
+   &lt;a href="assets/html/motivate/08-design-rewrite_solution.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+layout: false
+
+# Don't work too hard
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/07-design-add-content.html" class="fullscreen-iframe-scale-150"&gt;
+   &lt;a href="assets/html/motivate/07-design-add-content.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Use JavaScript libraries for **fun**
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/09-jslib-typerjs.html" class="fullscreen-iframe-scale-200"&gt;
+   &lt;a href="assets/html/motivate/09-jslib-typerjs.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Use JavaScript libraries for **profit**
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/10-jslib-frappe-charts.html" class="fullscreen-iframe-scale-125"&gt;
+   &lt;a href="assets/html/motivate/10-jslib-frappe-charts.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+
+# Use JavaScript libraries for **profit**
+
+.relative.w-100.h-100.ph2[
+&lt;div class="fullscreen-iframe-container"&gt;&lt;div data-iframe data-src="assets/html/motivate/11-jslib-frappe-charts-extended.html" class="fullscreen-iframe-scale-125"&gt;
+   &lt;a href="assets/html/motivate/11-jslib-frappe-charts-extended.html"&gt;iframe content&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;
+]
+
+---
+layout: true
+
+# Workshop goals
+
+???
+
+One major reason for focusing on some of the fundamentals is that it's an expected baseline in much of the documentation.
+
+Web people and libraries assume you're going to do web things, as anyone whose asked a shiny specific webdev question on stack overflow knows.
+
+R and Shiny package docs focus on being productive with the tools, not necessarily going deep. _How does anybody learn this?_
+
+Having a solid mental model of what web dev is supposed to be like is super helpful.
+
+---
+
+.w-two-thirds.mh-a[
+![](assets/img/intro/front-back.png)
+]
+
+---
+
+.w-80.mh-a[
+![](assets/img/intro/front-back-shiny.jpg)
+]
+
+
+---
+class: center middle 
+
+# Next: [Maiden Voyage (How to WWW)](how-to-www.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="assets/js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "docco",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!-- scripts from markdown source start -->
+<script type="text/javascript">
+const log_out_button_demo_js = redirectLogger(document.querySelector("#out-button-demo-js > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_button_demo_js(`const btn = document.querySelector('#button-demo-full #button-demo')
+btn.addEventListener('click', function() {
+  let clicks = parseInt(btn.value)
+  clicks = clicks + 1
+  btn.value = clicks
+  btn.innerHTML = \`&#x1F44D; Plus one (\${clicks})\`
+  console.log('Clicks: ' + clicks)
+})`)
+})
+</script>
+<script type="text/javascript">
+const log_out_button_demo_js_reset = redirectLogger(document.querySelector("#out-button-demo-js-reset > pre"))
+document.addEventListener("DOMContentLoaded", function() {
+log_out_button_demo_js_reset(`const btn = document.querySelector('#button-demo-full #button-demo')
+const btnConsole = document.querySelector("#out-button-demo-js pre")
+btn.addEventListener('click', function() {
+  if (parseInt(btn.value) === 13) {
+    btn.classList.add('animated')
+    btn.classList.add('hinge')
+  }
+})
+slideshow.on('showSlide', () => {
+  if (parseInt(btn.value) === 13) {
+    btn.classList.remove('animated')
+    btn.classList.remove('hinge')
+    btn.value = 0
+    btn.innerHTML = '&#x1F44D; Plus one'
+    btnConsole.innerHTML = ''
+  }
+})`)
+})
+</script>
+<!-- scripts from markdown source end -->
+<script>
+(function (d) {
+  d.addEventListener('DOMContentLoaded', function () {
+    // find code chunks that get special colors
+    const langSpecial = ['r', 'js', 'yaml', 'json', 'bash', 'html', 'css']
+    const codeSpecial = d.querySelectorAll(langSpecial.map(l => 'pre code.' + l))
+
+    // find code chunks with highlighted lines
+    const hlines = d.querySelectorAll('.remark-code-line-highlighted')
+    const preHLParents = []
+
+    const findPreParent = function (line, p = 0) {
+      if (p > 1) return null // traverse up no further than grandparent
+      const el = line.parentElement
+      if (el.tagName === 'PRE') {
+        return el
+      } else {
+        return findPreParent(el, ++p)
+      }
+    }
+
+    // add the code language to the parent <pre> element
+    for (const code of codeSpecial) {
+      const pre = findPreParent(code)
+      const codeLang = code.className.split(' ').filter(c => langSpecial.includes(c))
+      pre.classList += ` ${codeLang}`
+    }
+
+    // add remark-code-has-line-highlighted to parent <pre> element
+    for (const line of hlines) {
+      const pre = findPreParent(line)
+      if (pre && !preHLParents.includes(pre)) preHLParents.push(pre)
+    }
+    preHLParents.forEach(p => p.classList += ' remark-code-has-line-highlighted')
+
+    slideshow.on('afterShowSlide', function (slide) {
+      replaceIframePlaceholders()
+    })
+
+    replaceIframePlaceholders()
+  })
+})(document)
+
+function replaceIframePlaceholders () {
+  document
+    .querySelectorAll('.remark-slides-area .remark-visible div[data-iframe]')
+    .forEach(el => replaceIframePlaceholder(el))
+}
+
+function replaceIframePlaceholder (el) {
+    const iframe = document.createElement('iframe')
+    if (el.childNodes) {
+      el.childNodes.forEach(e => iframe.appendChild(e))
+    }
+    iframe.src = el.dataset.src
+    iframe.classList = el.classList
+    el.parentElement.replaceChild(iframe, el)
+}
+</script>
+<style>
+  .remark-code-has-line-highlighted .remark-code-line:not(.remark-code-line-highlighted) {
+    opacity: 0.4;
+  }
+
+  .remark-code-line-highlighted {
+    background-color: inherit; /* Override highlight color */
+    /* font-weight: 500; */
+  }
+
+  /* Line Hover Indicator */
+  .remark-code-line:hover {
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  .remark-code-line:hover:before {
+    content: "\25B6";
+    color: #6d7e8a;
+    position: absolute;
+    transform: translateX(-1.2em);
+    animation: hover 0.66s alternate 8 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  @keyframes hover {
+    0% {
+      transform: translateX(-1.2em);
+    }
+    100% {
+      transform: translateX(-0.8em);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'FALSE';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+---
+title: "Extending Shiny"
+subtitle: "Day 2 - Afternoon - Session 3"
+author: "Garrick Aden-Buie"
+date: '2020-01-28'
+output:
+  xaringan::moon_reader:
+    lib_dir: "assets/libs"
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      - assets/css/js4shiny-xaringan-extra.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    mathjax: NULL
+    nature:
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+class: title
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  fig.retina = 2,
+  fig.path = "assets/files/extending_",
+  warning = FALSE,
+  message = FALSE
+)
+source("R/components.R")
+use_placeholders()
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "editable"))
+```
+
+```{r js4shiny, echo=FALSE}
+htmltools::tagList(
+  js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+)
+```
+
+`r title_slide("Licensed to ill", "Extending Shiny", day = 2, session = "pm")`
+
+---
+
+# Questions and Follow up
+
+.can-edit.key-QandA[
+- Questions and answers to anything that came up in the first half
+]
+
+
+---
+class: break white animated slideInUp slideOutRight
+background-image: url('assets/img/bg/unsplash_F7Rl02ir0Gg.jpg')
+background-size: cover
+
+# Shiny Inputs
+
+---
+class: animated slideInLeft slideOutUp
+background-image: url('assets/img/bg/unsplash_-EnI0H6Wm6s.jpg')
+background-size: cover
+
+---
+class: animated slideInUp
+
+# Let's Build a Shiny Input!
+
+We're going to do all the steps of this project together (again).
+
+Be kind to your neighbors and help them if they get stuck.
+
+.center.mt4[
+# Open up your .dark-pink[frappeCharts] Project
+
+<a class="f4" href="http://bit.ly/js4shiny-input" target="_blank">bit.ly/js4shiny-input</a>
+]
+
+---
+name: overview
+
+# The Shiny Input Binding
+
+.f6[Skeleton Snippet: [bit.ly/js4shiny-input-binding](http://bit.ly/js4shiny-input-binding)]
+
+.w-90.mh-a[
+- .b.code[find()] .fr[How to find your input elements on the page]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[subscribe()] .fr[What browser events will trigger an update from your input]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[getRatePolicy()] .fr[How often to send updates back to the server]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[getValue()] .fr[What is the value of your input?]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[receiveMessage()] .fr[Let the input receive messages from the server]
+]
+
+--
+
+.w-90.mh-a[
+- .b.code[setValue()] .fr[Update your HTML from server]
+]
+
+---
+name: checkbox
+class: header_background
+
+# Learn from checkboxInput()
+
+.f6[[bit.ly/js4shiny-checkbox](http://bit.ly/js4shiny-checkbox)]
+
+Find a partner and read through the input binding definition together.
+
+Take turns explaining to each other what each method does:
+
+.code[
+- find
+- getValue
+- setValue
+- subscribe
+- unsubscribe
+- getState
+- receiveMessage
+]
+
+`r countdown::countdown(5)`
+
+
+---
+name: get-value
+class: header_background
+
+## Update .getValue()
+
+The `.value` of a `textarea` element is a string containing the text
+inside the element.
+
+Update `.getValue()` to
+
+1.  Return the number of characters the user has typed ([changelog:
+    b3958d](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/b3958d5e3f60fbac3a0100673696bd413a276fb4))
+
+2.  Return the number of words the user has entered ([changelog:
+    e3fa48](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/e3fa485bb60853e391302289213d3cd5f0846b3e))
+
+3.  Create variables for both number of characters and words and return
+    both in an object ([changelog:
+    edfb93](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/edfb9399eae5207cc4a3ef9b48e62c9c92230477))
+
+---
+name: debounce
+
+`r slides_from_images("assets/img/extending/direct-debounce-throttle", class = "animated fadeIn fast")`

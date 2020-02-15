@@ -1,0 +1,656 @@
+.hljs {
+  background-color: transparent !important;
+}
+
+pre {
+  padding: 0 0.8em;
+  margin: 19px 0;
+  border-width: 5px;
+  font-size: 1em;
+}
+
+html {
+  font-size: 42px;
+}
+
+.rotate-355 {
+  transform: rotate(-5deg);
+}
+
+.rotate-350 {
+  transform: rotate(-10deg);
+}
+
+.rotate-345 {
+  transform: rotate(-15deg);
+}
+
+.rotate-train {
+  transform: rotate(-33deg);
+}
+
+.header {
+  font-family: 'Nunito Sans';
+}
+
+.text-shadow-1 {
+  text-shadow: -3px 5px 0px rgba(255, 255, 255, 1);
+}
+
+.text-shadow-2 {
+  text-shadow: 6px 7px 0 rgb(255, 255, 255);
+}
+
+.text-shadow-3 {
+  text-shadow: 0px 4px 3px rgba(255, 255, 255,0.4),
+             0px 8px 13px rgba(255,255,255,0.1),
+             0px 18px 23px rgba(255, 255, 255,0.1);
+}
+
+.text-shadow-4 {
+  text-shadow: -10px 10px 0px #e6fff7, -20px 20px 0px #92d9c2, -30px 30px 0px #63bda0;
+}
+
+.text-letterpress {
+  background-color: #666666;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+.hover-show:hover {
+  opacity: 1;
+}
+
+.remark-slide-content {
+  padding: 0 3em;
+}
+
+.remark-slide-content.fullscreen {
+  padding: 0;
+}
+
+.mh-a {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-v {
+  display: flex;
+  align-items: center;
+}
+
+.pull-left>*:first-child,
+.pull-right>*:first-child {
+  margin-top: 0;
+}
+
+.hl {
+  background-color: rgba(255, 255, 0, 0.5);
+  padding: 1px 4px;
+}
+
+.footnote {
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  opacity: 0.66;
+}
+
+.hide-count .remark-slide-number {
+  display: none;
+}
+
+.f-lato {
+  font-family: Lato, 'Lato Regular', sans-serif;
+}
+
+.f-nunito {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.f-marker {
+  font-family: 'Permanent Marker', sans-serif;
+}
+
+.f-galada {
+  font-family: Galada, sans-serif;
+}
+
+.f-source-code {
+  font-family: font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+}
+
+::selection {
+  background-color: rgba(85, 235, 188, 0.6);
+}
+
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid var(--text-lighter);
+  font-family: var(--font-monospace);
+  background-color: var(--text-lighter);
+  color: var(--text);
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  box-shadow: 0 1px 0px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  line-height: 1.4;
+  white-space: nowrap;
+  font-size: 1em !important;
+}
+
+.backtick::before {
+  content: '`';
+}
+
+.backtick::after {
+  content: '`';
+}
+
+.smallest {
+  font-size: 0.5em;
+}
+
+.smaller {
+  font-size: 0.75em;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.smallish {
+  font-size: 0.9em;
+}
+
+.big {
+  font-size: 1.25em;
+}
+
+.bigger {
+  font-size: 1.5em;
+}
+
+.huge {
+  font-size: 2em;
+}
+
+/* ---- Blockquotes ---- */
+
+blockquote {
+  font-family: 'Permanent Marker';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 1.5em;
+  color: #6d7e8a;
+  margin-left: 0;
+}
+
+blockquote cite {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-size: 75%;
+  color: #c0c8cc;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -ms-word-break: keep-all;
+  word-break: keep-all;
+}
+
+blockquote cite::before {
+  content: '—';
+  margin-right: 5px;
+}
+
+blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ---- Title Slide ---- */
+.title {
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #466683;
+  background-image: url('../img/rstudio-2020-sf-hero.jpg');
+}
+
+.title .remark-slide-number {
+  display: none;
+}
+
+.title h1:first-of-type {
+  margin-top: 0;
+}
+
+.title h1 {
+  color: #eaecee;
+  margin-bottom: 0.25em;
+  font-size: 1.75rem;
+}
+
+.title h2,
+.title h3 {
+  margin-top: 0;
+  color: #d0d0d0;
+}
+
+.rstudio-conf-logo {
+  background-image: url('../img/rstudio-2020-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.title .rstudio-conf-logo {
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  top: 1em;
+  left: 2em;
+}
+
+.talk-meta {
+  /* display: none; */
+  font-family: 'Nunito Sans', apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  position: absolute;
+  text-align: left;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-left: 2em;
+  padding-bottom: 1em;
+  background-image: linear-gradient(to bottom, #ffffffcc, #ffffffee);
+}
+
+.talk-author {
+  color: #2f4858;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1em;
+}
+
+.talk-date {
+  color: #6d7e8a;
+  font-family: 'Source Code Pro', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 1.25em;
+  line-height: 0;
+}
+
+/* ---- Section Break Slides ---- */
+
+.break .remark-slide-number {
+  display: none;
+}
+
+.break.huge h1 {
+  font-size: 5rem;
+}
+
+.break h1 {
+  font-size: 3rem;
+}
+
+.break h2 {
+  font-size: 2.5rem;
+}
+
+.break h3 {
+  font-size: 2rem;
+}
+
+.break.white h1,
+.break.white h2,
+.break.white h3,
+.break.white h4,
+.break.white h5 {
+  color: white;
+}
+
+.remark-slide>.break.break-javascript {
+  vertical-align: bottom;
+  text-align: right;
+}
+
+.break-javascript {
+  background-color: #f0db4f;
+}
+
+.break-javascript>h1:last-of-type {
+  margin-bottom: 15px;
+}
+
+.break-javascript h1,
+.break-javascript h2,
+.break-javascript h3 {
+  color: #2f4858;
+}
+
+.remark-slide>.break.break-shiny {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.break-shiny {
+  background: #75aadb;
+  background: linear-gradient(0deg,
+      rgba(77, 141, 201, 1) 75%,
+      rgba(186, 212, 237, 1) 100%);
+  color: #fff;
+}
+
+.break-shiny h1,
+.break-shiny h2,
+.break-shiny h3 {
+  font-family: Galada, sans-serif;
+  color: #fff;
+}
+
+.break-blue-pink {
+  color: #fff;
+  background: linear-gradient(to right top,
+      #001b44,
+      #372d6d,
+      #743a90,
+      #b840a9,
+      #ff41b4);
+}
+
+.break-blue-pink h1,
+.break-blue-pink h2,
+.break-blue-pink h3 {
+  color: #fff;
+}
+
+.break-blue-pink-yellow {
+  color: #fff;
+  background: linear-gradient(to left top,
+      #001b44,
+      #6b2f65,
+      #c04c64,
+      #f28a4f,
+      #f0db4f);
+}
+
+.break-blue-pink-yellow h1,
+.break-blue-pink-yellow h2,
+.break-blue-pink-yellow h3 {
+  font-family: Galada;
+  color: #fff;
+}
+
+/* IFRAMES */
+.fullscreen-iframe-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  max-height: 100%;
+  max-width: 100%;
+  border: 40px white solid;
+  box-sizing: border-box;
+}
+
+.remark-slides-area .remark-visible .fullscreen-iframe,
+.remark-slides-area .remark-visible .fullscreen-iframe-scale-125,
+.remark-slides-area .remark-visible .fullscreen-iframe-scale-150,
+.remark-slides-area .remark-visible .fullscreen-iframe-scale-200 {
+  display: block;
+}
+
+.fullscreen-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.fullscreen-iframe-scale-125 {
+  transform: scale(1.25);
+  transform-origin: 0 0;
+  width: 80%;
+  /* 1/1.25 */
+  height: 80%;
+  border: 0;
+}
+
+.fullscreen-iframe-scale-150 {
+  transform: scale(1.5);
+  transform-origin: 0 0;
+  width: 66.666%;
+  height: 66.666%;
+  border: 0;
+}
+
+.fullscreen-iframe-scale-200 {
+  transform: scale(2);
+  transform-origin: 0 0;
+  width: 50%;
+  height: 50%;
+  border: 0;
+}
+
+[class^="fullscreen-iframe"][data-iframe] {
+  background: #eee;
+  border: 1em solid white;
+  box-sizing: content-box;
+  box-sizing: border-box;
+  padding: 1em;
+  color: ;
+}
+
+.h-a-25 {
+  height: 25px;
+}
+
+.h-a-50 {
+  height: 50px;
+}
+
+.h-a-75 {
+  height: 75px;
+}
+
+.h-a-100 {
+  height: 100px;
+}
+
+.h-a-150 {
+  height: 150px;
+}
+
+.h-a-200 {
+  height: 200px;
+}
+
+.h-a-300 {
+  height: 300px;
+}
+
+.h-abs-475 {
+  height: 475px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.panelset {
+  --panel-tabs-color: var(--text-med);
+  --panel-tabs-color-active: var(--navy);
+  --panel-tabs-color-hover: var(--red);
+  --panel-tabs-border-bottom: var(--text-lighter);
+  --panel-tabs-inactive-opacity: 1;
+  --panel-tabs-font-family: var(--font-monospace);
+}
+
+pre.r,
+pre.js,
+pre.yaml,
+pre.json,
+pre.bash,
+pre.html,
+pre.css {
+  background: none;
+}
+
+pre.r::after,
+pre.js::after,
+pre.yaml::after,
+pre.json::after,
+pre.bash::after,
+pre.html::after,
+pre.css::after {
+  text-transform: uppercase;
+  font-family: var(--font-header);
+  left: -1.25em;
+  bottom: -1em;
+  transform-origin: top left;
+  transform: rotate(-90deg);
+}
+
+pre.pre-hide-filetype,
+.pre-hide-filetype pre::after {
+  content: '';
+}
+
+pre.pre-hide-border,
+.pre-hide-border pre {
+  border-color: transparent;
+}
+
+.jv__caret {
+  color: #666;
+  font-size: 36px;
+  transform: translate(-5px, -6px);
+  display: inline-block;
+}
+
+.html-preview {
+  border: 2px solid #ddd;
+  padding: 1em;
+}
+
+.html-preview :first-child {
+  margin-top: 0;
+}
+
+.html-preview :last-child {
+  margin-bottom: 0;
+}
+
+.remark-slide-container .remark-slide-content .html-plain>* {
+  font-family: serif !important;
+}
+
+.remark-slide-container .remark-slide-content .html-plain>*,
+.remark-slide-container .remark-slide-content .html-plain>*>* {
+  color: black !important;
+}
+
+.hide-answer .answer {
+  display: none;
+}
+
+.hide-output div[id^="out-"] {
+  opacity: 0;
+  transition: opacity 0.66s ease-in;
+}
+
+.hide-output div[id^="out-"]:hover {
+  opacity: 1;
+}
+
+li .answer {
+  width: 38px;
+  display: inline-block;
+  text-align: center;
+}
+
+.countdown-digits {
+  vertical-align: unset;
+}
+
+.countdown.running {
+  border-color: var(--dark-green);
+  background-color: var(--washed-green);
+}
+
+.countdown.running .countdown-digits {
+  color: var(--dark-green);
+}
+
+.countdown.running.warning {
+  border-color: var(--gold);
+  background-color: var(--washed-yellow);
+}
+
+.countdown.running.warning .countdown-digits {
+  color: var(--gold);
+}
+
+.countdown.finished {
+  border-color: var(--dark-red);
+  background-color: var(--red);
+}
+
+.countdown.finished .countdown-digits {
+  color: var(--washed-red);
+}
+
+.pre-name {
+  margin-bottom: -0.5em;
+  padding-top: 0.5em;
+}
+
+.icon {
+  display: inline-block;
+  background-size: 100%;
+}
+
+.icon-25 {
+  width: 25px;
+  height: 25px;
+}
+
+.icon-64 {
+  width: 64px;
+  height: 64px;
+}
+
+.icon-128 {
+  width: 128px;
+  height: 128px;
+}
+
+.icon-256 {
+  width: 256px;
+  height: 256px;
+}
+
+.icon-rstudio {
+  background-image: url('../img/rstudio-icon.png');
+}
+
+.octicon-shadow {
+  filter: drop-shadow(0 7px 7px rgba(0, 0, 0, 0.25));
+}
+
+.not-animated {
+  animation-duration: 0s !important;
+}

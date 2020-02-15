@@ -1,0 +1,5 @@
+:root {
+  --font-monospace: 'Source Code Pro', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-header: 'Nunito Sans', apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
