@@ -1,0 +1,15 @@
+# Font style metadata
+name = "crimson-text"
+
+# Optional Google font URL
+google_fonts = "Cutive+Mono|Raleway:300,400,500,600|Crimson+Text"
+
+# Font families
+heading_font = "Crimson Text"
+body_font = "Raleway"
+nav_font = "Crimson Text"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "17"
+font_size_small = "15"

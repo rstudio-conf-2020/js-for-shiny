@@ -1,0 +1,172 @@
+# SITE SETUP
+# Documentation: https://sourcethemes.com/academic/
+
+# Color theme.
+#   Choose from:
+#   `conf_2020`, `conf1`, `conf2`, `conf3`, or `conf4`.
+color_theme = "confjs"
+
+# Enable users to switch between day and night mode?
+day_night = false
+
+# Font style; please do not change.
+font = "conf_2020"
+
+# Description for social sharing and search engines. If undefined, superuser role is used in place.
+description = "A two-day workshop at rstudio::conf 2020 in San Francisco, California (January 27-28)"
+
+# Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
+sharing_image = "2020-Conf-600x600.jpg"
+
+# Twitter username (without @). Used when a vistor shares your site on Twitter.
+twitter = "rstudio"
+
+# Diplay a logo in navigation bar rather than title (optional).
+#   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
+#logo = "2020-logo.png"
+
+# Enable global source code highlighting? true/false
+# Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
+highlight = false
+highlight_languages = ["r", "javascript", "bash", "json", "yaml"]  # Add support for highlighting additional languages
+highlight_style = "default"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
+
+# Enable global LaTeX math rendering?
+#   If false, you can enable it locally on a per page basis.
+math = false
+
+# Privacy pack
+#   Show a cookie consent message to visitors
+#   Anonymize IP in Google Analytics (if enabled)
+privacy_pack = false
+
+# Enable visitors to edit pages?
+# `repo` defines the repository URL. `editable` defines which page types can be edited.
+edit_page = {repo_url = "https://github.com/rstudio-conf-2020/workshop-template-blogdown", editable = {docs = true}}
+
+# Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
+#   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
+date_format = "Jan 2, 2006"
+#   Examples: "3:04 pm" or "15:04"
+time_format = "3:04 PM"
+
+############################
+## Contact Widget setup   ##
+############################
+
+# Enter contact details (optional). To hide a field, clear it to "".
+email = ""
+phone = ""
+address = """<strong>Continental Ballroom Room 6 (Ballroom Level)</strong><br>
+             Hilton San Francisco Union Square<br>
+             333 O'Farrell Street<br>
+             San Francisco, CA 94102"""
+
+# Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
+office_hours = """Monday January 27, 09:00 to 17:00<br>
+                  Tuesday January 28, 09:00 to 17:00"""
+
+# Enter an optional link for booking appointments (e.g. calendly.com).
+appointment_url = ""
+
+# Contact links
+#   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
+contact_links = [
+  {icon = "twitter", icon_pack = "fab", name = "#rstudioconf", link = "https://twitter.com/hashtag/rstudioconf"},
+  {icon = "twitter", icon_pack = "fab", name = "#js4shiny", link = "https://twitter.com/hashtag/js4shiny"},
+  {icon = "box-open", icon_pack = "fas", name = "Workshop Package", link = "https://pkg.js4shiny.com"},
+  {icon = "github", icon_pack = "fab", name = "Workshop Repo", link = "https://github.com/rstudio-conf-2020/js-for-shiny"},
+  {icon = "gitter", icon_pack = "fab", name = "Gitter Chatroom", link = "https://gitter.im/js4shiny/rstudio-conf-2020"},
+  # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
+  ]
+
+# Display a map.
+# To show your address on a map in the contact widget, you need to enter your latitude, longitude and choose
+# a map provider below.
+# To use Google Maps, set `map = 1` and enter your API key that can be obtained here:
+#   https://developers.google.com/maps/documentation/javascript/get-api-key
+# To use OpenStreetMap tiles, set `map = 2`.
+# To use OpenStreetMap on a high traffic site, set `map = 3` and enter your API key that can be obtained here:
+#   https://www.mapbox.com/studio/account/tokens
+# To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
+#
+# Map provider:
+#   0: No map
+#   1: Google Maps
+#   2: OpenStreetMap (Mapnik)
+#   3: OpenStreetMap (Mapbox)
+map = 2
+map_api_key = ""
+latitude = "37.7859"
+longitude = "-122.4105"
+zoom = 14
+
+############################
+## Plugins                ##
+############################
+
+# Load CSS and JS plugins
+#   E.g. To load `/assets/css/custom.css`, set `plugins_css = ["custom"]`.
+#   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
+
+plugins_css = ["conf-2020", "_variables-fonts", "_variables", "code", "table", "utility", "custom"]
+plugins_js  = []
+
+############################
+## Advanced options       ##
+############################
+
+# Get user avatars from Gravatar.com? (true/false)
+gravatar = false
+
+# Align the main menu to the right of the page? (true/false)
+menu_align_right = true
+
+# Show estimated reading time for posts? (true/false)
+reading_time = false
+
+# Display comment count (if commenting enabled in config.toml)? (true/false)
+comment_count = false
+
+# Display next/previous section pager? (true/false)
+section_pager = false
+docs_section_pager = true  # Display pager in Docs layout (e.g. tutorials)?
+
+# Enable in-built social sharing buttons? (true/false)
+sharing = false
+
+# Configuration of publication pages.
+[publications]
+  # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
+  #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
+  date_format = "January 2006"
+
+  # Citation style ("apa" or "mla")
+  citation_style = "apa"
+
+# Configuration of project pages.
+[projects]
+  # Views for associated content.
+  #   1: List
+  #   2: Compact
+  #   3: Card
+  #   4: Citation (publications only)
+  post_view = 2
+  publication_view = 2
+  talk_view = 2
+
+# Search.
+[search]
+  # Search provider:
+  #   0: No search engine
+  #   1: Academic (built-in)
+  #   2: Algolia (https://www.algolia.com)
+  engine = 1
+
+  # Configuration of Algolia search engine.
+  # Paste the values from your Algolia dashboard.
+  [search.algolia]
+    app_id = ""
+    api_key = ""
+    index_name = ""
+    show_logo = false

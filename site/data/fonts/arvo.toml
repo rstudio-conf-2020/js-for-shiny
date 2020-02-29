@@ -1,0 +1,15 @@
+# Font style metadata
+name = "arvo"
+
+# Optional Google font URL
+google_fonts = "Cutive+Mono|Arvo|Lato"
+
+# Font families
+heading_font = "Arvo"
+body_font = "Lato"
+nav_font = "Arvo"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "20"
+font_size_small = "16"

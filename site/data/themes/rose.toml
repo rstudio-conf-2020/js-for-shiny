@@ -1,0 +1,25 @@
+# Theme metadata
+name = "rose"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#c37280" #accent color 
+primary_light = "#767071" 
+primary_dark = "#575757"
+
+# Links
+link = "#c37280"
+link_hover = "#40181e" # hover color for icons beneath profile
+
+# Menu
+menu_primary = "#c37280"
+menu_text = "#fcfcfc"
+menu_text_active = "#40181e" 
+menu_title = "#fcfcfc"
+
+# Backgrounds
+background = "#f0e2e2"
+home_section_odd = "#fcfcfc"
+home_section_even = "#fcfcfc"

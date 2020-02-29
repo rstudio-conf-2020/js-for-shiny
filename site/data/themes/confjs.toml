@@ -1,0 +1,23 @@
+# Theme metadata
+name = "confjs"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#75AADB"
+
+# Links
+link = "#4D8DC9"
+link_hover = "#ff70a3"
+
+# Menu
+menu_primary = "#4D8DC9"
+menu_text = "#ffffff"
+menu_text_active = "#b6cfe8"
+menu_title = "#ffffff"
+
+# Backgrounds
+background = "#fcfcfc"
+home_section_odd = "#fcfcfc"
+home_section_even = "#fcfcfc"

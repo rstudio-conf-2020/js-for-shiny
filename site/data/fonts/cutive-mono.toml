@@ -1,0 +1,15 @@
+# Font style metadata
+name = "cutive-mono"
+
+# Optional Google font URL
+google_fonts = "Cutive+Mono|Raleway:300,400,500,600|Arvo"
+
+# Font families
+heading_font = "Cutive Mono"
+body_font = "Raleway"
+nav_font = "Arvo"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "15"
+font_size_small = "13"

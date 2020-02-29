@@ -1,0 +1,68 @@
+pre {
+  font-family: var(--font-monospace);
+  /* background-color: var(--text-lighter); */
+  padding: 0.8em;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-left: 3px solid var(--text-lighter);
+}
+pre code {
+  border: none;
+  color: var(--text);
+}
+pre.js {
+  border-color: var(--yellow);
+  background-color: var(--yellow-o10);
+}
+pre.r {
+  border-color: var(--blue);
+  background-color: var(--blue-o10);
+}
+pre.json {
+  border-color: var(--purple);
+  background-color: var(--purple-o10);
+}
+pre.node,
+pre.bash,
+pre.sh {
+  border-color: var(--green);
+  background-color: var(--green-o10);
+}
+pre.md,
+pre.markdown,
+pre.yaml {
+  border-color: var(--red);
+  background-color: var(--red-o10);
+}
+.pre-name {
+  border-bottom: 3px solid #00000010;
+  font-family: var(--font-monospace);
+  text-align: right;
+  padding-right: 1em;
+  color: var(--text-med);
+  z-index: -1;
+}
+code,
+kbd,
+samp {
+  font-family: var(--font-monospace);
+  font-size: 1em;
+}
+code,
+kbd {
+  border-radius: var(--border-radius);
+  padding: 0px 2px;
+  font-size: 75%;
+}
+p code {
+  /* border:1px solid var(--text-light); */
+  /* background-color: var(--text-lighter); */
+  color: var(--purple);
+  background-color: var(--purple-o10);
+}
+a code,
+a:hover code {
+  color: var(--purple) !important;
+  text-decoration: underline;
+}

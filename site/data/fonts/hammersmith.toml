@@ -1,0 +1,15 @@
+# Font style metadata
+name = "hammersmith"
+
+# Optional Google font URL
+google_fonts = "Hammersmith+One|Cutive+Mono|Raleway:300,400,500,600"
+
+# Font families
+heading_font = "Hammersmith One"
+body_font = "Raleway"
+nav_font = "Raleway"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "20"
+font_size_small = "16"

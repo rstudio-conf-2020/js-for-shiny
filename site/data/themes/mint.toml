@@ -1,0 +1,25 @@
+# Theme metadata
+name = "mint"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#b2e0dd" 
+primary_light = "#575757"
+primary_dark = "#1f547d"
+
+# Links
+link = "#1f547dbd"
+link_hover = "#1f547d"
+
+# Menu
+menu_primary = "#b2e0dd"
+menu_text = "#1f547dbd"
+menu_text_active = "#1f547d"
+menu_title = "#1f547d"
+
+# Backgrounds
+background = "#dcf1f0"
+home_section_odd = "#edfbfa"
+home_section_even = "#edfbfa70"

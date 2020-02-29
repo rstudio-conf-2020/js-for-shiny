@@ -1,0 +1,66 @@
+/* Utility classes */
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.center {
+  text-align: center;
+}
+.clear {
+  clear: both;
+}
+.hide {
+  display: none;
+}
+.spacer {
+  display: block;
+  height: 1em;
+  border: none;
+  clear: both;
+}
+.wrap {
+  width: 100%;
+  max-width: 40em;
+  margin: auto;
+}
+.reset {
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+}
+ol.reset,
+ul.reset {
+  list-style: none;
+}
+
+/* highlighting */
+::-moz-selection {
+  background-color: rgba(85, 235, 188, 0.6);
+}
+::selection {
+  background-color: rgba(85, 235, 188, 0.6);
+}
+
+/* keyboard */
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid var(--text-lighter);
+  font-family: var(--font-monospace);
+  background-color: var(--text-lighter);
+  color: var(--text);
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  box-shadow: 0 1px 0px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px #fff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  line-height: 1.4;
+  white-space: nowrap;
+  font-size: 75%;
+}

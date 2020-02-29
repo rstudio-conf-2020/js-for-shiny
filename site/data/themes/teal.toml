@@ -1,0 +1,24 @@
+# Theme metadata
+name = "teal"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#5db3b3" #accent color 
+
+
+# Links
+link = "#737373" 
+link_hover = "#ada9a9" # hover color for icons beneath profile
+
+# Menu
+menu_primary = "#ffffff"
+menu_text = "#ada9a9"
+menu_text_active = "#5db3b3"
+menu_title = "#737373"
+
+# Backgrounds
+background = "#ffffff"
+home_section_odd = "#ffffff"
+home_section_even = "#ffffff"

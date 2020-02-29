@@ -1,0 +1,24 @@
+# Theme metadata
+name = "orange"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#ec8107" #accent color 
+
+
+# Links
+link = "#e88a6f" 
+link_hover = "#efaa96"
+
+# Menu
+menu_primary = "#ffffff"
+menu_text = "#ada9a9"
+menu_text_active = "#ec8107"
+menu_title = "#737373"
+
+# Backgrounds
+background = "#ffffff"
+home_section_odd = "#ffffff"
+home_section_even = "#ffffff"

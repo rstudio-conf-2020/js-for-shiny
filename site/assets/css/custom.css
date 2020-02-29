@@ -1,0 +1,16 @@
+.jv__caret-icon {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+.pre-name {
+  margin-bottom: 0 !important;
+}
+pre {
+  border-radius: 0;
+}
+.docs-article-container {
+  max-width: 800px;
+}
+.mh-150px {
+  max-height: 150px;
+}

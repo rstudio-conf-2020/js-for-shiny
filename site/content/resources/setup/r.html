@@ -1,0 +1,72 @@
+---
+date: "2019-05-05T00:00:00+01:00"
+draft: false
+linktitle: R Setup
+menu:
+  setup:
+    parent: Setup
+    weight: 20
+title: Setup Your R Environment
+type: docs
+highlight: false
+weight: 20
+---
+
+
+
+<div id="js4shiny" class="section level4">
+<h4>js4shiny</h4>
+<p>I’ve created a companion R package for this workshop called <a href="https://github.com/gadenbuie/js4shiny">js4shiny</a>. Installing the package with its dependencies will ensure that you have the R packages needed for the workshop. The package also provides access to the examples and exercises used in the workshop and includes some helpful tools that you can use after the workshop while learning and working with JavaScript.</p>
+<p>:computer: To install the package, use <a href="https://devtools.r-lib.org">devtools</a>.</p>
+<pre class="r"><code># install.package(&quot;devtools&quot;)
+devtools::install_github(&quot;gadenbuie/js4shiny&quot;, dependencies = TRUE)</code></pre>
+<p>Be sure to include the <code>dependencies = TRUE</code>!</p>
+<p>If you’re installing <code>devtools</code> for the first time, you may find the <a href="https://r-pkgs.org/setup.html">System Setup</a> of the <a href="https://r-pkgs.org"><em>R Packages</em> book</a> to be helpful.</p>
+<p>:information_source: There is a minor issue with <code>rmarkdown</code> limited specifically to version 2.0. If you have <code>rmarkdown</code> 2.0 installed, I recommend updating to a newer version. The current version of <code>rmarkdown</code> on CRAN is <img src="https://www.r-pkg.org/badges/version/rmarkdown" style="display: inline; margin-top: 0; margin-bottom: 0;" />. If the CRAN version is 2.0.5 or higher, install from CRAN; otherwise use</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/rmarkdown&quot;)</code></pre>
+</div>
+<div id="snippets" class="section level4">
+<h4>Snippets</h4>
+<p>I’ve created a set of code snippets for RStudio
+that are useful for the types of tasks we’ll cover in the workshop.
+You can find the source files in the <a href="https://github.com/gadenbuie/js4shiny/tree/master/inst/snippets">js4shiny package repository</a>.</p>
+<p>To install the snippets,
+you can use the <a href="#js4shiny">js4shiny</a> package.</p>
+<pre class="r"><code>js4shiny::snippets_install()</code></pre>
+<p>If you haven’t installed snippets before,
+the newly installed <code>js4shiny</code> snippets will mask the built-in RStudio snippets.</p>
+<p>If you do have snippets installed,
+the new snippets should be written added to your snippets list.
+You may wish to make a backup copy of your existing snippets files,
+which you can find by running the following code
+(requires the <a href="https://fs.r-lib.org">fs</a> package).</p>
+<pre class="r"><code># rstudio &lt; 1.3
+snippets_dir &lt;- fs::path_home_r(&quot;.r&quot;, &quot;snippets&quot;)
+
+# rstudio &gt;= 1.3+
+# snippets_dir &lt;- fs::path_home_r(&quot;.config&quot;, &quot;rstudio&quot;, &quot;snippets&quot;)
+
+fs::file_show(snippets_dir)</code></pre>
+<p>Or you can manually install the snippets
+by copying and pasting them into the snippets editor in RStudio,
+which is available under Global Options &gt; Code &gt; Edit Snippets button.
+You can find more information and detailed instructions about using snippets
+at <a href="https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets">Code Snippets</a> on the RStudio Support page.</p>
+</div>
+<div id="other-r-requirements" class="section level4">
+<h4>Other R Requirements</h4>
+<p>I’ve included all of the packages that we’ll need
+in the dependencies of <code>js4shiny</code>
+except for the <a href="https://tidyverse.org">tidyverse</a>.
+Please make sure you have at least the core tidyverse packages installed.</p>
+<p>The final R detail is that we will be building a package
+during the workshop when we create an htmlwidget.
+We won’t focus on the mechanics of package building in the workshop.
+If you’re not familiar with package development,
+I recommend taking a look a <a href="https://r-pkgs.org">R Packages</a>
+by Hadley Wickham and Jenny Bryan.
+At a minimum,
+please review the <a href="https://r-pkgs.org/setup.html">System Setup</a> chapter,
+in particular the section on the <a href="https://r-pkgs.org/setup.html#setup-tools">R build toolchain</a>
+to ensure that your laptop will be ready to build a package.</p>
+</div>

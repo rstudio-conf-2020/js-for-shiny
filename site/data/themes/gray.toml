@@ -1,0 +1,25 @@
+# Theme metadata
+name = "gray"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#767071" #accent color 
+primary_light = "#767071" 
+primary_dark = "#575757"
+
+# Links
+link = "#767071" 
+link_hover = "#3c2f31" # hover color for icons beneath profile
+
+# Menu
+menu_primary = "#fcfcfc"
+menu_text = "#767071"
+menu_text_active = "#3c2f31" 
+menu_title = "#767071"
+
+# Backgrounds
+background = "#fcfcfc"
+home_section_odd = "#fcfcfc"
+home_section_even = "#fcfcfc"

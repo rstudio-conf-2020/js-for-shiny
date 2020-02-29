@@ -1,0 +1,23 @@
+# Theme metadata
+name = "workshop_theme1"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#75AADB" 
+
+# Links
+link = "#75AADB"
+link_hover = "#81aed9"
+
+# Menu
+menu_primary = "#4D8DC9"
+menu_text = "#ffffff"
+menu_text_active = "#b6cfe8"
+menu_title = "#ffffff"
+
+# Backgrounds
+background = "#fcfcfc"
+home_section_odd = "#fcfcfc"
+home_section_even = "#fcfcfc"

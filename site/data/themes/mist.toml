@@ -1,0 +1,24 @@
+# Theme metadata
+name = "mist"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#5db3b3" #accent color 
+
+
+# Links
+link = "#5db3b3" 
+link_hover = "#4a8888" # hover color for icons beneath profile
+
+# Menu
+menu_primary = "#d6dcdc" # Navbar color
+menu_text = "#ffffff"
+menu_text_active = "#5db3b3"
+menu_title = "#737373"
+
+# Backgrounds
+background = "#ffffff"
+home_section_odd = "#ffffff"
+home_section_even = "#ffffff"

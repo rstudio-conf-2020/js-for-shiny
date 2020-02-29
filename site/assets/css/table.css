@@ -1,0 +1,19 @@
+
+/* Table Elements */
+table{
+    border-collapse: collapse;
+    font-size: 1em;
+}
+table,
+table th,
+table td {
+    /* border-bottom: 1px solid var(--text-light); */
+    padding:0.33em 0.66em;
+    text-align: left;
+    vertical-align: middle;
+}
+table[border="1"],
+table[border="1"] th,
+table[border="1"] td {
+    border: 1px solid var(--text-light);
+}

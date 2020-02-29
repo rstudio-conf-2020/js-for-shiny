@@ -1,0 +1,16 @@
+# Font style metadata
+name = "julius-sans-one"
+
+# Optional Google font URL
+google_fonts = "Julius+Sans+One:300,400,600,700|Quicksand|Cutive+Mono"
+
+
+# Font families
+heading_font = "Julius Sans One"
+body_font = "Quicksand"
+nav_font = "Julius Sans One"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "20"
+font_size_small = "18"

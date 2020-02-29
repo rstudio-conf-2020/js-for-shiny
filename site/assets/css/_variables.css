@@ -1,0 +1,20 @@
+
+:root{
+    --text: #2f4858;
+    --text-med: #6d7e8a;
+    --text-light: #c0c8cc;
+    --text-lighter: #eaecee;
+    --blue: #75AADB;
+    --blue-o10: #75AADB0A;
+    --dark-blue: #466683;
+    --dark-blue-o10: #4666830A;
+    --yellow: #F0DB4F;
+    --yellow-o10: #f0db4f0A;
+    --red: #ff70a3;
+    --red-o10: #ff70a30A;
+    --purple: #993d70;
+    --purple-o10: #993d700A;
+    --green: #55ebbc;
+    --green-o10: #55ebbc0A;
+    --border-radius: 3px;
+}

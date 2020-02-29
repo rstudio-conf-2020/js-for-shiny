@@ -1,0 +1,114 @@
+---
+date: "2018-09-09T00:00:00Z"
+draft: false
+lastmod: "2018-09-09T00:00:00Z"
+linktitle: Links
+menu:
+  links:
+    name: Links
+    weight: 30
+summary: Links and resources for Shiny, JavaScript, HTML, and CSS.
+title: Awesome Web Dev in R
+toc: false
+type: docs
+weight: 50
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo=FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+This is a big list of links to
+articles,
+blog posts,
+JavaScript and CSS libraries,
+online learning resources,
+notes,
+and so much more
+that I found interesting while working on this workshop.
+
+I hope to curate and organize this list a bit more in the future.
+For now, I hope you find something helpful or interesting!
+
+
+```{r echo=FALSE}
+library(tidyverse)
+library(glue)
+library(here)
+
+links <- read_csv(here("static/resources-links.csv"))
+ 
+url_pattern <- "((https?|ftp|file)://)?([\\w\\d.-]+)\\.([a-zA-Z.]{2,6})([-/.a-zA-Z0-9]+)*/?"
+
+titleCase <- function(x) {
+	substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+	x
+}
+
+recode_groups <- c(
+  css = "CSS",
+  book = "Books",
+  api = "API",
+  es6 = "ES6",
+  html = "HTML",
+  js = "JS",
+  pwa = "PWA",
+  svg = "SVG",
+  json = "JSON",
+  jslib = "JS Library",
+  vscode = "VS Code",
+  "web-components" = "Web Components",
+  "state-of-web-dev" = "State of Web Dev",
+  rmarkdown = "R Markdown"
+)
+
+links %>%
+	select(url, group, title, description) %>%
+	# slice(1:5) %>%
+	mutate(
+		url_parts = map(url, str_match, pattern = url_pattern),
+		url_slug = map_chr(url_parts, ~ glue("{.x[4]}.{.x[5]}")),
+		url = map2_chr(url, url_slug, ~ htmltools::tags$a(href = .x, .y) %>% format()),
+		group = trimws(group),
+		group = map(group, ~ str_split(.x, pattern = " ")[[1]]),
+		group_first = map_chr(group, `[`, 1),
+		group_first = recode(group_first, !!!recode_groups),
+		group_first = titleCase(group_first),
+		group_first = recode(group_first, Jquery = "jQuery"),
+		group = map_chr(group, ~ map(.x, ~ {
+			htmltools::tags$span(class = "awesome-link-group-tag", .x) %>% format()
+		}) %>% paste(collapse = " "))
+	) %>%
+	select(group_first, group, title, description, url) %>%
+	group_nest(group_first) %>%
+	purrr::pmap(function(group_first, data) {
+		htmltools::tagList(
+			htmltools::tags$h3(group_first),
+			purrr::pmap(data, function(group, title, description, url) {
+				htmltools::tags$li(
+					class = "awesome-link",
+					htmltools::tags$div(
+						class= "awesome-link-groups",
+						htmltools::HTML(group)
+					),
+					htmltools::tags$p(
+					  htmltools::tags$span(class = "awesome-link-title", title),
+					  htmltools::tags$span(
+					    class = "awesome-link-url",
+					    htmltools::HTML(glue("({url})"))
+					  )
+					),
+					if (!is.na(description)) htmltools::tags$div(
+						class = "awesome-link-description",
+						description
+					)
+				)
+			}) %>%
+				htmltools::tags$ul(class = "awesome-links", .)
+		)
+	}) %>%
+  htmltools::div(id = "awesome-links-lists", .)
+```
+
+<link href="/css/awesome-links.css" rel="stylesheet" type="text/css">

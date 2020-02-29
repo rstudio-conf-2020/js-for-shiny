@@ -1,0 +1,15 @@
+# Font style metadata
+name = "josefin-slab"
+
+# Optional Google font URL
+google_fonts = "Cutive+Mono|Josefin+Slab:300,400,600,700|Quicksand"
+
+# Font families
+heading_font = "Josefin Slab"
+body_font = "Quicksand"
+nav_font = "Josefin Slab"
+mono_font = "Cutive Mono"
+
+# Font size
+font_size = "16"
+font_size_small = "14"

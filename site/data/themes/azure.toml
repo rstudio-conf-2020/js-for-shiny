@@ -1,0 +1,23 @@
+# Theme metadata
+name = "azure"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#b6d3ec" 
+
+# Links
+link = "#1f547dbd"
+link_hover = "#1f547d"
+
+# Menu
+menu_primary = "#fcfcfc"
+menu_text = "#1f547dbd"
+menu_text_active = "#1f547d"
+menu_title = "#1f547d"
+
+# Backgrounds
+background = "#fcfcfc"
+home_section_odd = "#fcfcfc"
+home_section_even = "#fcfcfc"

@@ -1,0 +1,72 @@
+# Navigation Links
+#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
+#     desired widget in your `content/home/` folder.
+#   The weight parameter defines the order that the links will appear in.
+
+[[main]]
+  name = "About"
+  url = "about"
+  weight = 10
+  identifier = "about"
+
+[[main]]
+  name = "Details"
+  url = "about#conf"
+  weight = 10
+  parent = "about"
+
+[[main]]
+  name = "Is this workshop for me?"
+  url = "about#three-questions"
+  weight = 20
+  parent = "about"
+
+[[main]]
+  name = "Overview"
+  url = "about#abstract"
+  weight = 30
+  parent = "about"
+
+[[main]]
+  name = "Learning objectives"
+  url = "about#learning-objectives"
+  weight = 40
+  parent = "about"
+
+[[main]]
+  name = "Schedule"
+  url = "schedule"
+  weight = 30
+
+[[main]]
+  name = "People"
+  url = "people"
+  weight = 40
+
+[[main]]
+  name = "Setup"
+  url = "resources/setup"
+  weight = 35
+
+[[main]]
+  name = "Resources"
+  url = "resources/"
+  weight = 36
+
+[[main]]
+  pre = "<i class=\"fas fa-box-open fa-lg\"></i>"
+  name = "&nbsp;&nbsp;"
+  url = "https://pkg.js4shiny.com"
+  weight = 59
+
+[[main]]
+  pre = "<i class=\"fab fa-github fa-lg\"></i>"
+  name = ""
+  url = "https://github.com/rstudio-conf-2020/js-for-shiny"
+  weight = 60
+
+[[main]]
+  pre = "<i class=\"fab fa-gitter fa-lg\"></i>"
+  name = "&nbsp;"
+  url = "https://gitter.im/js4shiny/rstudio-conf-2020"
+  weight = 70
