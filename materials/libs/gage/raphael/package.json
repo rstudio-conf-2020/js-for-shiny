@@ -42,7 +42,7 @@
   "description": "JavaScript Vector Library",
   "devDependencies": {
     "qunitjs": "^1.0.0",
-    "webpack": "4.39.2",
+    "webpack": "5.94.0",
     "webpack-cli": "3.3.6"
   },
   "homepage": "http://dmitrybaranovskiy.github.io/raphael/",
